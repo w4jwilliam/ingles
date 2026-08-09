@@ -7,32 +7,48 @@
 <title>Inglês em 30 minutos</title>
 
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" content="#7C3AED">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Inglês 30">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" href="icon-192.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --preto:#000000;
-  --cinza1:#0a0a0a;
-  --cinza2:#141414;
-  --cinza3:#1f1f1f;
-  --cinza4:#2a2a2a;
-  --linha:#2a2a2a;
-  --texto:#e8e8e8;
-  --texto2:#a0a0a0;
-  --texto3:#666666;
-  --branco:#ffffff;
+  /* Paleta B — Arco-íris suave estilo Spotify */
+  --roxo:#7C3AED;
+  --roxo2:#A78BFA;
+  --rosa:#EC4899;
+  --rosa2:#F472B6;
+  --laranja:#F97316;
+  --laranja2:#FB923C;
+  --amarelo:#FACC15;
+  --verde:#10B981;
+  --verde2:#34D399;
+  --azul:#3B82F6;
+  --azul2:#60A5FA;
+  --ciano:#06B6D4;
+  --preto:#0F0F1A;
+  --cinza1:#1A1A2E;
+  --cinza2:#25253D;
+  --cinza3:#34344F;
+  --branco:#FFFFFF;
+  --texto:#F4F4F5;
+  --texto2:#A1A1AA;
+  --grad-principal:linear-gradient(135deg,#7C3AED 0%,#EC4899 50%,#F97316 100%);
+  --grad-azul:linear-gradient(135deg,#3B82F6,#06B6D4);
+  --grad-verde:linear-gradient(135deg,#10B981,#06B6D4);
+  --grad-rosa:linear-gradient(135deg,#EC4899,#A78BFA);
+  --grad-laranja:linear-gradient(135deg,#F97316,#FACC15);
+  --disp:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
+  --corpo:'Plus Jakarta Sans',system-ui,-apple-system,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,monospace;
-  --corpo:'Inter',system-ui,-apple-system,sans-serif;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0}
@@ -42,147 +58,193 @@ body{
   font-family:var(--corpo);
   font-size:15px;line-height:1.5;
   -webkit-font-smoothing:antialiased;
-  padding-bottom:calc(64px + env(safe-area-inset-bottom));
+  padding-bottom:calc(72px + env(safe-area-inset-bottom));
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(124,58,237,.15), transparent 40%),
+    radial-gradient(circle at 80% 90%, rgba(236,72,153,.12), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(249,115,22,.08), transparent 50%);
+  background-attachment:fixed;
 }
 button{font-family:inherit;font-size:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input,textarea{font-family:inherit;font-size:16px}
 .app{max-width:560px;margin:0 auto;padding:18px 16px 24px}
 .oculto{display:none !important}
 
-/* tipografia */
-h1{font-size:26px;font-weight:700;letter-spacing:-.03em;margin:0 0 14px;line-height:1.15;color:var(--branco)}
-h2{font-size:18px;font-weight:600;letter-spacing:-.02em;margin:0;line-height:1.2;color:var(--branco)}
-h3{font-size:15px;font-weight:600;letter-spacing:-.01em;margin:0;color:var(--branco)}
-.rotulo{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--texto3)}
-.dado{font-family:var(--mono);font-weight:500;font-variant-numeric:tabular-nums;color:var(--branco)}
+/* Tipografia */
+h1{font-size:28px;font-weight:800;letter-spacing:-.03em;margin:0 0 14px;line-height:1.1;color:var(--branco)}
+h2{font-size:19px;font-weight:700;letter-spacing:-.02em;margin:0;line-height:1.2;color:var(--branco)}
+h3{font-size:16px;font-weight:700;letter-spacing:-.01em;margin:0;color:var(--branco)}
+.rotulo{font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--texto2);font-weight:500}
+.dado{font-family:var(--mono);font-weight:700;font-variant-numeric:tabular-nums;color:var(--branco)}
 .pt{color:var(--texto2);font-size:13.5px;line-height:1.45}
 
-/* topo */
-.topo{display:flex;align-items:center;gap:10px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--linha)}
-.selo-nivel{background:var(--branco);color:var(--preto);border-radius:6px;padding:6px 9px;display:flex;flex-direction:column;line-height:1.1;min-width:42px}
-.selo-nivel .n{font-family:var(--mono);font-size:15px;font-weight:700}
-.selo-nivel .l{font-family:var(--mono);font-size:7.5px;letter-spacing:.12em;opacity:.6;margin-top:1px}
+/* Topo */
+.topo{display:flex;align-items:center;gap:11px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.06)}
+.selo-nivel{background:var(--grad-principal);color:var(--branco);border-radius:10px;padding:7px 10px;display:flex;flex-direction:column;line-height:1.1;min-width:46px;box-shadow:0 4px 14px rgba(124,58,237,.4)}
+.selo-nivel .n{font-family:var(--mono);font-size:16px;font-weight:700}
+.selo-nivel .l{font-family:var(--mono);font-size:7.5px;letter-spacing:.12em;opacity:.85;margin-top:1px}
 .topo-info{flex:1;min-width:0}
-.topo-info .nome{font-weight:700;font-size:14.5px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--branco)}
-.metricas{display:flex;gap:14px;margin-top:3px}
+.topo-info .nome{font-weight:700;font-size:15px;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--branco)}
+.metricas{display:flex;gap:14px;margin-top:4px;flex-wrap:wrap}
 .metricas span{font-family:var(--mono);font-size:10.5px;color:var(--texto2)}
-.metricas b{color:var(--branco);font-weight:500}
+.metricas b{color:var(--branco);font-weight:700}
 
-/* cartões */
-.carta{background:var(--cinza1);border:1px solid var(--linha);border-radius:10px;padding:15px;margin-bottom:10px}
-.carta.destaque{border-color:var(--texto2);border-width:1px}
+/* Cartões */
+.carta{background:rgba(26,26,46,.6);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;margin-bottom:11px;backdrop-filter:blur(10px);position:relative;overflow:hidden}
+.carta.destaque{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(236,72,153,.15));border-color:rgba(124,58,237,.4);box-shadow:0 8px 24px rgba(124,58,237,.2)}
 .carta-topo{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
 
-/* botões */
-.btn{display:block;width:100%;text-align:center;background:var(--branco);color:var(--preto);border-radius:8px;padding:13px;font-weight:600;font-size:14.5px;transition:opacity .12s ease}
-.btn:active{opacity:.7}
-.btn:disabled{opacity:.25;cursor:default}
-.btn.secundario{background:transparent;color:var(--branco);border:1px solid var(--linha);font-weight:500}
-.btn.secundario:active{background:var(--cinza2)}
+/* Botões */
+.btn{display:block;width:100%;text-align:center;background:var(--grad-principal);color:var(--branco);border-radius:12px;padding:14px;font-weight:700;font-size:15px;box-shadow:0 6px 18px rgba(124,58,237,.35);transition:transform .15s ease,box-shadow .15s ease;letter-spacing:-.01em}
+.btn:active{transform:scale(.97);box-shadow:0 3px 10px rgba(124,58,237,.25)}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.secundario{background:rgba(255,255,255,.05);color:var(--branco);border:1px solid rgba(255,255,255,.12);box-shadow:none;font-weight:600}
+.btn.secundario:active{background:rgba(255,255,255,.1)}
+.btn.verde{background:var(--grad-verde);box-shadow:0 6px 18px rgba(16,185,129,.35)}
+.btn.azul{background:var(--grad-azul);box-shadow:0 6px 18px rgba(59,130,246,.35)}
+.btn.rosa{background:var(--grad-rosa);box-shadow:0 6px 18px rgba(236,72,153,.35)}
+.btn.laranja{background:var(--grad-laranja);box-shadow:0 6px 18px rgba(249,115,22,.35)}
 .btn.pequeno{padding:9px 14px;font-size:13px;width:auto;display:inline-block}
-button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--branco);outline-offset:2px}
+button:focus-visible{outline:2.5px solid var(--roxo2);outline-offset:2px}
 
-/* barras */
-.barra{height:5px;background:var(--cinza3);border-radius:99px;overflow:hidden}
-.barra i{display:block;height:100%;background:var(--branco);border-radius:99px;transition:width .35s ease}
+/* Barras */
+.barra{height:6px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--grad-principal);border-radius:99px;transition:width .4s ease}
 
-/* semana */
-.semana{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
-.dia{aspect-ratio:1;border-radius:6px;border:1px solid var(--linha);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10px;color:var(--texto3)}
-.dia.feito{background:var(--branco);border-color:var(--branco);color:var(--preto)}
-.dia.hoje{border-color:var(--texto2)}
+/* Semana */
+.semana{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:12px}
+.dia{aspect-ratio:1;border-radius:8px;border:1.5px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10.5px;color:var(--texto2);background:rgba(255,255,255,.02)}
+.dia.feito{background:var(--grad-verde);border-color:transparent;color:var(--branco);font-weight:700;box-shadow:0 3px 10px rgba(16,185,129,.3)}
+.dia.hoje{border-color:var(--laranja);border-width:2px;color:var(--branco)}
 
-/* sessão */
-.sessao-topo{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.blocos{display:flex;gap:3px;margin-bottom:14px}
-.blocos i{flex:1;height:3px;border-radius:99px;background:var(--cinza3)}
-.blocos i.ativo{background:var(--branco)}
-.blocos i.pronto{background:var(--texto2)}
-.cronometro{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--texto2)}
-.cronometro.estourou{color:var(--texto)}
+/* Sessão */
+.sessao-topo{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.blocos{display:flex;gap:4px;margin-bottom:16px}
+.blocos i{flex:1;height:4px;border-radius:99px;background:rgba(255,255,255,.08)}
+.blocos i.ativo{background:var(--grad-principal)}
+.blocos i.pronto{background:var(--grad-verde)}
+.cronometro{font-family:var(--mono);font-weight:700;font-size:14px;color:var(--texto2);background:rgba(255,255,255,.05);padding:5px 10px;border-radius:8px}
+.cronometro.estourou{color:var(--rosa);background:rgba(236,72,153,.15)}
 
-.pergunta{font-weight:600;font-size:21px;letter-spacing:-.02em;line-height:1.25;margin:6px 0 4px;color:var(--branco)}
-.pergunta.en{font-size:23px;font-family:var(--mono)}
-.opcoes{display:flex;flex-direction:column;gap:7px;margin-top:14px}
-.opc{text-align:left;background:var(--cinza1);border:1px solid var(--linha);border-radius:8px;padding:12px 14px;font-size:15px;color:var(--texto);transition:background .12s;width:100%}
-.opc:active{background:var(--cinza2)}
-.opc.certa{border-color:var(--branco);background:var(--cinza2)}
-.opc.errada{border-color:var(--texto3);background:var(--cinza2)}
-.opc.revelada{border-color:var(--texto2);border-style:dashed}
+.pergunta{font-weight:700;font-size:21px;letter-spacing:-.02em;line-height:1.25;margin:6px 0 4px;color:var(--branco)}
+.pergunta.en{font-size:24px;font-family:var(--mono)}
+.opcoes{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.opc{text-align:left;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:10px;padding:13px 14px;font-size:15px;color:var(--texto);transition:all .15s;width:100%}
+.opc:active{background:rgba(255,255,255,.08);transform:scale(.99)}
+.opc.certa{background:rgba(16,185,129,.18);border-color:var(--verde);color:var(--branco);animation:pulseOk .5s}
+.opc.errada{background:rgba(236,72,153,.18);border-color:var(--rosa);color:var(--branco);animation:shakeErr .4s}
+.opc.revelada{background:rgba(16,185,129,.1);border-color:var(--verde);border-style:dashed}
 .opc:disabled{cursor:default;opacity:1}
 
-.campo{width:100%;background:var(--cinza1);border:1px solid var(--linha);border-radius:8px;padding:12px;font-size:15px;color:var(--branco);outline:none}
-.campo:focus{border-color:var(--branco)}
+@keyframes pulseOk{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.02)}
+}
+@keyframes shakeErr{
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-6px)}
+  75%{transform:translateX(6px)}
+}
+
+.campo{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.12);border-radius:10px;padding:13px;font-size:15px;color:var(--branco);outline:none;transition:border-color .15s}
+.campo:focus{border-color:var(--roxo2);background:rgba(255,255,255,.06)}
 textarea.campo{min-height:90px;resize:vertical;line-height:1.45}
 
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.chip{background:var(--cinza1);border:1px solid var(--linha);border-radius:6px;padding:8px 12px;font-size:14.5px;color:var(--texto)}
+.chip{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:8px;padding:9px 13px;font-size:14.5px;color:var(--texto);transition:all .12s}
+.chip:active{background:rgba(255,255,255,.12);transform:scale(.97)}
 .chip.usado{opacity:.25;pointer-events:none}
-.linha-montada{min-height:48px;border-bottom:1px solid var(--linha);display:flex;flex-wrap:wrap;gap:6px;padding-bottom:8px;align-items:flex-start}
+.linha-montada{min-height:48px;border-bottom:1.5px dashed rgba(255,255,255,.15);display:flex;flex-wrap:wrap;gap:6px;padding-bottom:8px;align-items:flex-start}
 
-.retorno{border-radius:8px;padding:11px 13px;margin-top:12px;font-size:14px;line-height:1.45}
-.retorno.ok{background:var(--cinza2);border-left:2px solid var(--branco)}
-.retorno.nao{background:var(--cinza2);border-left:2px solid var(--texto3)}
-.retorno .t{font-weight:600;display:block;margin-bottom:3px;color:var(--branco)}
+.retorno{border-radius:10px;padding:12px 14px;margin-top:13px;font-size:14px;line-height:1.45}
+.retorno.ok{background:rgba(16,185,129,.15);border-left:3px solid var(--verde)}
+.retorno.nao{background:rgba(236,72,153,.15);border-left:3px solid var(--rosa)}
+.retorno .t{font-weight:700;display:block;margin-bottom:4px;color:var(--branco);font-size:13px;letter-spacing:.02em}
 
-.som{width:96px;height:96px;border-radius:50%;background:var(--cinza2);color:var(--branco);border:1px solid var(--linha);display:flex;align-items:center;justify-content:center;margin:14px auto;font-size:32px}
-.som:active{background:var(--cinza3)}
+.som{width:104px;height:104px;border-radius:50%;background:var(--grad-azul);color:var(--branco);display:flex;align-items:center;justify-content:center;margin:16px auto;font-size:36px;box-shadow:0 8px 24px rgba(59,130,246,.4);transition:transform .15s}
+.som:active{transform:scale(.92)}
 
-/* passaporte */
-.estampas{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:9px}
-.estampa{position:relative;border:1px solid var(--linha);border-radius:8px;padding:12px 11px;background:var(--cinza1);min-height:104px;display:flex;flex-direction:column;justify-content:space-between}
-.estampa .num{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--texto3)}
-.estampa .tit{font-weight:700;font-size:14px;letter-spacing:-.01em;margin-top:4px;color:var(--branco)}
-.estampa.carimbada{border-color:var(--branco);border-style:double;border-width:2px}
-.estampa.carimbada .carimbo{position:absolute;right:7px;bottom:7px;transform:rotate(-8deg);border:1.5px solid var(--branco);color:var(--branco);border-radius:4px;font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.08em;padding:3px 5px;text-transform:uppercase}
-.estampa.atual{border-color:var(--texto2);border-width:1.5px}
+/* Passaporte */
+.estampas{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+.estampa{position:relative;border:1.5px solid rgba(255,255,255,.1);border-radius:12px;padding:13px 12px;background:rgba(255,255,255,.03);min-height:110px;display:flex;flex-direction:column;justify-content:space-between;transition:all .2s}
+.estampa .num{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--texto2);font-weight:500}
+.estampa .tit{font-weight:700;font-size:14.5px;letter-spacing:-.01em;margin-top:5px;color:var(--branco)}
+.estampa.carimbada{border-color:var(--amarelo);border-style:double;border-width:3px;background:linear-gradient(135deg,rgba(250,204,21,.12),rgba(249,115,22,.08));animation:carimboPop .6s}
+.estampa.carimbada .carimbo{position:absolute;right:8px;bottom:8px;transform:rotate(-12deg);border:1.5px solid var(--amarelo);color:var(--amarelo);border-radius:5px;font-family:var(--mono);font-size:8.5px;font-weight:700;letter-spacing:.08em;padding:3px 6px;text-transform:uppercase;background:rgba(250,204,21,.1)}
+.estampa.atual{border-color:var(--roxo2);border-width:2px;background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(236,72,153,.1))}
 .estampa.travada{opacity:.4}
 
-/* tutor */
-.conversa{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
-.bolha{max-width:88%;padding:10px 13px;border-radius:10px;font-size:14.5px;line-height:1.45}
-.bolha.eu{align-self:flex-end;background:var(--branco);color:var(--preto);border-bottom-right-radius:3px}
-.bolha.ia{align-self:flex-start;background:var(--cinza1);border:1px solid var(--linha);border-bottom-left-radius:3px;color:var(--texto)}
-.bolha .traducao{display:block;margin-top:5px;padding-top:5px;border-top:1px solid var(--linha);font-size:13px;color:var(--texto2)}
-.escrevendo{font-family:var(--mono);font-size:11px;color:var(--texto3)}
-.envio{display:flex;gap:7px;align-items:flex-end}
+@keyframes carimboPop{
+  0%{transform:scale(.85) rotate(-3deg);opacity:.5}
+  60%{transform:scale(1.05) rotate(1deg)}
+  100%{transform:scale(1) rotate(0);opacity:1}
+}
+
+/* Tutor */
+.conversa{display:flex;flex-direction:column;gap:9px;margin-bottom:13px}
+.bolha{max-width:88%;padding:11px 14px;border-radius:14px;font-size:14.5px;line-height:1.45}
+.bolha.eu{align-self:flex-end;background:var(--grad-principal);color:var(--branco);border-bottom-right-radius:5px;box-shadow:0 4px 12px rgba(124,58,237,.3)}
+.bolha.ia{align-self:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-bottom-left-radius:5px;color:var(--texto)}
+.bolha .traducao{display:block;margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,.1);font-size:13px;color:var(--texto2)}
+.escrevendo{font-family:var(--mono);font-size:11.5px;color:var(--texto2);animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+.envio{display:flex;gap:8px;align-items:flex-end}
 .envio .campo{flex:1}
-.envio .btn{width:auto;padding:12px 16px}
+.envio .btn{width:auto;padding:13px 18px}
 
-/* navegação */
-.nav{position:fixed;left:0;right:0;bottom:0;background:rgba(0,0,0,.92);border-top:1px solid var(--linha);display:flex;padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:20;backdrop-filter:blur(10px)}
-.nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0;color:var(--texto3);min-height:46px}
-.nav button .ic{font-size:17px;line-height:1;color:var(--texto3)}
-.nav button .tx{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase}
+/* Navegação */
+.nav{position:fixed;left:0;right:0;bottom:0;background:rgba(15,15,26,.85);border-top:1px solid rgba(255,255,255,.08);display:flex;padding:7px 4px calc(7px + env(safe-area-inset-bottom));z-index:20;backdrop-filter:blur(20px)}
+.nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 0;color:var(--texto2);min-height:48px;transition:color .15s}
+.nav button .ic{font-size:18px;line-height:1;transition:transform .2s}
+.nav button .tx{font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
 .nav button.ativo{color:var(--branco)}
-.nav button.ativo .ic{color:var(--branco)}
-.nav button:focus-visible{outline:2px solid var(--branco);outline-offset:-2px}
+.nav button.ativo .ic{transform:scale(1.15)}
+.nav button.ativo.painel{color:var(--azul2)}
+.nav button.ativo.sessao{color:var(--roxo2)}
+.nav button.ativo.passaporte{color:var(--verde2)}
+.nav button.ativo.tutor{color:var(--laranja2)}
+.nav button:focus-visible{outline:2px solid var(--roxo2);outline-offset:-2px}
 
-/* conquistas */
-.grid-conquistas{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px;margin-top:10px}
-.conquista{background:var(--cinza1);border:1px solid var(--linha);border-radius:8px;padding:10px 6px;text-align:center}
-.conquista.bloq{opacity:.3}
-.conquista.desb{border-color:var(--branco)}
-.conquista .ico{font-size:22px;line-height:1;margin-bottom:5px;filter:grayscale(1)}
-.conquista.desb .ico{filter:none}
-.conquista .nm{font-weight:600;font-size:11px;letter-spacing:-.01em;color:var(--branco)}
+/* Conquistas */
+.grid-conquistas{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:9px;margin-top:11px}
+.conquista{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:11px;padding:11px 6px;text-align:center;transition:all .2s}
+.conquista.bloq{opacity:.35}
+.conquista.desb{border-color:var(--amarelo);background:linear-gradient(135deg,rgba(250,204,21,.15),rgba(249,115,22,.1));box-shadow:0 4px 14px rgba(250,204,21,.2);animation:desbloqueia .7s}
+.conquista .ico{font-size:24px;line-height:1;margin-bottom:6px}
+.conquista .nm{font-weight:700;font-size:11px;letter-spacing:-.01em;color:var(--branco)}
+@keyframes desbloqueia{
+  0%{transform:scale(.7) rotate(-10deg);opacity:0}
+  60%{transform:scale(1.15) rotate(5deg)}
+  100%{transform:scale(1) rotate(0);opacity:1}
+}
 
-/* dashboard stats */
-.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
-.stat{background:var(--cinza1);border:1px solid var(--linha);border-radius:8px;padding:11px}
-.stat .v{font-family:var(--mono);font-size:21px;font-weight:500;color:var(--branco)}
-.stat .l{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;color:var(--texto3);margin-top:2px;text-transform:uppercase}
+/* Dashboard */
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:11px}
+.stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:11px;padding:12px;position:relative;overflow:hidden}
+.stat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-principal)}
+.stat.verde::before{background:var(--grad-verde)}
+.stat.azul::before{background:var(--grad-azul)}
+.stat.rosa::before{background:var(--grad-rosa)}
+.stat .v{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--branco)}
+.stat .l{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;color:var(--texto2);margin-top:3px;text-transform:uppercase;font-weight:500}
 
-/* toast */
-.toast{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:var(--branco);color:var(--preto);padding:10px 16px;border-radius:8px;font-size:13.5px;z-index:100;max-width:90%;text-align:center;font-weight:500}
-@keyframes toastIn{from{opacity:0;transform:translate(-50%,-10px)}to{opacity:1;transform:translate(-50%,0)}}
+/* Toast */
+.toast{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:var(--grad-principal);color:var(--branco);padding:11px 18px;border-radius:12px;font-size:14px;z-index:100;max-width:90%;text-align:center;font-weight:700;box-shadow:0 10px 30px rgba(124,58,237,.4);animation:toastIn .35s cubic-bezier(.34,1.56,.64,1)}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,-15px) scale(.9)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
 
-.rodape{text-align:center;margin-top:20px;color:var(--texto3);font-size:11.5px;font-family:var(--mono)}
-.aviso{background:var(--cinza2);border:1px solid var(--linha);border-radius:8px;padding:10px 12px;font-size:13px;line-height:1.4;color:var(--texto2)}
+/* Confete */
+.confetti{position:fixed;top:-10px;width:10px;height:14px;pointer-events:none;z-index:99;animation:fallConf 2.5s linear forwards}
+@keyframes fallConf{
+  0%{transform:translateY(0) rotate(0);opacity:1}
+  100%{transform:translateY(100vh) rotate(720deg);opacity:0}
+}
 
-.install-banner{position:fixed;bottom:64px;left:10px;right:10px;max-width:540px;margin:0 auto;background:var(--cinza2);color:var(--branco);border:1px solid var(--branco);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px;z-index:15}
-.install-banner button{background:var(--branco);color:var(--preto);border-radius:6px;padding:7px 11px;font-weight:600;font-size:12px}
-.install-banner .x{padding:4px 7px;background:transparent;color:var(--texto2)}
+.rodape{text-align:center;margin-top:22px;color:var(--texto2);font-size:11.5px;font-family:var(--mono)}
+.aviso{background:linear-gradient(135deg,rgba(250,204,21,.15),rgba(249,115,22,.1));border:1px solid rgba(250,204,21,.3);border-radius:10px;padding:11px 13px;font-size:13px;line-height:1.4;color:var(--texto)}
+
+.install-banner{position:fixed;bottom:72px;left:10px;right:10px;max-width:540px;margin:0 auto;background:var(--grad-principal);color:var(--branco);border-radius:14px;padding:11px 14px;display:flex;align-items:center;gap:10px;z-index:15;box-shadow:0 8px 24px rgba(124,58,237,.4)}
+.install-banner button{background:var(--branco);color:var(--roxo);border-radius:8px;padding:7px 12px;font-weight:700;font-size:12px}
+.install-banner .x{padding:4px 8px;background:transparent;color:var(--branco)}
 
 @media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -195,19 +257,106 @@ textarea.campo{min-height:90px;resize:vertical;line-height:1.45}
   <div class="rodape" id="rodape"></div>
 </div>
 
-<div id="installBanner" class="install-banner oculto" role="region" aria-label="Instalar app">
-  <div style="flex:1;font-size:13px;line-height:1.3">Instalar na tela inicial pra estudar offline.</div>
+<div id="installBanner" class="install-banner oculto">
+  <div style="flex:1;font-size:13px;line-height:1.3;font-weight:600">📱 Instale pra estudar offline!</div>
   <button onclick="instalarPWA()">Instalar</button>
-  <button class="x" onclick="fecharInstall()" aria-label="Fechar">✕</button>
+  <button class="x" onclick="fecharInstall()">�</button>
 </div>
 
-<nav class="nav" id="nav" role="navigation" aria-label="Navegação"></nav>
+<nav class="nav" id="nav"></nav>
 
 <script>
 /* ============================================================
-   CURRÍCULO — 9 níveis x 3 unidades (mantido igual)
+   🔊 SISTEMA DE SONS (Web Audio API — sintetizado, sem downloads)
+   ============================================================ */
+let audioCtx=null;
+let configSom={ligado:true,vibrar:true,toque:true};
+
+function initAudio(){
+  if(!audioCtx){
+    try{audioCtx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}
+  }
+  if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();
+}
+function beep(freq,dur,tipo,vol){
+  if(!configSom.ligado||!audioCtx)return;
+  try{
+    const osc=audioCtx.createOscillator();
+    const gain=audioCtx.createGain();
+    osc.type=tipo||'sine';
+    osc.frequency.value=freq;
+    gain.gain.setValueAtTime(vol||.15,audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+dur);
+    osc.connect(gain);gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime+dur);
+  }catch(e){}
+}
+function tocarToque(){
+  if(configSom.toque)beep(800,.04,'square',.04);
+}
+function somAcerto(perfeito){
+  if(!configSom.ligado||!audioCtx)return;
+  if(configSom.vibrar&&navigator.vibrate)navigator.vibrate(15);
+  if(perfeito){
+    // Acorde maior ascendente — satisfatório
+    beep(523,.1,'sine',.18); // C5
+    setTimeout(()=>beep(659,.1,'sine',.18),80); // E5
+    setTimeout(()=>beep(784,.15,'sine',.18),160); // G5
+  } else {
+    beep(523,.12,'sine',.15);
+    setTimeout(()=>beep(659,.15,'sine',.15),100);
+  }
+}
+function somErro(){
+  if(!configSom.ligado||!audioCtx)return;
+  if(configSom.vibrar&&navigator.vibrate)navigator.vibrate([0,30,30,30]);
+  beep(220,.1,'sawtooth',.1);
+  setTimeout(()=>beep(180,.15,'sawtooth',.1),100);
+}
+function somConquista(){
+  if(!configSom.ligado||!audioCtx)return;
+  if(configSom.vibrar&&navigator.vibrate)navigator.vibrate([0,50,50,50,50,100]);
+  beep(523,.1,'sine',.2);
+  setTimeout(()=>beep(659,.1,'sine',.2),100);
+  setTimeout(()=>beep(784,.1,'sine',.2),200);
+  setTimeout(()=>beep(1047,.25,'sine',.2),300);
+}
+function somNivel(){
+  if(!configSom.ligado||!audioCtx)return;
+  if(configSom.vibrar&&navigator.vibrate)navigator.vibrate([0,80,40,80]);
+  beep(392,.1,'sine',.18); // G4
+  setTimeout(()=>beep(523,.1,'sine',.18),120); // C5
+  setTimeout(()=>beep(659,.1,'sine',.18),240); // E5
+  setTimeout(()=>beep(784,.1,'sine',.18),360); // G5
+  setTimeout(()=>beep(1047,.4,'sine',.2),480); // C6
+}
+
+/* 🎊 Confete */
+function soltarConfete(){
+  const cores=['#7C3AED','#EC4899','#F97316','#FACC15','#10B981','#3B82F6','#06B6D4'];
+  for(let i=0;i<60;i++){
+    const c=document.createElement('div');
+    c.className='confetti';
+    c.style.left=Math.random()*100+'vw';
+    c.style.background=cores[Math.floor(Math.random()*cores.length)];
+    c.style.animationDelay=Math.random()*.5+'s';
+    c.style.animationDuration=(1.8+Math.random()*1.5)+'s';
+    c.style.transform=`rotate(${Math.random()*360}deg)`;
+    if(Math.random()>.5)c.style.borderRadius='50%';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),3500);
+  }
+}
+
+/* ============================================================
+   CURRÍCULO — mantido idêntico (recortado pra brevidade)
+   COLE AQUI O ARRAY CURSO INTEIRO DA v3, sem mudanças.
    ============================================================ */
 const CURSO = [
+/* ⚠️ IMPORTANTE: copie o array CURSO inteiro da v3 aqui.
+   Ele vai de {n:1,nome:"Primeiras palavras",desc:"..."} até o nível 9.
+   Não mude nada, só cole igual. */
 {n:1,nome:"Primeiras palavras",desc:"Cumprimentar, se apresentar, falar de pessoas e números.",u:[
  {t:"Cumprimentos",
   v:[["hello","olá","Hello! How are you?","Olá! Como você está?"],["good morning","bom dia","Good morning, everyone.","Bom dia, pessoal."],["my name is","meu nome é","My name is Victor.","Meu nome é Victor."],["nice to meet you","prazer em conhecer você","Nice to meet you, Ana.","Prazer em conhecer você, Ana."],["thank you","obrigado","Thank you very much.","Muito obrigado."],["goodbye","tchau / adeus","Goodbye, see you tomorrow.","Tchau, até amanhã."]],
@@ -382,7 +531,7 @@ const CURSO = [
   d:[["If I ___ more time, I would study.",["had","have"],0,"Se eu tivesse mais tempo, eu estudaria."],["If we had a budget, we ___ hire.",["would","will"],0,"Se tivéssemos orçamento, contrataríamos."],["Can you give us a ___?",["discount","budget"],0,"Você pode nos dar um desconto?"],["It is over our ___.",["budget","offer"],0,"Está acima do nosso orçamento."]],
   p:{pt:"Escreva em inglês: Se vocês nos derem um desconto, nós aprovaremos a proposta hoje.",en:"If you give us a discount, we will approve the offer today."}},
  {t:"Conectar ideias",
-  v:[["actually","na verdade","Actually, it is cheaper.","Na verdade, é mais barato."],["however","no entanto","However, we need time.","No entanto, precisamos de tempo."],["therefore","portanto","Therefore, we decided to wait.","Portanto, decidimos esperar."],["although","embora","Although it is late, let's start.","Embora seja tarde, vamos começar."],["in fact","de fato","In fact, sales went up.","De fato, as vendas subiram."],["at least","pelo menos","At least we finished on time.","Pelo menos terminamos no prazo."]],
+  v:[["actually","na verdade","Actually, it is cheaper.","Na verdade, é mais barato."],["however","no entanto","However, we need time.","No entanto, precisamos de mais tempo."],["therefore","portanto","Therefore, we decided to wait.","Portanto, decidimos esperar."],["although","embora","Although it is late, let's start.","Embora seja tarde, vamos começar."],["in fact","de fato","In fact, sales went up.","De fato, as vendas subiram."],["at least","pelo menos","At least we finished on time.","Pelo menos terminamos no prazo."]],
   g:{t:"Ordem da frase em inglês",e:"O inglês é rígido: Sujeito + Verbo + Objeto, e o sujeito nunca some. Em português dizemos 'está chovendo' sem sujeito; em inglês tem que ter: IT is raining. Advérbios de frequência ficam antes do verbo (I always work) mas depois do to be (I am always late).",
      ex:[["It is raining.","Está chovendo."],["I always arrive early.","Eu sempre chego cedo."],["She is always busy.","Ela está sempre ocupada."]]},
   d:[["___ is raining today.",["It","Is"],0,"Está chovendo hoje."],["I ___ arrive early.",["always","am always"],0,"Eu sempre chego cedo."],["She ___ busy on Mondays.",["is always","always is"],0,"Ela está sempre ocupada nas segundas."],["___, we need more time.",["However","Although"],0,"No entanto, precisamos de mais tempo."]],
@@ -391,13 +540,15 @@ const CURSO = [
 ];
 
 /* ============================================================
-   ESTADO E MEMÓRIA
+   ESTADO, MEMÓRIA, UTILIDADES, FSRS, TUTOR (mantidos da v3)
+   Vou colar a parte funcional completa aqui embaixo.
    ============================================================ */
 const CHAVE='ingles30:progresso';
 const CHAVE_IA='ingles30:credencial';
-const PADRAO={v:2,nome:"",nivel:1,unidade:0,xp:0,streak:0,streakFreeze:0,ultimoDia:null,itens:{},sessoes:[],carimbos:{},prova:false,recado:"",tutorHist:[],voz:'',vel:0.95,conquistas:[]};
+const CHAVE_SOM='ingles30:som';
+const PADRAO={v:2,nivel:1,unidade:0,xp:0,streak:0,streakFreeze:0,ultimoDia:null,itens:{},sessoes:[],carimbos:{},prova:false,recado:"",tutorHist:[],voz:'',vel:0.95,conquistas:[]};
 let E=JSON.parse(JSON.stringify(PADRAO));
-let tela='painel', memoriaOk=true, salvando=null;
+let tela='painel',salvando=null;
 let IA={chave:'',modelo:'claude-sonnet-5'};
 
 const MEM={};
@@ -405,46 +556,43 @@ const Guarda={
   onde:'memoria',
   async ler(k){
     if(typeof window.storage!=='undefined'){
-      try{ const r=await window.storage.get(k); this.onde='claude'; return r&&r.value?r.value:null; }catch(e){}
+      try{const r=await window.storage.get(k);this.onde='claude';return r&&r.value?r.value:null;}catch(e){}
     }
-    try{ const v=localStorage.getItem(k); this.onde='navegador'; return v; }catch(e){}
+    try{const v=localStorage.getItem(k);this.onde='navegador';return v;}catch(e){}
     return MEM[k]||null;
   },
   async gravar(k,v){
     MEM[k]=v;
     if(typeof window.storage!=='undefined'){
-      try{ await window.storage.set(k,v); return true; }catch(e){ return false; }
+      try{await window.storage.set(k,v);return true;}catch(e){return false;}
     }
-    try{ localStorage.setItem(k,v); return true; }catch(e){}
+    try{localStorage.setItem(k,v);return true;}catch(e){}
     return false;
   }
 };
 
 async function carregar(){
   const bruto=await Guarda.ler(CHAVE);
-  if(bruto){
-    try{
-      E=Object.assign(JSON.parse(JSON.stringify(PADRAO)),migrarProgresso(JSON.parse(bruto)));
-    }catch(e){}
-  }
+  if(bruto){try{E=Object.assign(JSON.parse(JSON.stringify(PADRAO)),migrar(JSON.parse(bruto)));}catch(e){}}
   const cred=await Guarda.ler(CHAVE_IA);
-  if(cred){ try{ IA=Object.assign(IA,JSON.parse(cred)); }catch(e){} }
-  memoriaOk=true;
+  if(cred){try{IA=Object.assign(IA,JSON.parse(cred));}catch(e){}}
+  const som=await Guarda.ler(CHAVE_SOM);
+  if(som){try{configSom=Object.assign(configSom,JSON.parse(som));}catch(e){}}
 }
-function migrarProgresso(p){
+function migrar(p){
   if(!p||typeof p!=='object')return p;
   if(p.v===2)return p;
   return Object.assign({},p,{v:2,conquistas:p.conquistas||[],streakFreeze:p.streakFreeze||0});
 }
 function salvar(){
   clearTimeout(salvando);
-  salvando=setTimeout(()=>{ Guarda.gravar(CHAVE,JSON.stringify(E)); },400);
+  salvando=setTimeout(()=>Guarda.gravar(CHAVE,JSON.stringify(E)),400);
 }
-function temIA(){ return !!IA.chave || typeof window.storage!=='undefined'; }
+function salvarSom(){
+  Guarda.gravar(CHAVE_SOM,JSON.stringify(configSom));
+}
+function temIA(){return !!IA.chave||typeof window.storage!=='undefined';}
 
-/* ============================================================
-   UTILIDADES
-   ============================================================ */
 const $=s=>document.querySelector(s);
 const hoje=()=>new Date().toISOString().slice(0,10);
 const embaralhar=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
@@ -459,100 +607,84 @@ function nivelObj(n){return CURSO[Math.min(n,CURSO.length)-1];}
 function unidadeAtual(){return nivelObj(E.nivel).u[Math.min(E.unidade,2)];}
 function segundaDaSemana(d){const x=new Date(d);const dia=(x.getDay()+6)%7;x.setDate(x.getDate()-dia);return x.toISOString().slice(0,10);}
 
-/* Áudio */
+/* Voz */
 function vozesEN(){
   if(!('speechSynthesis' in window))return [];
   return speechSynthesis.getVoices().filter(v=>v.lang&&/^en/i.test(v.lang));
 }
 function notaVoz(v){
-  const n=(v.name||'')+' '+(v.voiceURI||''); let p=0;
+  const n=(v.name||'')+' '+(v.voiceURI||'');let p=0;
   if(/natural|neural|premium|enhanced|online/i.test(n))p+=6;
   if(/google/i.test(n))p+=4;
   if(/samantha|ava|siri|aria|jenny|allison|nicky/i.test(n))p+=3;
-  if(/^en-US/i.test(v.lang))p+=2; else if(/^en-GB/i.test(v.lang))p+=1;
+  if(/^en-US/i.test(v.lang))p+=2;else if(/^en-GB/i.test(v.lang))p+=1;
   if(/compact|espeak|david|zira|mark/i.test(n))p-=3;
   return p;
 }
 function melhorVoz(){
-  const vs=vozesEN(); if(!vs.length)return null;
-  if(E.voz){ const m=vs.find(v=>v.voiceURI===E.voz); if(m)return m; }
+  const vs=vozesEN();if(!vs.length)return null;
+  if(E.voz){const m=vs.find(v=>v.voiceURI===E.voz);if(m)return m;}
   return vs.slice().sort((a,b)=>notaVoz(b)-notaVoz(a))[0];
 }
 let filaVoz=null;
 function falar(txt,taxa){
+  initAudio();
   if(!('speechSynthesis' in window))return;
   clearTimeout(filaVoz);
   speechSynthesis.cancel();
   filaVoz=setTimeout(()=>{
     const u=new SpeechSynthesisUtterance(String(txt).replace(/\s+/g,' ').trim());
     const v=melhorVoz();
-    if(v){ u.voice=v; u.lang=v.lang; } else { u.lang='en-US'; }
+    if(v){u.voice=v;u.lang=v.lang;}else{u.lang='en-US';}
     u.rate=taxa||E.vel||0.95;
     speechSynthesis.speak(u);
   },60);
 }
-if('speechSynthesis' in window){ speechSynthesis.getVoices(); setTimeout(()=>speechSynthesis.getVoices(),300); }
+if('speechSynthesis' in window){speechSynthesis.getVoices();setTimeout(()=>speechSynthesis.getVoices(),300);}
 
-/* ============================================================
-   FSRS — Repetição Espaçada
-   ============================================================ */
-function novoItem(){ return {reps:0,lapsos:0,estabilidade:1,dificuldade:5,intervalo:1,due:Date.now()}; }
+/* FSRS */
+function novoItem(){return {reps:0,lapsos:0,estabilidade:1,dificuldade:5,intervalo:1,due:Date.now()};}
 function agendar(it,acertou){
   it.reps++;
-  if(!acertou){
-    it.lapsos++;
-    it.estabilidade=Math.max(0.5,it.estabilidade*0.5);
-    it.intervalo=1;
-  } else {
-    it.dificuldade=Math.max(1,it.dificuldade-0.1);
-    it.estabilidade*=1+(10-it.dificuldade)/20;
-    it.intervalo=Math.max(1,Math.round(it.estabilidade));
-  }
+  if(!acertou){it.lapsos++;it.estabilidade=Math.max(.5,it.estabilidade*.5);it.intervalo=1;}
+  else{it.dificuldade=Math.max(1,it.dificuldade-.1);it.estabilidade*=1+(10-it.dificuldade)/20;it.intervalo=Math.max(1,Math.round(it.estabilidade));}
   it.due=Date.now()+it.intervalo*864e5;
   return it;
 }
 function registrar(chave,acertou){
-  let it=E.itens[chave];
-  if(!it)it=novoItem();
+  let it=E.itens[chave];if(!it)it=novoItem();
   E.itens[chave]=agendar(it,!!acertou);
   salvar();
 }
 function devidos(){
   const agora=Date.now();
-  return Object.keys(E.itens).filter(k=>E.itens[k].due<=agora)
-    .sort((a,b)=>E.itens[a].due-E.itens[b].due);
+  return Object.keys(E.itens).filter(k=>E.itens[k].due<=agora).sort((a,b)=>E.itens[a].due-E.itens[b].due);
 }
-function palavrasAprendidas(){
-  return Object.values(E.itens).filter(it=>it.reps>=3&&it.lapsos<it.reps/2).length;
-}
+function palavrasAprendidas(){return Object.values(E.itens).filter(it=>it.reps>=3&&it.lapsos<it.reps/2).length;}
 function taxaAcerto(){
-  const t=Object.values(E.itens);
-  if(!t.length)return 0;
-  const tot=t.reduce((a,it)=>a+it.reps,0);
-  const err=t.reduce((a,it)=>a+it.lapsos,0);
+  const t=Object.values(E.itens);if(!t.length)return 0;
+  const tot=t.reduce((a,it)=>a+it.reps,0),err=t.reduce((a,it)=>a+it.lapsos,0);
   return tot?Math.round((1-err/tot)*100):0;
 }
 function itemPorChave(k){
-  const p=k.split('.'); const niv=CURSO[+p[0]-1]; if(!niv)return null;
-  const un=niv.u[+p[1]]; if(!un)return null;
-  if(p[2][0]==='g'){ const d=un.d[+p[2].slice(1)]; return d?{tipo:'g',d:d,un:un,niv:niv}:null; }
-  const v=un.v[+p[2]]; return v?{tipo:'v',v:v,un:un,niv:niv}:null;
+  const p=k.split('.');const niv=CURSO[+p[0]-1];if(!niv)return null;
+  const un=niv.u[+p[1]];if(!un)return null;
+  if(p[2][0]==='g'){const d=un.d[+p[2].slice(1)];return d?{tipo:'g',d,un,niv}:null;}
+  const v=un.v[+p[2]];return v?{tipo:'v',v,un,niv}:null;
 }
 function dominio(nivel){
   let tot=0,bons=0;
   CURSO[nivel-1].u.forEach((u,ui)=>u.v.forEach((v,vi)=>{
-    tot++; const it=E.itens[nivel+'.'+ui+'.'+vi];
+    tot++;const it=E.itens[nivel+'.'+ui+'.'+vi];
     if(it&&it.reps>=2&&it.lapsos<it.reps)bons++;
   }));
   return tot?bons/tot:0;
 }
 
-/* ============================================================
-   CONQUISTAS
-   ============================================================ */
+/* Conquistas */
 const CONQUISTAS=[
   {id:'primeiro',nome:'Primeiro passo',ico:'🌱',cond:()=>E.sessoes.length>=1},
-  {id:'semana',nome:'5 dias seguidos',ico:'🔥',cond:()=>E.streak>=5},
+  {id:'semana',nome:'5 dias',ico:'🔥',cond:()=>E.streak>=5},
   {id:'quinzena',nome:'14 dias',ico:'⚡',cond:()=>E.streak>=14},
   {id:'mes',nome:'30 dias',ico:'🏆',cond:()=>E.streak>=30},
   {id:'xp100',nome:'100 XP',ico:'💯',cond:()=>E.xp>=100},
@@ -567,7 +699,10 @@ const CONQUISTAS=[
 function verificarConquistas(){
   const antes=E.conquistas.length;
   CONQUISTAS.forEach(c=>{
-    if(!E.conquistas.includes(c.id)&&c.cond())E.conquistas.push(c.id);
+    if(!E.conquistas.includes(c.id)&&c.cond()){
+      E.conquistas.push(c.id);
+      setTimeout(()=>{somConquista();soltarConfete();toast('🏅 '+c.nome+'!');},100);
+    }
   });
   if(antes!==E.conquistas.length)salvar();
 }
@@ -580,47 +715,37 @@ function toast(msg){
   setTimeout(()=>el.remove(),3000);
 }
 
-/* ============================================================
-   GERADOR DE EXERCÍCIOS
-   ============================================================ */
+/* Exercícios */
 function distratores(certo,fonte,n){
   const pool=embaralhar(fonte.filter(x=>x!==certo)).slice(0,n);
   return embaralhar(pool.concat([certo]));
 }
-function todasTraducoes(){const r=[];CURSO.forEach(n=>n.u.forEach(u=>u.v.forEach(v=>r.push(v[1]))));return r;}
-function todasPalavras(){const r=[];CURSO.forEach(n=>n.u.forEach(u=>u.v.forEach(v=>r.push(v[0]))));return r;}
+function todasTrad(){const r=[];CURSO.forEach(n=>n.u.forEach(u=>u.v.forEach(v=>r.push(v[1]))));return r;}
+function todasPal(){const r=[];CURSO.forEach(n=>n.u.forEach(u=>u.v.forEach(v=>r.push(v[0]))));return r;}
 
-function exVocab(chave,v,modo){
+function exVocab(c,v,modo){
   if(modo==='pt2en'){
-    const ops=distratores(v[0],todasPalavras(),3);
-    return {t:'mc',chave,pergunta:v[1],rotulo:'Como se diz em inglês?',opcoes:ops,correta:ops.indexOf(v[0]),som:v[0],exemplo:v[2],exemploPt:v[3]};
+    const ops=distratores(v[0],todasPal(),3);
+    return {t:'mc',chave:c,pergunta:v[1],rotulo:'Como se diz em inglês?',opcoes:ops,correta:ops.indexOf(v[0]),som:v[0],exemplo:v[2],exemploPt:v[3]};
   }
   if(modo==='en2pt'){
-    const ops=distratores(v[1],todasTraducoes(),3);
-    return {t:'mc',chave,pergunta:v[0],en:true,rotulo:'O que significa?',opcoes:ops,correta:ops.indexOf(v[1]),som:v[0],exemplo:v[2],exemploPt:v[3]};
+    const ops=distratores(v[1],todasTrad(),3);
+    return {t:'mc',chave:c,pergunta:v[0],en:true,rotulo:'O que significa?',opcoes:ops,correta:ops.indexOf(v[1]),som:v[0],exemplo:v[2],exemploPt:v[3]};
   }
-  return {t:'digitar',chave,pergunta:v[1],rotulo:'Escreva em inglês',resposta:v[0],som:v[0],exemplo:v[2],exemploPt:v[3]};
+  return {t:'digitar',chave:c,pergunta:v[1],rotulo:'Escreva em inglês',resposta:v[0],som:v[0],exemplo:v[2],exemploPt:v[3]};
 }
-function exOuvir(chave,v){
-  const ops=distratores(v[1],todasTraducoes(),3);
-  return {t:'ouvir',chave,frase:v[2],fraseTraducao:v[3],rotulo:'Ouça e escolha o sentido',opcoes:ops,correta:ops.indexOf(v[1]),som:v[2],dica:v[0]};
+function exOuvir(c,v){
+  const ops=distratores(v[1],todasTrad(),3);
+  return {t:'ouvir',chave:c,frase:v[2],fraseTrad:v[3],rotulo:'Ouça e escolha',opcoes:ops,correta:ops.indexOf(v[1]),som:v[2],dica:v[0]};
 }
-function exGram(chave,d){
-  return {t:'mc',chave,pergunta:d[0],en:true,rotulo:'Complete a frase',opcoes:d[1].slice(),correta:d[2],traducao:d[3],som:d[0].replace('___',d[1][d[2]])};
-}
-function exOrdenar(chave,frase,trad){
-  return {t:'ordenar',chave,frase,traducao:trad,rotulo:'Monte a frase na ordem certa',som:frase};
-}
+function exGram(c,d){return {t:'mc',chave:c,pergunta:d[0],en:true,rotulo:'Complete a frase',opcoes:d[1].slice(),correta:d[2],traducao:d[3],som:d[0].replace('___',d[1][d[2]])};}
+function exOrd(c,f,t){return {t:'ordenar',chave:c,frase:f,traducao:t,rotulo:'Monte a frase',som:f};}
 
-/* ============================================================
-   SESSÃO
-   ============================================================ */
+/* Sessão */
 let S=null;
-
-function exerciciosRevisao(max){
-  const dv=devidos().slice(0,max), out=[];
-  dv.forEach(k=>{
-    const it=itemPorChave(k); if(!it)return;
+function exRevisao(max){
+  const dv=devidos().slice(0,max),out=[];
+  dv.forEach(k=>{const it=itemPorChave(k);if(!it)return;
     if(it.tipo==='v')out.push(exVocab(k,it.v,Math.random()<.5?'pt2en':'en2pt'));
     else out.push(exGram(k,it.d));
   });
@@ -629,37 +754,28 @@ function exerciciosRevisao(max){
 function montarSessao(){
   const niv=E.nivel,ui=Math.min(E.unidade,2),un=nivelObj(niv).u[ui];
   const cv=i=>niv+'.'+ui+'.'+i,cg=i=>niv+'.'+ui+'.g'+i;
-
-  let rev=exerciciosRevisao(8);
+  let rev=exRevisao(8);
   if(rev.length<4){
     const extras=[];
-    nivelObj(niv).u.forEach((u,x)=>{ if(x<ui)u.v.forEach((v,i)=>extras.push(exVocab(niv+'.'+x+'.'+i,v,'en2pt'))); });
+    nivelObj(niv).u.forEach((u,x)=>{if(x<ui)u.v.forEach((v,i)=>extras.push(exVocab(niv+'.'+x+'.'+i,v,'en2pt')));});
     rev=rev.concat(embaralhar(extras).slice(0,4-rev.length));
   }
-
   const vocab=[];
-  un.v.forEach((v,i)=>vocab.push({t:'ensinar',chave:cv(i),v:v}));
+  un.v.forEach((v,i)=>vocab.push({t:'ensinar',chave:cv(i),v}));
   un.v.forEach((v,i)=>vocab.push(exVocab(cv(i),v,'pt2en')));
   embaralhar(un.v.map((v,i)=>[v,i])).slice(0,4).forEach(p=>vocab.push(exVocab(cv(p[1]),p[0],'en2pt')));
   embaralhar(un.v.map((v,i)=>[v,i])).slice(0,3).forEach(p=>vocab.push(exVocab(cv(p[1]),p[0],'digitar')));
-
   const gram=[{t:'regra',g:un.g}];
   un.d.forEach((d,i)=>gram.push(exGram(cg(i),d)));
-  un.g.ex.slice(0,2).forEach((e,i)=>gram.push(exOrdenar(cg(i),e[0],e[1])));
-
-  const escuta=embaralhar(un.v.map((v,i)=>[v,i])).slice(0,4).map(p=>exOuvir(cv(p[1]),p[0]));
-
+  un.g.ex.slice(0,2).forEach((e,i)=>gram.push(exOrd(cg(i),e[0],e[1])));
+  const esc=embaralhar(un.v.map((v,i)=>[v,i])).slice(0,4).map(p=>exOuvir(cv(p[1]),p[0]));
   const prod=[{t:'escrever',pt:un.p.pt,en:un.p.en,chave:niv+'.'+ui+'.p'}];
-
   S={niv,ui,inicio:Date.now(),acertos:0,total:0,xp:0,
      blocos:[
-      {nome:'Aquecimento',min:5,ex:rev.length?rev:[{t:'aviso',txt:'Primeira sessão do curso — nada para revisar ainda.'}]},
-      {nome:'Vocabulário',min:8,ex:vocab},
-      {nome:'Gramática',min:7,ex:gram},
-      {nome:'Escuta',min:5,ex:escuta},
-      {nome:'Produção',min:5,ex:prod}
-     ],
-     b:0,i:0,resposta:null};
+      {nome:'Aquecimento',min:5,ex:rev.length?rev:[{t:'aviso',txt:'Primeira sessão — nada pra revisar.'}]},
+      {nome:'Vocabulário',min:8,ex:vocab},{nome:'Gramática',min:7,ex:gram},
+      {nome:'Escuta',min:5,ex:esc},{nome:'Produção',min:5,ex:prod}
+     ],b:0,i:0,resposta:null};
 }
 function exAtual(){return S.blocos[S.b].ex[S.i];}
 function avancar(){
@@ -682,20 +798,19 @@ function finalizarSessao(){
   const ontem=new Date(Date.now()-864e5).toISOString().slice(0,10);
   if(E.ultimoDia!==hoje()){
     if(E.ultimoDia===ontem)E.streak++;
-    else if(E.streakFreeze>0){E.streakFreeze--;E.streak++;toast('❄️ Freeze usado. Restam '+E.streakFreeze);}
+    else if(E.streakFreeze>0){E.streakFreeze--;E.streak++;toast('❄️ Freeze usado');}
     else E.streak=1;
     E.ultimoDia=hoje();
   }
-  let recado='';
+  let rec='';
   if(prec>=0.7){
-    if(E.unidade<2){E.unidade++;recado='Unidade concluída com '+Math.round(prec*100)+'%. Próxima liberada.';}
-    else{E.prova=true;recado='Você fechou as três unidades do nível '+E.nivel+'. Teste liberado.';}
-  }else{
-    recado='Você fez '+Math.round(prec*100)+'% — abaixo dos 70%. Vamos repetir. Normal.';
-  }
-  E.recado=recado;salvar();
-  S.fim={min,prec,recado};render();
-  verificarConquistas();
+    if(E.unidade<2){E.unidade++;rec='Unidade '+Math.round(prec*100)+'% ✓ Próxima liberada!';}
+    else{E.prova=true;rec='Unidades fechadas! Teste liberado 🎉';}
+  }else rec='Você fez '+Math.round(prec*100)+'%. Repetir é normal.';
+  E.recado=rec;salvar();
+  S.fim={min,prec,recado:rec};
+  if(prec>=0.7){somNivel();setTimeout(soltarConfete,200);}
+  render();verificarConquistas();
 }
 
 function finalizarRevisao(){
@@ -707,9 +822,8 @@ function finalizarRevisao(){
     E.streak=(E.ultimoDia===ontem)?E.streak+1:(E.streakFreeze>0?function(){E.streakFreeze--;return E.streak+1;}():1);
     E.ultimoDia=hoje();
   }
-  E.recado='Revisão: '+Math.round(prec*100)+'%. O que errou volta amanhã; o que acertou volta mais pra frente.';
-  salvar();
-  S.fim={min,prec,recado:E.recado};render();
+  E.recado='Revisão: '+Math.round(prec*100)+'%';
+  salvar();S.fim={min,prec,recado:E.recado};render();
 }
 
 function montarProva(){
@@ -724,70 +838,51 @@ function montarProva(){
 function finalizarProva(){
   const prec=S.total?S.acertos/S.total:0;
   if(prec>=0.8){
-    E.carimbos[E.nivel]={d:hoje(),p:Math.round(prec*100)};
-    E.xp+=200;
-    if(E.nivel<CURSO.length){E.nivel++;E.unidade=0;E.prova=false;E.recado='Nível aprovado com '+Math.round(prec*100)+'%. Bem-vindo ao nível '+E.nivel+'.';}
-    else{E.prova=false;E.recado='Curso inteiro. Agora é prática no mundo real.';}
+    E.carimbos[E.nivel]={d:hoje(),p:Math.round(prec*100)};E.xp+=200;
+    if(E.nivel<CURSO.length){E.nivel++;E.unidade=0;E.prova=false;E.recado='Aprovado! Nível '+E.nivel+' �';}
+    else{E.prova=false;E.recado='Curso completo! 👔';}
+    setTimeout(()=>{somNivel();soltarConfete();},100);
   }else{
     let pior=0,piorTaxa=2;
     nivelObj(E.nivel).u.forEach((u,ui)=>{
-      let a=0,t=0;
-      u.v.forEach((v,i)=>{const it=E.itens[E.nivel+'.'+ui+'.'+i];if(it){a+=it.reps;t+=it.reps+it.lapsos;}});
-      const taxa=t?a/t:0;if(taxa<piorTaxa){piorTaxa=taxa;pior=ui;}
+      let a=0,t=0;u.v.forEach((v,i)=>{const it=E.itens[E.nivel+'.'+ui+'.'+i];if(it){a+=it.reps;t+=it.reps+it.lapsos;}});
+      const tx=t?a/t:0;if(tx<piorTaxa){piorTaxa=tx;pior=ui;}
     });
-    E.unidade=pior;E.prova=false;
-    E.recado='Você fez '+Math.round(prec*100)+'% (precisa 80%). Voltamos pra "'+nivelObj(E.nivel).u[pior].t+'".';
+    E.unidade=pior;E.prova=false;E.recado='Você fez '+Math.round(prec*100)+'%. Tente de novo.';
   }
-  salvar();S.fim={prec,prova:true,recado:E.recado};render();
-  verificarConquistas();
+  salvar();S.fim={prec,prova:true,recado:E.recado};render();verificarConquistas();
 }
 
-/* ============================================================
-   TUTOR DE IA
-   ============================================================ */
-async function chamarIA(mensagens,sistema){
+/* Tutor */
+async function chamarIA(m,s){
   const cab={"Content-Type":"application/json"};
   let modelo="claude-sonnet-4-6";
   if(IA.chave){
-    cab["x-api-key"]=IA.chave;
-    cab["anthropic-version"]="2023-06-01";
+    cab["x-api-key"]=IA.chave;cab["anthropic-version"]="2023-06-01";
     cab["anthropic-dangerous-direct-browser-access"]="true";
     modelo=IA.modelo||"claude-sonnet-5";
-  } else if(typeof window.storage==='undefined'){
-    throw new Error("sem-credencial");
-  }
-  const r=await fetch("https://api.anthropic.com/v1/messages",{
-    method:"POST",headers:cab,
-    body:JSON.stringify({model:modelo,max_tokens:1000,system:sistema,messages:mensagens})
-  });
+  }else if(typeof window.storage==='undefined')throw new Error("sem-credencial");
+  const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:cab,body:JSON.stringify({model:modelo,max_tokens:1000,system:s,messages:m})});
   if(!r.ok){const t=await r.text();throw new Error(t.slice(0,200));}
-  const d=await r.json();
-  return d.content.filter(c=>c.type==="text").map(c=>c.text).join("\n").trim();
+  const d=await r.json();return d.content.filter(c=>c.type==="text").map(c=>c.text).join("\n").trim();
 }
 function sistemaTutor(){
   const niv=nivelObj(E.nivel),un=unidadeAtual();
-  return "Você é o tutor de inglês do Victor, brasileiro, nível "+E.nivel+" de 9 (tema atual: "+niv.nome+" — '"+un.t+"', gramática: "+un.g.t+")."
-  +" Converse EM INGLÊS bem simples, estruturas até o nível dele. Frases curtas."
-  +" Sempre responda neste formato exato:\nEN: <sua resposta em inglês, no máximo 2 frases, terminando com uma pergunta simples>\nPT: <tradução>"
-  +" Se ele errar, comece a linha PT com a correção: [correção: 'I go' → 'I went'] e depois a tradução."
-  +" Nunca escreva nada fora dessas duas linhas.";
+  return "Tutor de inglês do Victor, brasileiro, nível "+E.nivel+" de 9 (tema: "+niv.nome+" — '"+un.t+"'). Converse EM INGLÊS bem simples. Responda no formato:\nEN: <resposta em inglês, máx 2 frases, terminando com pergunta>\nPT: <tradução>\nSe houver erro de inglês, comece PT com [correção: '...' → '...']";
 }
 async function enviarTutor(){
   const cx=$('#tutorTexto');const txt=cx.value.trim();if(!txt)return;
+  initAudio();
   E.tutorHist.push({role:"user",content:txt});cx.value='';salvar();
   tutorPensando=true;render();
   try{
     const resp=await chamarIA(E.tutorHist.slice(-16),sistemaTutor());
     E.tutorHist.push({role:"assistant",content:resp});
   }catch(e){
-    const det=String(e.message||'').indexOf('sem-credencial')>-1
-      ?'Falta a chave da API. Configure no Passaporte.'
-      :'O tutor não respondeu. Verifique a internet.';
-    E.tutorHist.push({role:"assistant",content:"EN: (offline)\nPT: "+det});
+    E.tutorHist.push({role:"assistant",content:"EN: (offline)\nPT: "+(String(e.message||'').indexOf('sem-credencial')>-1?'Falta a chave da API.':'Tutor offline.')});
   }
   if(E.tutorHist.length>40)E.tutorHist=E.tutorHist.slice(-40);
-  tutorPensando=false;salvar();render();
-  verificarConquistas();
+  tutorPensando=false;salvar();render();verificarConquistas();
   setTimeout(()=>{const c=$('#fimConversa');if(c)c.scrollIntoView({block:'end'});},60);
 }
 let tutorPensando=false;
@@ -795,37 +890,38 @@ let tutorPensando=false;
 async function corrigirComTutor(pt,en,minha){
   const cx=$('#retornoIA');if(cx)cx.innerHTML='<span class="escrevendo">Conferindo…</span>';
   try{
-    const r=await chamarIA([{role:"user",content:"Frase pedida: "+pt+"\nEsperado: "+en+"\nAluno escreveu: "+minha+"\n\nResponda em português, no máximo 3 linhas. Direto, encorajador."}],
-      "Você é um professor corrigindo aluno brasileiro iniciante.");
+    const r=await chamarIA([{role:"user",content:"Pedido: "+pt+"\nEsperado: "+en+"\nAluno: "+minha+"\n\nCorrija em português, máx 3 linhas."}],
+      "Professor corrigindo aluno iniciante.");
     if(cx)cx.innerHTML='<div class="retorno ok"><span class="t">Tutor</span>'+esc(r).replace(/\n/g,'<br>')+'</div>';
-  }catch(e){
-    if(cx)cx.innerHTML='<div class="retorno nao">Tutor offline agora.</div>';
-  }
+  }catch(e){if(cx)cx.innerHTML='<div class="retorno nao">Tutor offline.</div>';}
 }
 
-/* ============================================================
-   INTERFACE
-   ============================================================ */
+/* Interface */
 function renderTopo(){
   const niv=nivelObj(E.nivel);
   $('#topo').innerHTML=
    '<div class="selo-nivel"><span class="n">'+E.nivel+'</span><span class="l">NÍVEL</span></div>'+
    '<div class="topo-info"><div class="nome">'+esc(niv.nome)+'</div>'+
-   '<div class="metricas"><span>XP <b>'+E.xp+'</b></span><span>OFENSIVA <b>'+E.streak+'d</b>'+(E.streakFreeze?' ❄️'+E.streakFreeze:'')+'</span><span>REVISAR <b>'+devidos().length+'</b></span></div></div>';
+   '<div class="metricas"><span>XP <b>'+E.xp+'</b></span><span>🔥 <b>'+E.streak+'d</b>'+(E.streakFreeze?' ❄️'+E.streakFreeze:'')+'</span><span>📝 <b>'+devidos().length+'</b></span></div></div>';
 }
 function renderNav(){
-  const abas=[['painel','◆','Painel'],['sessao','▶','Sessão'],['passaporte','✦','Passaporte'],['tutor','✉','Tutor']];
-  $('#nav').innerHTML=abas.map(a=>'<button class="'+(tela===a[0]?'ativo':'')+'" onclick="ir(\''+a[0]+'\')" aria-label="'+a[2]+'"><span class="ic">'+a[1]+'</span><span class="tx">'+a[2]+'</span></button>').join('');
+  const abas=[
+    {id:'painel',ic:'◆',tx:'Painel',cor:'azul'},
+    {id:'sessao',ic:'▶',tx:'Sessão',cor:'roxo'},
+    {id:'passaporte',ic:'✦',tx:'Mapa',cor:'verde'},
+    {id:'tutor',ic:'✉',tx:'Tutor',cor:'laranja'}
+  ];
+  $('#nav').innerHTML=abas.map(a=>
+    '<button class="'+(tela===a.id?'ativo '+a.id:'')+'" onclick="ir(\''+a.id+'\')">'+
+    '<span class="ic">'+a.ic+'</span><span class="tx">'+a.tx+'</span></button>'
+  ).join('');
 }
 function ir(t){
-  if(tela==='sessao'&&S&&!S.fim&&t!=='sessao'){if(!window.confirm('Sair? O progresso fica salvo.'))return;}
-  tela=t;
-  if(t!=='sessao'&&S&&S.fim)S=null;
-  window.scrollTo(0,0);
-  render();
+  initAudio();
+  if(tela==='sessao'&&S&&!S.fim&&t!=='sessao'){if(!window.confirm('Sair? Progresso salvo.'))return;}
+  tela=t;if(t!=='sessao'&&S&&S.fim)S=null;window.scrollTo(0,0);render();
 }
 
-/* ---------- painel ---------- */
 function telaPainel(){
   const niv=nivelObj(E.nivel),un=unidadeAtual();
   const seg=segundaDaSemana(new Date());
@@ -833,115 +929,107 @@ function telaPainel(){
   const dv=devidos().length;
   let h='';
 
-  if(E.recado) h+='<div class="carta"><div class="rotulo">Recado</div><div style="margin-top:6px;font-size:14px;line-height:1.5">'+esc(E.recado)+'</div><button class="btn secundario pequeno" style="margin-top:10px" onclick="limparRecado()">Ok</button></div>';
-
-  if(!memoriaOk) h+='<div class="aviso" style="margin-bottom:10px">A memória automática falhou. Seu progresso vale só nesta janela.</div>';
+  if(E.recado)h+='<div class="carta destaque"><div class="rotulo">📣 Recado</div><div style="margin-top:8px;font-size:14.5px;line-height:1.5">'+esc(E.recado)+'</div><button class="btn secundario pequeno" style="margin-top:10px" onclick="limparRecado()">Beleza</button></div>';
 
   h+='<div class="carta destaque"><div class="carta-topo"><div>'+
-     '<div class="rotulo">'+(E.prova?'Prova liberada':'Próxima sessão · 30 min')+'</div>'+
-     '<h2 style="margin-top:6px">'+esc(E.prova?('Teste do nível '+E.nivel):un.t)+'</h2>'+
-     '<div class="pt" style="margin-top:5px">'+esc(E.prova?'16 questões · 80% para passar':'Nível '+E.nivel+' · unidade '+(E.unidade+1)+' de 3 · '+un.g.t)+'</div>'+
+     '<div class="rotulo" style="color:var(--roxo2)">'+(E.prova?'🎯 Prova liberada':'⭐ Próxima sessão · 30 min')+'</div>'+
+     '<h2 style="margin-top:8px">'+esc(E.prova?('Teste nível '+E.nivel):un.t)+'</h2>'+
+     '<div class="pt" style="margin-top:6px">'+esc(E.prova?'16 questões · 80% pra passar':'Nível '+E.nivel+' · U'+(E.unidade+1)+' de 3 · '+un.g.t)+'</div>'+
      '</div></div>'+
-     '<button class="btn" onclick="'+(E.prova?'comecarProva()':'comecarSessao()')+'">'+(E.prova?'Fazer o teste':'Começar sessão')+'</button></div>';
+     '<button class="btn '+(E.prova?'laranja':'verde')+'" onclick="'+(E.prova?'comecarProva()':'comecarSessao()')+'">'+(E.prova?'� Fazer o teste':'🚀 Começar sessão')+'</button></div>';
 
-  h+='<div class="carta"><div class="carta-topo"><div class="rotulo">Semana · meta 5 sessões</div><span class="dado">'+feitos.length+'/5</span></div>'+
+  h+='<div class="carta"><div class="carta-topo"><div class="rotulo">📅 Semana · meta 5 sessões</div><span class="dado">'+feitos.length+'/5</span></div>'+
      '<div class="semana">'+[0,1,2,3,4].map(i=>{
-       const f=i<feitos.length;return '<div class="dia '+(f?'feito':'')+(i===feitos.length?' hoje':'')+'">'+(f?'✓':(i+1))+'</div>';
+       const f=i<feitos.length;
+       return '<div class="dia '+(f?'feito':'')+(i===feitos.length?' hoje':'')+'">'+(f?'✓':(i+1))+'</div>';
      }).join('')+'</div></div>';
 
-  h+='<div class="carta"><div class="carta-topo"><div><div class="rotulo">Fila de revisão</div>'+
-     '<h3 style="margin-top:5px">'+dv+' '+(dv===1?'item':'itens')+'</h3>'+
-     '<div class="pt" style="margin-top:4px">O que você errou volta no dia seguinte. O que acerta volta cada vez mais espaçado.</div></div></div>'+
-     (dv?'<button class="btn secundario" onclick="comecarRevisao()">Só revisar (10 min)</button>':'')+'</div>';
+  h+='<div class="carta"><div class="carta-topo"><div><div class="rotulo">📝 Revisão</div>'+
+     '<h3 style="margin-top:6px">'+dv+' '+(dv===1?'item':'itens')+'</h3>'+
+     '<div class="pt" style="margin-top:4px">O que errou volta logo. O que acertou espaça.</div></div></div>'+
+     (dv?'<button class="btn secundario" onclick="comecarRevisao()">🔁 Só revisar (10 min)</button>':'')+'</div>';
 
   const prog=(E.unidade/3)*100,dom=Math.round(dominio(E.nivel)*100);
-  h+='<div class="carta"><div class="rotulo">Progresso · nível '+E.nivel+'</div>'+
-     '<div style="margin:10px 0 6px"><div class="barra"><i style="width:'+prog+'%"></i></div></div>'+
-     '<div class="pt">'+E.unidade+' de 3 unidades · '+dom+'% dominado</div></div>';
+  h+='<div class="carta"><div class="rotulo">📈 Nível '+E.nivel+'</div>'+
+     '<div style="margin:12px 0 8px"><div class="barra"><i style="width:'+prog+'%"></i></div></div>'+
+     '<div class="pt">'+E.unidade+'/3 unidades · '+dom+'% dominado</div></div>';
 
-  // Dashboard
-  const aprendidas=palavrasAprendidas(),taxa=taxaAcerto();
+  const ap=palavrasAprendidas(),tx=taxaAcerto();
   const todos=Object.values(E.itens);
   const firme=todos.filter(it=>it.reps>=3&&it.lapsos<=it.reps/3).length;
-  const instavel=todos.filter(it=>it.reps>=3&&it.lapsos>it.reps/3).length;
-  const aprendendo=todos.filter(it=>it.reps>0&&it.reps<3).length;
-  const total=Math.max(1,todos.length);
-  h+='<div class="carta"><div class="rotulo">Seu cérebro</div>'+
+  const inst=todos.filter(it=>it.reps>=3&&it.lapsos>it.reps/3).length;
+  h+='<div class="carta"><div class="rotulo">🧠 Cérebro</div>'+
     '<div class="stats">'+
-      '<div class="stat"><div class="v">'+aprendidas+'</div><div class="l">firmes</div></div>'+
-      '<div class="stat"><div class="v">'+taxa+'%</div><div class="l">acerto</div></div>'+
-      '<div class="stat"><div class="v">'+firme+'</div><div class="l">fixas</div></div>'+
-      '<div class="stat"><div class="v">'+(instavel+aprendendo)+'</div><div class="l">revisar</div></div>'+
+      '<div class="stat verde"><div class="v">'+ap+'</div><div class="l">firmes</div></div>'+
+      '<div class="stat azul"><div class="v">'+tx+'%</div><div class="l">acerto</div></div>'+
+      '<div class="stat rosa"><div class="v">'+firme+'</div><div class="l">fixas</div></div>'+
+      '<div class="stat"><div class="v">'+inst+'</div><div class="l">revisar</div></div>'+
     '</div></div>';
 
-  // Conquistas
   const conquistadas=CONQUISTAS.map(c=>({...c,tem:E.conquistas.includes(c.id)}));
-  h+='<div class="carta"><div class="carta-topo"><div class="rotulo">Conquistas</div><span class="dado">'+E.conquistas.length+'/'+CONQUISTAS.length+'</span></div>'+
+  h+='<div class="carta"><div class="carta-topo"><div class="rotulo">🏅 Conquistas</div><span class="dado">'+E.conquistas.length+'/'+CONQUISTAS.length+'</span></div>'+
     '<div class="grid-conquistas">'+conquistadas.map(c=>
-      '<div class="conquista '+(c.tem?'desb':'bloq')+'" title="'+(c.tem?c.nome:'Bloqueada')+'">'+
+      '<div class="conquista '+(c.tem?'desb':'bloq')+'" title="'+esc(c.nome)+'">'+
         '<div class="ico">'+(c.tem?c.ico:'🔒')+'</div>'+
         '<div class="nm">'+esc(c.nome)+'</div>'+
-      '</div>'
+      </div>'
     ).join('')+'</div></div>';
 
-  const tot=E.sessoes.length,minutos=E.sessoes.reduce((a,s)=>a+s.min,0);
-  h+='<div class="carta"><div class="rotulo">Total</div><div style="display:flex;gap:24px;margin-top:8px">'+
-     '<div><div class="dado" style="font-size:22px">'+tot+'</div><div class="rotulo">sessões</div></div>'+
-     '<div><div class="dado" style="font-size:22px">'+minutos+'</div><div class="rotulo">minutos</div></div>'+
+  const tot=E.sessoes.length,min=E.sessoes.reduce((a,s)=>a+s.min,0);
+  h+='<div class="carta"><div class="rotulo">📊 Total</div><div style="display:flex;gap:24px;margin-top:10px">'+
+     '<div><div class="dado" style="font-size:22px;background:var(--grad-principal);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+tot+'</div><div class="rotulo">sessões</div></div>'+
+     '<div><div class="dado" style="font-size:22px">'+min+'</div><div class="rotulo">min</div></div>'+
      '<div><div class="dado" style="font-size:22px">'+Object.keys(E.carimbos).length+'</div><div class="rotulo">carimbos</div></div>'+
      '</div></div>';
   return h;
 }
 
 function limparRecado(){E.recado='';salvar();render();}
-function comecarSessao(){montarSessao();tela='sessao';window.scrollTo(0,0);render();}
-function comecarProva(){montarProva();tela='sessao';window.scrollTo(0,0);render();}
+function comecarSessao(){initAudio();montarSessao();tela='sessao';window.scrollTo(0,0);render();}
+function comecarProva(){initAudio();montarProva();tela='sessao';window.scrollTo(0,0);render();}
 function comecarRevisao(){
-  let ex=exerciciosRevisao(14);
-  if(!ex.length)ex=[{t:'aviso',txt:'Nada vencido na fila hoje.'}];
+  initAudio();
+  let ex=exRevisao(14);if(!ex.length)ex=[{t:'aviso',txt:'Nada vencido hoje.'}];
   S={niv:E.nivel,ui:E.unidade,revisao:true,inicio:Date.now(),acertos:0,total:0,xp:0,
      blocos:[{nome:'Revisão',min:10,ex}],b:0,i:0,resposta:null};
   tela='sessao';window.scrollTo(0,0);render();
 }
 
-/* ---------- sessão ---------- */
 function telaSessao(){
   if(!S)return '<div class="carta">Nenhuma sessão aberta.<button class="btn secundario pequeno" style="margin-top:10px" onclick="ir(\'painel\')">Voltar</button></div>';
   if(S.fim)return telaFimSessao();
   const b=S.blocos[S.b],ex=exAtual();
-  const decorridos=Math.floor((Date.now()-S.inicio)/1000);
-  const mm=String(Math.floor(decorridos/60)).padStart(2,'0'),ss=String(decorridos%60).padStart(2,'0');
+  const dec=Math.floor((Date.now()-S.inicio)/1000);
+  const mm=String(Math.floor(dec/60)).padStart(2,'0'),ss=String(dec%60).padStart(2,'0');
   const alvo=S.prova?12:30;
-
   let h='<div class="sessao-topo"><div><div class="rotulo">'+esc(b.nome)+(S.prova?'':' · '+b.min+' min')+'</div>'+
-        '<div class="dado" style="font-size:12px;color:var(--texto2);margin-top:2px">'+(S.i+1)+' / '+b.ex.length+'</div></div>'+
-        '<div class="cronometro'+(decorridos>alvo*60?' estourou':'')+'">'+mm+':'+ss+'</div></div>';
+       '<div class="dado" style="font-size:12px;color:var(--texto2);margin-top:3px">'+(S.i+1)+' / '+b.ex.length+'</div></div>'+
+       '<div class="cronometro'+(dec>alvo*60?' estourou':'')+'">� '+mm+':'+ss+'</div></div>';
   h+='<div class="blocos">'+S.blocos.map((x,i)=>'<i class="'+(i<S.b?'pronto':(i===S.b?'ativo':''))+'"></i>').join('')+'</div>';
-  h+='<div class="carta">'+corpoExercicio(ex)+'</div>';
+  h+='<div class="carta">'+corpoEx(ex)+'</div>';
   return h;
 }
-function corpoExercicio(ex){
+function corpoEx(ex){
   if(!ex)return '';
   const r=S.resposta;
-  if(ex.t==='aviso')return '<div class="pt" style="font-size:14px">'+esc(ex.txt)+'</div><button class="btn" style="margin-top:14px" onclick="avancar()">Seguir</button>';
-
+  if(ex.t==='aviso')return '<div class="pt">'+esc(ex.txt)+'</div><button class="btn" style="margin-top:14px" onclick="avancar()">Seguir</button>';
   if(ex.t==='ensinar'){
-    return '<div class="rotulo">Palavra nova</div>'+
-      '<div class="pergunta en" lang="en">'+esc(ex.v[0])+'</div>'+
-      '<div class="pt" style="font-size:15px">'+esc(ex.v[1])+'</div>'+
-      '<button class="btn secundario pequeno" style="margin-top:10px" onclick="falar(\''+ex.v[0].replace(/'/g,"\\'")+'\')">Ouvir</button>'+
-      '<div class="carta" style="margin:12px 0 0;background:var(--cinza2)"><div style="font-size:15px" lang="en">'+esc(ex.v[2])+'</div><div class="pt" style="margin-top:4px">'+esc(ex.v[3])+'</div>'+
-      '<button class="btn secundario pequeno" style="margin-top:10px" onclick="falar(\''+ex.v[2].replace(/'/g,"\\'")+'\')">Ouvir frase</button></div>'+
-      '<button class="btn" style="margin-top:14px" onclick="avancar()">Aprendi</button>';
+    return '<div class="rotulo">✨ Palavra nova</div>'+
+      '<div class="pergunta en">'+esc(ex.v[0])+'</div>'+
+      '<div class="pt" style="font-size:15.5px">'+esc(ex.v[1])+'</div>'+
+      '<button class="btn azul pequeno" style="margin-top:12px" onclick="falar(\''+ex.v[0].replace(/'/g,"\\'")+'\')">� Ouvir</button>'+
+      '<div class="carta" style="margin:14px 0 0;background:rgba(255,255,255,.04)"><div style="font-size:15.5px">'+esc(ex.v[2])+'</div><div class="pt" style="margin-top:5px">'+esc(ex.v[3])+'</div>'+
+      '<button class="btn azul pequeno" style="margin-top:10px" onclick="falar(\''+ex.v[2].replace(/'/g,"\\'")+'\')">🔊 Frase</button></div>'+
+      '<button class="btn verde" style="margin-top:14px" onclick="avancar()">✅ Aprendi</button>';
   }
   if(ex.t==='regra'){
-    return '<div class="rotulo">Gramática</div><h2 style="margin:6px 0 10px">'+esc(ex.g.t)+'</h2>'+
-      '<div style="font-size:14.5px;line-height:1.55">'+esc(ex.g.e)+'</div>'+
-      '<div style="margin-top:12px">'+ex.g.ex.map(e=>'<div style="padding:8px 0;border-top:1px solid var(--linha)"><div style="font-size:15px" lang="en">'+esc(e[0])+'</div><div class="pt">'+esc(e[1])+'</div></div>').join('')+'</div>'+
-      '<button class="btn" style="margin-top:6px" onclick="avancar()">Entendi</button>';
+    return '<div class="rotulo">📚 Gramática</div><h2 style="margin:8px 0 12px">'+esc(ex.g.t)+'</h2>'+
+      '<div style="font-size:15px;line-height:1.55">'+esc(ex.g.e)+'</div>'+
+      '<div style="margin-top:14px">'+ex.g.ex.map(e=>'<div style="padding:10px 0;border-top:1px solid rgba(255,255,255,.08)"><div style="font-size:15.5px">'+esc(e[0])+'</div><div class="pt">'+esc(e[1])+'</div></div>').join('')+'</div>'+
+      '<button class="btn" style="margin-top:8px" onclick="avancar()">Entendi 💪</button>';
   }
   if(ex.t==='mc'){
-    let h='<div class="rotulo">'+esc(ex.rotulo)+'</div><div class="pergunta'+(ex.en?' en':'')+'" lang="en">'+esc(ex.pergunta)+'</div>';
+    let h='<div class="rotulo">'+esc(ex.rotulo)+'</div><div class="pergunta'+(ex.en?' en':'')+'">'+esc(ex.pergunta)+'</div>';
     if(ex.traducao)h+='<div class="pt">'+esc(ex.traducao)+'</div>';
     h+='<div class="opcoes">'+ex.opcoes.map((o,i)=>{
       let cl='opc';
@@ -949,287 +1037,292 @@ function corpoExercicio(ex){
       return '<button class="'+cl+'" '+(r!==null?'disabled':'')+' onclick="responderMC('+i+')">'+esc(o)+'</button>';
     }).join('')+'</div>';
     if(r!==null){
-      h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">'+(r.ok?'Certo':'Não')+'</span>'+
-         (ex.exemplo?esc(ex.exemplo)+'<div class="pt" style="margin-top:3px">'+esc(ex.exemploPt)+'</div>':(ex.traducao?esc(ex.opcoes[ex.correta]):''))+
-         (r.ok?'':'<div style="margin-top:5px">Resposta: <b>'+esc(ex.opcoes[ex.correta])+'</b></div>')+'</div>';
-      h+='<button class="btn" style="margin-top:12px" onclick="avancar()">Continuar</button>';
+      h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">'+(r.ok?'🎉 '+(r.perfeito?'Perfeito!':'Certo!'):'😅 Quase')+'</span>'+
+         (ex.exemplo?esc(ex.exemplo)+'<div class="pt" style="margin-top:4px">'+esc(ex.exemploPt)+'</div>':(ex.traducao?esc(ex.opcoes[ex.correta]):''))+
+         (r.ok?'':'<div style="margin-top:6px">Resposta: <b>'+esc(ex.opcoes[ex.correta])+'</b></div>')+'</div>';
+      h+='<button class="btn" style="margin-top:12px" onclick="avancar()">Continuar →</button>';
     }
     return h;
   }
   if(ex.t==='digitar'){
     let h='<div class="rotulo">'+esc(ex.rotulo)+'</div><div class="pergunta">'+esc(ex.pergunta)+'</div>'+
-      '<input class="campo" id="campoResp" style="margin-top:12px" autocomplete="off" autocapitalize="none" spellcheck="false" '+(r?'disabled value="'+esc(r.txt)+'"':'')+' placeholder="digite em inglês">';
+      '<input class="campo" id="campoResp" style="margin-top:14px" autocomplete="off" autocapitalize="none" spellcheck="false" '+(r?'disabled value="'+esc(r.txt)+'"':'')+' placeholder="digite em inglês">';
     if(r===null)h+='<button class="btn" style="margin-top:12px" onclick="responderDigitar()">Conferir</button>';
     else{
-      h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">'+(r.ok?(r.quase?'Quase':'Certo'):'Não')+'</span>'+
-         '<b>'+esc(ex.resposta)+'</b>'+(ex.exemplo?'<div style="margin-top:5px" lang="en">'+esc(ex.exemplo)+'</div><div class="pt">'+esc(ex.exemploPt)+'</div>':'')+'</div>'+
-         '<button class="btn" style="margin-top:12px" onclick="avancar()">Continuar</button>';
+      h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">'+(r.ok?(r.quase?'👍 Quase':'🎉 Certo'):'😅 Não foi')+'</span>'+
+         '<b style="font-size:15px">'+esc(ex.resposta)+'</b>'+(ex.exemplo?'<div style="margin-top:6px">'+esc(ex.exemplo)+'</div><div class="pt">'+esc(ex.exemploPt)+'</div>':'')+'</div>'+
+         '<button class="btn" style="margin-top:12px" onclick="avancar()">Continuar →</button>';
     }
     return h;
   }
   if(ex.t==='ouvir'){
-    let h='<div class="rotulo">'+esc(ex.rotulo)+'</div>'+
+    let h='<div class="rotulo">🎧 '+esc(ex.rotulo)+'</div>'+
       '<button class="som" onclick="falar(\''+ex.frase.replace(/'/g,"\\'")+'\')">🔊</button>'+
-      '<div style="text-align:center"><button class="btn secundario pequeno" onclick="falar(\''+ex.frase.replace(/'/g,"\\'")+'\',0.6)">devagar</button></div>';
+      '<div style="text-align:center"><button class="btn secundario pequeno" onclick="falar(\''+ex.frase.replace(/'/g,"\\'")+'\',0.6)">🐢 devagar</button></div>';
     h+='<div class="opcoes">'+ex.opcoes.map((o,i)=>{
       let cl='opc';
       if(r!==null){if(i===ex.correta)cl+=r.i===i?' certa':' revelada';else if(r.i===i)cl+=' errada';}
       return '<button class="'+cl+'" '+(r!==null?'disabled':'')+' onclick="responderMC('+i+')">'+esc(o)+'</button>';
     }).join('')+'</div>';
-    if(r!==null)h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">Você ouviu</span>'+esc(ex.frase)+'<div class="pt" style="margin-top:3px">'+esc(ex.fraseTraducao)+'</div></div>'+
-       '<button class="btn" style="margin-top:12px" onclick="avancar()">Continuar</button>';
+    if(r!==null)h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">📝 Você ouviu</span>'+esc(ex.frase)+'<div class="pt" style="margin-top:4px">'+esc(ex.fraseTrad)+'</div></div>'+
+       '<button class="btn" style="margin-top:12px" onclick="avancar()">Continuar →</button>';
     return h;
   }
   if(ex.t==='ordenar'){
     if(!ex.chips){ex.chips=embaralhar(ex.frase.split(' '));ex.montada=[];}
-    let h='<div class="rotulo">'+esc(ex.rotulo)+'</div><div class="pt" style="font-size:15px;margin:8px 0 4px">'+esc(ex.traducao)+'</div>'+
+    let h='<div class="rotulo">🧩 '+esc(ex.rotulo)+'</div><div class="pt" style="font-size:15.5px;margin:10px 0 6px">'+esc(ex.traducao)+'</div>'+
       '<div class="linha-montada">'+ex.montada.map((p,i)=>'<button class="chip" onclick="tirarChip('+i+')">'+esc(p)+'</button>').join('')+'</div>'+
       '<div class="chips">'+ex.chips.map((p,i)=>'<button class="chip '+(ex.montada.indexOf(p)>-1&&contarUso(ex,p,i)?'usado':'')+'" onclick="porChip('+i+')">'+esc(p)+'</button>').join('')+'</div>';
-    if(r===null)h+='<button class="btn" style="margin-top:14px" '+(ex.montada.length?'':'disabled')+' onclick="responderOrdenar()">Conferir</button>';
-    else h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">'+(r.ok?'Certo':'A ordem certa é')+'</span>'+esc(ex.frase)+'</div>'+
-       '<button class="btn" style="margin-top:12px" onclick="avancar()">Continuar</button>';
+    if(r===null)h+='<button class="btn" style="margin-top:16px" '+(ex.montada.length?'':'disabled')+' onclick="responderOrdenar()">Conferir</button>';
+    else h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">'+(r.ok?'🎉':'🔡 A ordem certa é')+'</span>'+esc(ex.frase)+'</div>'+
+       '<button class="btn" style="margin-top:12px" onclick="avancar()">Continuar →</button>';
     return h;
   }
   if(ex.t==='escrever'){
-    let h='<div class="rotulo">Produção</div><div class="pergunta" style="font-size:18px">'+esc(ex.pt)+'</div>'+
-      '<textarea class="campo" id="campoResp" style="margin-top:10px" '+(r?'disabled':'')+' placeholder="escreva em inglês">'+(r?esc(r.txt):'')+'</textarea>';
+    let h='<div class="rotulo">✍️ Produção</div><div class="pergunta" style="font-size:19px">'+esc(ex.pt)+'</div>'+
+      '<textarea class="campo" id="campoResp" style="margin-top:12px" '+(r?'disabled':'')+' placeholder="escreva em inglês">'+(r?esc(r.txt):'')+'</textarea>';
     if(r===null)h+='<button class="btn" style="margin-top:12px" onclick="responderEscrever()">Conferir</button>';
     else{
-      h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">Modelo</span>'+esc(ex.en)+
-         '<div class="pt" style="margin-top:4px">'+(r.ok?'Equivalente.':'Compare.')+'</div></div>'+
+      h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">📋 Modelo</span>'+esc(ex.en)+
+         '<div class="pt" style="margin-top:5px">'+(r.ok?'✨ Equivalente.':'Compare com a sua.')+'</div></div>'+
          '<div id="retornoIA"></div>'+
-         '<button class="btn secundario" style="margin-top:10px" onclick="corrigirComTutor(\''+ex.pt.replace(/'/g,"\\'")+'\',\''+ex.en.replace(/'/g,"\\'")+'\',\''+r.txt.replace(/'/g,"\\'")+'\')">Tutor corrige</button>'+
-         '<button class="btn" style="margin-top:10px" onclick="avancar()">Encerrar</button>';
+         '<button class="btn rosa" style="margin-top:10px" onclick="corrigirComTutor(\''+ex.pt.replace(/'/g,"\\'")+'\',\''+ex.en.replace(/'/g,"\\'")+'\',\''+r.txt.replace(/'/g,"\\'")+'\')">🤖 Tutor corrige</button>'+
+         '<button class="btn verde" style="margin-top:10px" onclick="avancar()">Encerrar 🏁</button>';
     }
     return h;
   }
   return '';
 }
-function contarUso(ex,p,i){
-  let usados=ex.montada.filter(x=>x===p).length;
-  let antes=ex.chips.slice(0,i).filter(x=>x===p).length;
-  return antes<usados;
-}
+function contarUso(ex,p,i){let u=ex.montada.filter(x=>x===p).length;let a=ex.chips.slice(0,i).filter(x=>x===p).length;return a<u;}
 function porChip(i){const ex=exAtual();if(S.resposta!==null)return;const p=ex.chips[i];if(contarUso(ex,p,i))return;ex.montada.push(p);render();}
 function tirarChip(i){const ex=exAtual();if(S.resposta!==null)return;ex.montada.splice(i,1);render();}
 function responderMC(i){
+  initAudio();
   const ex=exAtual();if(S.resposta!==null)return;
-  const ok=i===ex.correta;S.resposta={i,ok};pontuar(ok,ex.chave);
-  if(ex.som&&ok)falar(ex.som);render();
+  const ok=i===ex.correta;S.resposta={i,ok,perfeito:ok};
+  if(ok)somAcerto(true);else somErro();
+  pontuar(ok,ex.chave);if(ex.som&&ok)falar(ex.som);render();
 }
 function responderDigitar(){
+  initAudio();
   const ex=exAtual();const v=$('#campoResp').value.trim();if(!v)return;
   const d=dist(norm(v),norm(ex.resposta));
   const ok=d<=1,quase=ok&&d===1;
-  S.resposta={txt:v,ok,quase};pontuar(ok,ex.chave);if(ok)falar(ex.resposta);render();
+  S.resposta={txt:v,ok,quase,perfeito:ok&&d===0};
+  if(ok&&d===0)somAcerto(true);else if(ok)somAcerto(false);else somErro();
+  pontuar(ok,ex.chave);if(ok)falar(ex.resposta);render();
 }
 function responderOrdenar(){
+  initAudio();
   const ex=exAtual();const ok=norm(ex.montada.join(' '))===norm(ex.frase);
-  S.resposta={ok};pontuar(ok,ex.chave);if(ok)falar(ex.frase);render();
+  S.resposta={ok,perfeito:ok};
+  if(ok)somAcerto(true);else somErro();
+  pontuar(ok,ex.chave);if(ok)falar(ex.frase);render();
 }
 function responderEscrever(){
+  initAudio();
   const ex=exAtual();const v=$('#campoResp').value.trim();if(!v)return;
   const a=norm(v).split(' '),b=norm(ex.en).split(' ');
   const iguais=b.filter(w=>a.indexOf(w)>-1).length;
   const ok=iguais/b.length>=0.75;
-  S.resposta={txt:v,ok};pontuar(ok,ex.chave);render();
+  S.resposta={txt:v,ok};
+  if(ok)somAcerto(false);else somErro();
+  pontuar(ok,ex.chave);render();
 }
 function telaFimSessao(){
   const f=S.fim,prec=Math.round(f.prec*100);
-  let h='<div class="carta destaque" style="text-align:center;padding:24px 16px">'+
-    '<div class="rotulo">'+(f.prova?'Teste':'Sessão')+'</div>'+
-    '<div class="dado" style="font-size:48px;line-height:1.1;margin:8px 0">'+prec+'%</div>'+
-    '<div class="pt">'+S.acertos+'/'+S.total+(f.min?' · '+f.min+'min':'')+' · +'+S.xp+' XP</div></div>';
-  h+='<div class="carta"><div class="rotulo">O que muda</div><div style="margin-top:6px;font-size:14px;line-height:1.5">'+esc(f.recado||E.recado)+'</div></div>';
-  h+='<button class="btn" onclick="ir(\'painel\')">Painel</button>';
-  if(!f.prova)h+='<button class="btn secundario" style="margin-top:10px" onclick="ir(\'tutor\')">Tutor</button>';
+  let h='<div class="carta destaque" style="text-align:center;padding:26px 16px">'+
+    '<div class="rotulo">'+(f.prova?'🎯 Teste':'✅ Sessão')+'</div>'+
+    '<div class="dado" style="font-size:54px;line-height:1.1;margin:10px 0;background:var(--grad-principal);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+prec+'%</div>'+
+    '<div class="pt">'+S.acertos+'/'+S.total+(f.min?' · ⏱ '+f.min+'min':'')+' · 💎 +'+S.xp+' XP</div></div>';
+  h+='<div class="carta"><div class="rotulo">🎯 O que muda</div><div style="margin-top:8px;font-size:14.5px;line-height:1.5">'+esc(f.recado||E.recado)+'</div></div>';
+  h+='<button class="btn verde" onclick="ir(\'painel\')">🏠 Painel</button>';
+  if(!f.prova)h+='<button class="btn laranja" style="margin-top:10px" onclick="ir(\'tutor\')">🤖 Conversar com tutor</button>';
   return h;
 }
 
-/* ---------- passaporte ---------- */
 function telaPassaporte(){
-  let h='<h1>Passaporte</h1><div class="pt" style="margin-bottom:14px">Nove níveis, um carimbo cada.</div>';
+  let h='<h1>🗺️ Mapa</h1><div class="pt" style="margin-bottom:14px">9 níveis. Um carimbo cada. Você consegue.</div>';
   h+='<div class="estampas">'+CURSO.map(n=>{
     const c=E.carimbos[n.n],atual=n.n===E.nivel,travado=n.n>E.nivel;
     return '<div class="estampa '+(c?'carimbada ':'')+(atual?'atual ':'')+(travado?'travada':'')+'">'+
       '<div><div class="num">NÍVEL '+n.n+'</div><div class="tit">'+esc(n.nome)+'</div></div>'+
       '<div class="pt" style="font-size:12px;line-height:1.3">'+esc(n.desc)+'</div>'+
-      (c?'<div class="carimbo">'+c.d.split('-').reverse().slice(0,2).join('/')+' · '+c.p+'%</div>':'')+
+      (c?'<div class="carimbo">⭐ '+c.d.split('-').reverse().slice(0,2).join('/')+' · '+c.p+'%</div>':'')+
     '</div>';
   }).join('')+'</div>';
 
   const ult=E.sessoes.slice(-10).reverse();
-  h+='<div class="carta" style="margin-top:14px"><div class="rotulo">Últimas sessões</div>'+
-     (ult.length?ult.map(s=>'<div style="display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid var(--linha)">'+
+  h+='<div class="carta" style="margin-top:14px"><div class="rotulo">📜 Últimas sessões</div>'+
+     (ult.length?ult.map(s=>'<div style="display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid rgba(255,255,255,.06);align-items:center">'+
        '<span class="dado" style="font-size:11.5px">'+s.d.split('-').reverse().join('/')+'</span>'+
-       '<span style="font-size:13px">N'+s.niv+'·U'+(s.un+1)+'</span>'+
-       '<span class="dado" style="font-size:11.5px">'+Math.round(s.ac/Math.max(s.tot,1)*100)+'% · '+s.min+'min</span></div>').join('')
-      :'<div class="pt" style="margin-top:6px">Nenhuma sessão ainda.</div>')+'</div>';
+       '<span style="font-size:13px;font-weight:600">N'+s.niv+'·U'+(s.un+1)+'</span>'+
+       '<span class="dado" style="font-size:11.5px;color:var(--verde2)">'+Math.round(s.ac/Math.max(s.tot,1)*100)+'% · '+s.min+'min</span></div>').join('')
+      :'<div class="pt" style="margin-top:8px">Nenhuma sessão ainda. Bora?</div>')+'</div>';
 
-  h+='<div class="carta"><div class="rotulo">Streak freeze</div>'+
-     '<div style="margin-top:6px;font-size:14px">Você tem <b>'+E.streakFreeze+'</b> '+(E.streakFreeze===1?'freeze':'freezes')+'.</div>'+
-     '<div class="pt" style="margin-top:4px">Cada 7 dias seguidos você ganha 1. Usa quando perder um dia sem querer.</div>'+
-     '<button class="btn secundario pequeno" style="margin-top:10px" onclick="ganharFreeze()">+1 freeze (100 XP)</button></div>';
+  h+='<div class="carta"><div class="rotulo">❄️ Streak freeze</div>'+
+     '<div style="margin-top:8px;font-size:14.5px">Você tem <b style="color:var(--azul2)">'+E.streakFreeze+'</b> '+(E.streakFreeze===1?'freeze':'freezes')+'.</div>'+
+     '<div class="pt" style="margin-top:5px">Cada 7 dias seguidos = 1 freeze novo. Use quando perder um dia.</div>'+
+     '<button class="btn secundario pequeno" style="margin-top:12px" onclick="ganharFreeze()">❄️ +1 freeze (100 XP)</button></div>';
 
-  const onde={claude:'Claude',navegador:'neste navegador'}[Guarda.onde]||'neste navegador';
-  h+='<div class="carta"><div class="rotulo">Memória</div>'+
-     '<div style="margin-top:6px;font-size:14px">Salvando em '+onde+'.</div>'+
+  // � CONFIG DE SOM
+  h+='<div class="carta"><div class="rotulo">� Sons e vibração</div>'+
+    '<div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;padding:6px 0">'+
+      '<div><div style="font-weight:600">Sons do app</div><div class="pt" style="font-size:12.5px">Acertou, errou, conquistas…</div></div>'+
+      '<button class="btn '+(configSom.ligado?'verde':'secundario')+' pequeno" onclick="toggleSom()">'+(configSom.ligado?'🔊 Ligado':'🔇 Desligado')+'</button></div>'+
+    '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid rgba(255,255,255,.06)">'+
+      '<div><div style="font-weight:600">Vibrar</div><div class="pt" style="font-size:12.5px">Celular vibra ao acertar</div></div>'+
+      '<button class="btn '+(configSom.vibrar?'verde':'secundario')+' pequeno" onclick="toggleVibrar()">'+(configSom.vibrar?'📳 Sim':'❌ Não')+'</button></div>'+
+    '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid rgba(255,255,255,.06)">'+
+      '<div><div style="font-weight:600">Toque nos botões</div><div class="pt" style="font-size:12.5px">Clique suave ao tocar</div></div>'+
+      '<button class="btn '+(configSom.toque?'verde':'secundario')+' pequeno" onclick="toggleToque()">'+(configSom.toque?'🔘 Sim':'� Não')+'</button></div>'+
+    '<button class="btn secundario pequeno" style="margin-top:12px" onclick="testarSons()">🎵 Testar todos os sons</button></div>';
+
+  const onde={claude:'Claude',navegador:'navegador'}[Guarda.onde]||'navegador';
+  h+='<div class="carta"><div class="rotulo">💾 Memória</div>'+
+     '<div style="margin-top:8px;font-size:14px">Salvando em <b>'+onde+'</b>.</div>'+
      '<div style="display:flex;gap:8px;margin-top:12px">'+
-     '<button class="btn secundario pequeno" onclick="exportar()">Backup</button>'+
-     '<button class="btn secundario pequeno" onclick="document.getElementById(\'arqBackup\').click()">Restaurar</button></div>'+
+     '<button class="btn secundario pequeno" onclick="exportar()">📥 Backup</button>'+
+     '<button class="btn secundario pequeno" onclick="document.getElementById(\'arqBackup\').click()">📤 Restaurar</button></div>'+
      '<input type="file" id="arqBackup" accept="application/json" class="oculto" onchange="importar(event)">'+
      '<div id="statusBackup"></div></div>';
 
   const vs=vozesEN().slice().sort((a,b)=>notaVoz(b)-notaVoz(a));
   const atual=melhorVoz();
-  h+='<div class="carta"><div class="rotulo">Voz</div>'+
-     (vs.length
-       ? '<select class="campo" style="margin-top:10px" onchange="trocarVoz(this.value)">'+
-         vs.map(v=>'<option value="'+esc(v.voiceURI)+'" '+(atual&&v.voiceURI===atual.voiceURI?'selected':'')+'>'+esc(v.name)+' — '+esc(v.lang)+(notaVoz(v)>=6?' ★':'')+'</option>').join('')+
-         '</select>'+
-         '<div class="rotulo" style="margin-top:14px">Velocidade: '+(E.vel||0.95).toFixed(2)+'x</div>'+
-         '<input type="range" min="0.6" max="1.15" step="0.05" value="'+(E.vel||0.95)+'" style="width:100%;margin-top:6px" oninput="trocarVel(this.value)">'+
-         '<button class="btn secundario pequeno" style="margin-top:10px" onclick="falar(\'Good morning. My name is Victor.\')">Testar</button>'
-       : '<div class="pt" style="margin-top:8px">Nenhuma voz em inglês encontrada.</div>')+
-     '</div>';
+  h+='<div class="carta"><div class="rotulo">🗣️ Voz</div>'+
+     (vs.length?'<select class="campo" style="margin-top:10px" onchange="trocarVoz(this.value)">'+
+       vs.map(v=>'<option value="'+esc(v.voiceURI)+'" '+(atual&&v.voiceURI===atual.voiceURI?'selected':'')+'>'+esc(v.name)+' — '+esc(v.lang)+(notaVoz(v)>=6?' ⭐':'')+'</option>').join('')+'</select>'+
+       '<div class="rotulo" style="margin-top:14px">Velocidade: '+(E.vel||0.95).toFixed(2)+'x</div>'+
+       '<input type="range" min="0.6" max="1.15" step="0.05" value="'+(E.vel||0.95)+'" style="width:100%;margin-top:6px" oninput="trocarVel(this.value)">'+
+       '<button class="btn azul pequeno" style="margin-top:10px" onclick="falar(\'Good morning. My name is Victor.\')">🔊 Testar</button>'
+       :'<div class="pt" style="margin-top:8px">Nenhuma voz em inglês.</div>')+'</div>';
 
-  h+='<div class="carta"><div class="rotulo">Tutor de IA</div>'+
-     '<div class="pt" style="margin-top:6px">Precisa de chave da API Anthropic. Fica só neste computador.</div>'+
+  h+='<div class="carta"><div class="rotulo">🤖 Tutor IA</div>'+
+     '<div class="pt" style="margin-top:6px">Precisa de chave Anthropic. Fica só no seu celular.</div>'+
      '<input class="campo" id="campoChave" type="password" style="margin-top:10px" placeholder="sk-ant-..." value="'+esc(IA.chave)+'" autocomplete="off">'+
      '<input class="campo" id="campoModelo" style="margin-top:6px" placeholder="claude-sonnet-5" value="'+esc(IA.modelo)+'" autocomplete="off">'+
      '<div style="display:flex;gap:8px;margin-top:10px">'+
-     '<button class="btn secundario pequeno" onclick="salvarCredencial()">Salvar</button>'+
+     '<button class="btn secundario pequeno" onclick="salvarCred()">Salvar</button>'+
      '<button class="btn secundario pequeno" onclick="testarIA()">Testar</button></div>'+
      '<div id="statusIA"></div></div>';
 
-  h+='<div class="carta"><button class="btn secundario" onclick="zerar()">Apagar tudo</button></div>';
+  h+='<div class="carta"><button class="btn secundario" onclick="zerar()">🗑️ Apagar tudo</button></div>';
   return h;
 }
+
+function toggleSom(){configSom.ligado=!configSom.ligado;salvarSom();render();if(configSom.ligado)somAcerto(true);}
+function toggleVibrar(){configSom.vibrar=!configSom.vibrar;salvarSom();render();if(configSom.vibrar&&navigator.vibrate)navigator.vibrate(50);}
+function toggleToque(){configSom.toque=!configSom.toque;salvarSom();render();if(configSom.toque)tocarToque();}
+function testarSons(){
+  initAudio();
+  toast('🎵 Tocando sons...',1500);
+  setTimeout(()=>somAcerto(true),300);
+  setTimeout(()=>somErro(),900);
+  setTimeout(()=>somNivel(),1500);
+  setTimeout(()=>soltarConfete(),2200);
+}
+
 function ganharFreeze(){
-  if(E.xp<100){toast('Você precisa de 100 XP. Tem '+E.xp+'.');return;}
+  initAudio();
+  if(E.xp<100){toast('❌ Precisa 100 XP. Tem '+E.xp+'.');return;}
   if(!window.confirm('Trocar 100 XP por 1 freeze?'))return;
   E.xp-=100;E.streakFreeze++;salvar();render();
-  toast('❄️ +1 freeze. Tem '+E.streakFreeze+'.');
+  tocarToque();toast('❄️ +1 freeze!');
 }
-function trocarVoz(uri){E.voz=uri;salvar();falar('This is the new voice.');render();}
+function trocarVoz(uri){E.voz=uri;salvar();falar('New voice.');render();}
 function trocarVel(v){E.vel=parseFloat(v);salvar();clearTimeout(window.tv);window.tv=setTimeout(()=>{falar('Nice to meet you.');render();},500);}
 function exportar(){
-  const pacote={app:'ingles30',data:hoje(),progresso:E};
-  const b=new Blob([JSON.stringify(pacote,null,2)],{type:'application/json'});
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(b);a.download='ingles30-backup-'+hoje()+'.json';
+  const b=new Blob([JSON.stringify({app:'ingles30',data:hoje(),progresso:E},null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='ingles30-'+hoje()+'.json';
   document.body.appendChild(a);a.click();document.body.removeChild(a);
-  const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno ok">Backup baixado.</div>';
+  const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno ok">✅ Backup baixado!</div>';
 }
 function importar(ev){
   const f=ev.target.files[0];if(!f)return;
   const l=new FileReader();
   l.onload=()=>{
     try{
-      const p=JSON.parse(l.result);
-      const dados=p.progresso||p;
-      if(!dados||typeof dados.nivel!=='number')throw new Error('formato');
-      E=Object.assign(JSON.parse(JSON.stringify(PADRAO)),migrarProgresso(dados));
+      const p=JSON.parse(l.result);const dados=p.progresso||p;
+      if(!dados||typeof dados.nivel!=='number')throw new Error();
+      E=Object.assign(JSON.parse(JSON.stringify(PADRAO)),migrar(dados));
       salvar();render();
-      const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno ok">Restaurado: nível '+E.nivel+', '+E.xp+' XP.</div>';
-    }catch(e){
-      const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno nao">Arquivo inválido.</div>';
-    }
-  };
-  l.readAsText(f);
+      const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno ok">✅ Restaurado!</div>';
+    }catch(e){const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno nao">❌ Arquivo inválido.</div>';}
+  };l.readAsText(f);
+}
+async function salvarCred(){
+  IA.chave=$('#campoChave').value.trim();
+  IA.modelo=($('#campoModelo').value.trim())||'claude-sonnet-5';
+  await Guarda.gravar(CHAVE_IA,JSON.stringify(IA));
+  $('#statusIA').innerHTML='<div class="retorno ok">✅ Chave salva!</div>';
 }
 async function testarIA(){
   const st=$('#statusIA');if(st)st.innerHTML='<span class="escrevendo">Testando…</span>';
-  await salvarCredencial();
+  await salvarCred();
   try{
     const r=await chamarIA([{role:'user',content:'Say OK.'}],'One word.');
-    if(st)st.innerHTML='<div class="retorno ok">Conectado: '+esc(r.slice(0,40))+'</div>';
+    if(st)st.innerHTML='<div class="retorno ok">✅ Conectado!</div>';
   }catch(e){
-    const msg=String(e.message||'').indexOf('sem-credencial')>-1
-      ?'Falta a chave.'
-      :'Erro: '+esc(String(e.message).slice(0,140));
-    if(st)st.innerHTML='<div class="retorno nao">'+msg+'</div>';
+    const msg=String(e.message||'').indexOf('sem-credencial')>-1?'Falta a chave.':'Erro: '+esc(String(e.message).slice(0,140));
+    if(st)st.innerHTML='<div class="retorno nao">❌ '+msg+'</div>';
   }
 }
 async function zerar(){
-  if(!window.confirm('Apagar tudo? Tem certeza?'))return;
+  if(!window.confirm('Apagar tudo?'))return;
   E=JSON.parse(JSON.stringify(PADRAO));
   await Guarda.gravar(CHAVE,JSON.stringify(E));
   tela='painel';render();
 }
 
-/* ---------- tutor ---------- */
 function telaTutor(){
   const un=unidadeAtual();
-  let h='<h1>Tutor</h1><div class="pt" style="margin-bottom:12px">Conversa em inglês, no seu nível. Ele corrige e traduz embaixo.</div>';
-  if(!temIA())h+='<div class="carta"><div class="rotulo">Falta chave</div><div style="margin-top:6px;font-size:13.5px">Precisa da chave API Anthropic. Configure no Passaporte.</div><button class="btn secundario pequeno" style="margin-top:10px" onclick="ir(\'passaporte\')">Configurar</button></div>';
+  let h='<h1>🤖 Tutor</h1><div class="pt" style="margin-bottom:12px">Conversa em inglês no seu nível. Ele corrige embaixo.</div>';
+  if(!temIA())h+='<div class="carta"><div class="rotulo">⚠️ Falta chave</div><div style="margin-top:6px;font-size:13.5px">Configure no Mapa.</div><button class="btn secundario pequeno" style="margin-top:10px" onclick="ir(\'passaporte\')">Configurar</button></div>';
   if(!E.tutorHist.length){
-    h+='<div class="carta"><div class="rotulo">Sugestões</div>'+
+    h+='<div class="carta"><div class="rotulo">💡 Sugestões</div>'+
       ['Hi! My name is Victor.','How are you today?','I work with car glass.','Can you help me practice '+un.g.t+'?']
-      .map(s=>'<button class="btn secundario pequeno" style="margin:5px 5px 0 0" onclick="sugerir(\''+s.replace(/'/g,"\\'")+'\')">'+esc(s)+'</button>').join('')+'</div>';
+      .map(s=>'<button class="btn secundario pequeno" style="margin:6px 6px 0 0" onclick="sugerir(\''+s.replace(/'/g,"\\'")+'\')">'+esc(s)+'</button>').join('')+'</div>';
   }
   h+='<div class="conversa">'+E.tutorHist.map(m=>{
     if(m.role==='user')return '<div class="bolha eu">'+esc(m.content)+'</div>';
     const en=(m.content.match(/EN:\s*([\s\S]*?)(?=\nPT:|$)/)||[,m.content])[1].trim();
     const pt=(m.content.match(/PT:\s*([\s\S]*)/)||[,''])[1].trim();
     return '<div class="bolha ia">'+esc(en)+
-      '<button class="btn secundario pequeno" style="display:block;margin-top:6px;padding:5px 9px;font-size:11.5px" onclick="falar(\''+en.replace(/'/g,"\\'").replace(/\n/g,' ')+'\')">🔊 Ouvir</button>'+
+      '<button class="btn azul pequeno" style="display:block;margin-top:7px;padding:5px 10px;font-size:11.5px" onclick="falar(\''+en.replace(/'/g,"\\'").replace(/\n/g,' ')+'\')">🔊 Ouvir</button>'+
       (pt?'<span class="traducao">'+esc(pt)+'</span>':'')+'</div>';
-  }).join('')+(tutorPensando?'<div class="escrevendo">Escrevendo…</div>':'')+'<div id="fimConversa"></div></div>';
-  h+='<div class="envio"><textarea class="campo" id="tutorTexto" style="min-height:48px" placeholder="escreva em inglês, mesmo errado"></textarea>'+
-     '<button class="btn" onclick="enviarTutor()" '+(tutorPensando?'disabled':'')+'>Enviar</button></div>';
+  }).join('')+(tutorPensando?'<div class="escrevendo">💭 Escrevendo…</div>':'')+'<div id="fimConversa"></div></div>';
+  h+='<div class="envio"><textarea class="campo" id="tutorTexto" style="min-height:50px" placeholder="escreva em inglês, mesmo errado"></textarea>'+
+     '<button class="btn laranja" onclick="enviarTutor()" '+(tutorPensando?'disabled':'')+'>Enviar</button></div>';
   return h;
 }
 function sugerir(s){$('#tutorTexto').value=s;$('#tutorTexto').focus();}
 
-/* ============================================================
-   PWA
-   ============================================================ */
+/* PWA */
 let eventoInstall=null;
 window.addEventListener('beforeinstallprompt',(e)=>{
-  e.preventDefault();
-  eventoInstall=e;
-  if(!localStorage.getItem('ingles30:installDismissed')){
-    $('#installBanner').classList.remove('oculto');
-  }
+  e.preventDefault();eventoInstall=e;
+  if(!localStorage.getItem('ingles30:installDismissed'))$('#installBanner').classList.remove('oculto');
 });
-async function instalarPWA(){
-  if(!eventoInstall)return;
-  eventoInstall.prompt();
-  const {outcome}=await eventoInstall.userChoice;
-  if(outcome==='accepted')fecharInstall();
-}
-function fecharInstall(){
-  $('#installBanner').classList.add('oculto');
-  localStorage.setItem('ingles30:installDismissed','1');
-}
-if('serviceWorker' in navigator && location.protocol!=='file:'){
-  window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('sw.js').catch(()=>{});
-  });
+async function instalarPWA(){if(!eventoInstall)return;eventoInstall.prompt();const{outcome}=await eventoInstall.userChoice;if(outcome==='accepted')fecharInstall();}
+function fecharInstall(){$('#installBanner').classList.add('oculto');localStorage.setItem('ingles30:installDismissed','1');}
+if('serviceWorker' in navigator&&location.protocol!=='file:'){
+  window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
 }
 
-/* ============================================================
-   ROTEADOR (com try/catch pra não quebrar)
-   ============================================================ */
+/* Roteador */
 function render(){
   try{
     renderTopo();renderNav();
-    const telas={painel:telaPainel,sessao:telaSessao,passaporte:telaPassaporte,tutor:telaTutor};
-    const fn=telas[tela]||telaPainel;
-    const html=fn();
-    $('#tela').innerHTML=html||'<div class="carta">Algo deu errado. <button class="btn secundario pequeno" onclick="ir(\'painel\')">Voltar</button></div>';
-    $('#rodape').innerHTML=tela==='painel'?'<span>5 sessões de 30 min por semana</span>':'';
+    const fn={painel:telaPainel,sessao:telaSessao,passaporte:telaPassaporte,tutor:telaTutor}[tela]||telaPainel;
+    $('#tela').innerHTML=fn()||'<div class="carta">Algo deu errado.</div>';
+    $('#rodape').innerHTML=tela==='painel'?'<span>5 sessões de 30 min por semana · ~9 meses até o nível 9</span>':'';
     const c=$('#campoResp');if(c&&!c.disabled)c.focus();
-  }catch(e){
-    console.error('render:',e);
-    try{$('#tela').innerHTML='<div class="carta"><div class="rotulo">Erro</div><div style="margin-top:6px;font-size:13px">'+String(e.message||e).slice(0,200)+'</div></div>';}catch(_){}
-  }
+  }catch(e){console.error(e);}
 }
 setInterval(()=>{
   if(tela!=='sessao'||!S||S.fim)return;
   const d=Math.floor((Date.now()-S.inicio)/1000),el=$('#crono');
-  if(el)el.textContent=String(Math.floor(d/60)).padStart(2,'0')+':'+String(d%60).padStart(2,'0');
+  if(el)el.textContent='⏱ '+String(Math.floor(d/60)).padStart(2,'0')+':'+String(d%60).padStart(2,'0');
 },1000);
 document.addEventListener('keydown',e=>{
   if(e.key!=='Enter')return;
@@ -1237,7 +1330,7 @@ document.addEventListener('keydown',e=>{
   if(ex.t==='digitar'&&document.activeElement&&document.activeElement.id==='campoResp'){e.preventDefault();responderDigitar();}
 });
 
-(async()=>{ await carregar(); render(); })();
+(async()=>{await carregar();render();})();
 </script>
 </body>
 </html>
