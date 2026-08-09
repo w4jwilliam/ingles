@@ -482,18 +482,18 @@ const CURSO = [
 ]}
 ];
 </script>
-</body>
-</html>
 
 <script>
 /* ESTADO E MEMORIA */
 const CHAVE='ingles30:progresso';
 const CHAVE_IA='ingles30:credencial';
 const CHAVE_SOM='ingles30:som';
+const CHAVE_TTS='ingles30:chaveTTS';
 const PADRAO={v:2,nivel:1,unidade:0,xp:0,streak:0,streakFreeze:0,ultimoDia:null,itens:{},sessoes:[],carimbos:{},prova:false,recado:"",tutorHist:[],voz:'',vel:0.95,conquistas:[]};
 let E=JSON.parse(JSON.stringify(PADRAO));
 let tela='painel',salvando=null;
 let IA={chave:'',modelo:'claude-sonnet-5'};
+let cfgTTS={openai:'',vozIA:'nova',modeloIA:'tts-1'};
 
 const MEM={};
 const Guarda={
@@ -518,6 +518,8 @@ async function carregar(){
   if(cred){try{IA=Object.assign(IA,JSON.parse(cred));}catch(e){}}
   const som=await Guarda.ler(CHAVE_SOM);
   if(som){try{configSom=Object.assign(configSom,JSON.parse(som));}catch(e){}}
+  const tts=await Guarda.ler(CHAVE_TTS);
+  if(tts){try{cfgTTS=Object.assign(cfgTTS,JSON.parse(tts));}catch(e){}}
 }
 function migrar(p){if(!p||typeof p!=='object')return p;if(p.v===2)return p;return Object.assign({},p,{v:2,conquistas:p.conquistas||[],streakFreeze:p.streakFreeze||0});}
 function salvar(){clearTimeout(salvando);salvando=setTimeout(()=>Guarda.gravar(CHAVE,JSON.stringify(E)),400);}
@@ -535,10 +537,98 @@ function unidadeAtual(){return nivelObj(E.nivel).u[Math.min(E.unidade,2)];}
 function segundaDaSemana(d){const x=new Date(d);const dia=(x.getDay()+6)%7;x.setDate(x.getDate()-dia);return x.toISOString().slice(0,10);}
 
 function vozesEN(){if(!('speechSynthesis' in window))return [];return speechSynthesis.getVoices().filter(v=>v.lang&&/^en/i.test(v.lang));}
-function notaVoz(v){const n=(v.name||'')+' '+(v.voiceURI||'');let p=0;if(/natural|neural|premium|enhanced|online/i.test(n))p+=6;if(/google/i.test(n))p+=4;if(/samantha|ava|siri|aria|jenny|allison|nicky/i.test(n))p+=3;if(/^en-US/i.test(v.lang))p+=2;else if(/^en-GB/i.test(v.lang))p+=1;if(/compact|espeak|david|zira|mark/i.test(n))p-=3;return p;}
+function notaVoz(v){const n=(v.name||'')+' '+(v.voiceURI||'');let p=0;if(/natural|neural|premium|enhanced|online|azure|wavenet|studio/i.test(n))p+=10;if(/microsoft.*(online|natural|neural)/i.test(n))p+=9;if(/google.*(neural|wavenet|studio)/i.test(n))p+=9;if(/polly|neural/i.test(n))p+=7;if(/samantha|ava|siri|aria|jenny|allison|nicky|tessa|veena|serena|karen|moira/i.test(n))p+=6;if(/google/i.test(n))p+=4;if(/^en-US/i.test(v.lang))p+=2;else if(/^en-GB/i.test(v.lang))p+=2;else if(/^en-/i.test(v.lang))p+=1;if(/microsoft|zira|mark|david/i.test(n))p+=1;if(/compact|espeak/i.test(n))p-=5;return p;}
 function melhorVoz(){const vs=vozesEN();if(!vs.length)return null;if(E.voz){const m=vs.find(v=>v.voiceURI===E.voz);if(m)return m;}return vs.slice().sort((a,b)=>notaVoz(b)-notaVoz(a))[0];}
+
+/* ============ SISTEMA DE VOZ COM OPENAI TTS (PRINCIPAL) + WEB SPEECH (FALLBACK) ============ */
+let _ttsAudio=null;
 let filaVoz=null;
-function falar(txt,taxa){initAudio();if(!('speechSynthesis' in window))return;clearTimeout(filaVoz);speechSynthesis.cancel();filaVoz=setTimeout(()=>{const u=new SpeechSynthesisUtterance(String(txt).replace(/\s+/g,' ').trim());const v=melhorVoz();if(v){u.voice=v;u.lang=v.lang;}else{u.lang='en-US';}u.rate=taxa||E.vel||0.95;speechSynthesis.speak(u);},60);}
+
+async function falarOpenAI(texto, taxa){
+  if(!cfgTTS.openai) return false;
+  const vel = taxa || E.vel || 0.95;
+  try{
+    const r = await fetch('https://api.openai.com/v1/audio/speech',{
+      method:'POST',
+      headers:{
+        'Authorization':'Bearer '+cfgTTS.openai,
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({
+        model: cfgTTS.modeloIA || 'tts-1',
+        input: texto,
+        voice: cfgTTS.vozIA || 'nova',
+        response_format: 'mp3',
+        speed: vel
+      })
+    });
+    if(!r.ok){
+      const t = await r.text();
+      throw new Error(t.slice(0,200));
+    }
+    const blob = await r.blob();
+    const url = URL.createObjectURL(blob);
+    if(_ttsAudio){ try{ _ttsAudio.pause(); }catch(e){} URL.revokeObjectURL(_ttsAudio.src); }
+    const audio = new Audio(url);
+    _ttsAudio = audio;
+    audio.onended = ()=>{ if(_ttsAudio===audio) _ttsAudio=null; URL.revokeObjectURL(url); };
+    audio.onerror = ()=>{ if(_ttsAudio===audio) _ttsAudio=null; URL.revokeObjectURL(url); };
+    await audio.play();
+    return true;
+  }catch(e){
+    console.warn('OpenAI TTS falhou:', e.message);
+    return false;
+  }
+}
+
+function falarWebSpeech(texto, taxa){
+  if(!('speechSynthesis' in window)) return;
+  clearTimeout(filaVoz);
+  speechSynthesis.cancel();
+
+  const t = String(texto).replace(/\s+/g,' ').trim();
+  if(!t) return;
+
+  // Chunking: divide em sentenças curtas pra soar mais natural
+  const chunks = t.split(/(?<=[.!?])\s+|(?<=[,;:])\s+/).filter(s=>s.trim().length>0);
+  if(!chunks.length) return;
+
+  const voz = melhorVoz();
+  let i = 0;
+  function prox(){
+    if(i >= chunks.length) return;
+    const u = new SpeechSynthesisUtterance(chunks[i]);
+    if(voz){ u.voice = voz; u.lang = voz.lang; } else u.lang='en-US';
+    u.rate = taxa || E.vel || 0.95;
+    u.pitch = 1.05;
+    u.volume = 1.0;
+    u.onend = ()=>{ i++; filaVoz=setTimeout(prox, 90); };
+    u.onerror = ()=>{ i++; prox(); };
+    speechSynthesis.speak(u);
+  }
+  filaVoz = setTimeout(prox, 60);
+}
+
+async function falar(txt, taxa){
+  initAudio();
+  const texto = String(txt||'').replace(/\s+/g,' ').trim();
+  if(!texto) return;
+
+  // Cancela áudio anterior
+  if(_ttsAudio){ try{ _ttsAudio.pause(); _ttsAudio=null; }catch(e){} }
+  clearTimeout(filaVoz);
+  if('speechSynthesis' in window) speechSynthesis.cancel();
+
+  // 1ª opção: OpenAI TTS (voz humana)
+  if(cfgTTS.openai){
+    const ok = await falarOpenAI(texto, taxa);
+    if(ok) return;
+    // Se falhou (sem internet, sem crédito, chave errada), tenta fallback
+  }
+  // 2ª opção: Web Speech API melhorada
+  falarWebSpeech(texto, taxa);
+}
+
 if('speechSynthesis' in window){speechSynthesis.getVoices();setTimeout(()=>speechSynthesis.getVoices(),300);}
 
 function novoItem(){return {reps:0,lapsos:0,estabilidade:1,dificuldade:5,intervalo:1,due:Date.now()};}
@@ -657,13 +747,44 @@ h+='<div class="carta"><div class="rotulo">Streak freeze</div><div style="margin
 h+='<div class="carta"><div class="rotulo">Sons e vibracao</div><div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;padding:6px 0"><div><div style="font-weight:600">Sons do app</div><div class="pt" style="font-size:12.5px">Acertou, errou, conquistas...</div></div><button class="btn '+(configSom.ligado?'verde':'secundario')+' pequeno" onclick="toggleSom()">'+(configSom.ligado?'ON':'OFF')+'</button></div><div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid rgba(255,255,255,.06)"><div><div style="font-weight:600">Vibrar</div><div class="pt" style="font-size:12.5px">Celular vibra ao acertar</div></div><button class="btn '+(configSom.vibrar?'verde':'secundario')+' pequeno" onclick="toggleVibrar()">'+(configSom.vibrar?'SIM':'NAO')+'</button></div><div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid rgba(255,255,255,.06)"><div><div style="font-weight:600">Toque nos botoes</div><div class="pt" style="font-size:12.5px">Clique suave ao tocar</div></div><button class="btn '+(configSom.toque?'verde':'secundario')+' pequeno" onclick="toggleToque()">'+(configSom.toque?'SIM':'NAO')+'</button></div><button class="btn secundario pequeno" style="margin-top:12px" onclick="testarSons()">Testar todos os sons</button></div>';
 const onde={claude:'Claude',navegador:'navegador'}[Guarda.onde]||'navegador';
 h+='<div class="carta"><div class="rotulo">Memoria</div><div style="margin-top:8px;font-size:14px">Salvando em <b>'+onde+'</b>.</div><div style="display:flex;gap:8px;margin-top:12px"><button class="btn secundario pequeno" onclick="exportar()">Backup</button><button class="btn secundario pequeno" onclick="document.getElementById(\'arqBackup\').click()">Restaurar</button></div><input type="file" id="arqBackup" accept="application/json" class="oculto" onchange="importar(event)"><div id="statusBackup"></div></div>';
+
+// ====== NOVO: SEÇÃO OPENAI TTS ======
+h+='<div class="carta"><div class="rotulo">Voz humana (OpenAI)</div>';
+if(cfgTTS.openai){
+  h+='<div class="aviso" style="margin-top:10px;margin-bottom:12px;border-color:var(--verde);background:linear-gradient(135deg,rgba(16,185,129,.18),rgba(52,211,153,.12))"><b>Ativo.</b> Voz neural configurada: <b>'+esc(cfgTTS.vozIA)+'</b></div>';
+} else {
+  h+='<div class="aviso" style="margin-top:10px;margin-bottom:12px"><b>Recomendado.</b> Voz natural de verdade. Custa centavos.</div>';
+}
+h+='<div class="pt" style="margin-top:6px;font-size:13px">Crie em <b>platform.openai.com → API Keys</b>. A mesma chave serve aqui e no Tutor.</div>';
+h+='<input class="campo" id="campoChaveTTS" type="password" style="margin-top:10px" placeholder="sk-..." autocomplete="off">';
+h+='<select class="campo" id="campoVozIA" style="margin-top:8px">';
+['nova','shimmer','alloy','echo','onyx','fable'].forEach(v=>{
+  const label = {nova:'Nova — feminina, calorosa (RECOMENDADA)',shimmer:'Shimmer — feminina, suave',alloy:'Alloy — neutra',echo:'Echo — masculina, calma',onyx:'Onyx — masculina, grave',fable:'Fable — narrativa'}[v];
+  h+='<option value="'+v+'" '+(cfgTTS.vozIA===v?'selected':'')+'>'+label+'</option>';
+});
+h+='</select>';
+h+='<select class="campo" id="campoModeloIA" style="margin-top:8px">';
+h+='<option value="tts-1" '+(cfgTTS.modeloIA==='tts-1'?'selected':'')+'>tts-1 — rápido e barato (RECOMENDADO)</option>';
+h+='<option value="tts-1-hd" '+(cfgTTS.modeloIA==='tts-1-hd'?'selected':'')+'>tts-1-hd — máxima qualidade</option>';
+h+='</select>';
+h+='<div style="display:flex;gap:8px;margin-top:10px"><button class="btn secundario pequeno" onclick="salvarCredTTS()">Salvar</button><button class="btn verde pequeno" onclick="testarVozIA()">Testar voz</button></div>';
+h+='<div id="statusTTS"></div>';
+h+='<div class="pt" style="margin-top:10px;font-size:12px">Sem internet ou sem crédito? O app volta sozinho pra voz do navegador.</div>';
+h+='</div>';
+
+// ====== SEÇÃO WEB SPEECH (fallback) ======
 const vs=vozesEN().slice().sort((a,b)=>notaVoz(b)-notaVoz(a));const atual=melhorVoz();
 const isEdge=navigator.userAgent.includes('Edg');
 const isChrome=navigator.userAgent.includes('Chrome')&&!isEdge;
 const isSamsung=navigator.userAgent.includes('Samsung');
-h+='<div class="carta"><div class="rotulo">Voz do ingles</div>';
+h+='<div class="carta"><div class="rotulo">Voz do navegador (fallback)</div>';
+if(cfgTTS.openai){
+  h+='<div class="pt" style="margin-top:8px;font-size:13px">Esta voz so e usada se a OpenAI falhar.</div>';
+} else {
+  h+='<div class="pt" style="margin-top:8px;font-size:13px">Sem chave OpenAI. <b>Recomendacao:</b> abra no Microsoft Edge para vozes neurais gratuitas.</div>';
+}
 if(!isEdge&&!isChrome){
-  h+='<div class="aviso" style="margin-top:10px;margin-bottom:12px"><b>Para voz natural:</b> abra este site no <b>Microsoft Edge</b> (mesmo link, outro navegador). Ele tem vozes gratis excelentes. <a href="https://www.microsoft.com/edge" target="_blank" class="link">Baixar Edge</a></div>';
+  h+='<div class="aviso" style="margin-top:10px;margin-bottom:12px"><b>Para voz natural gratis:</b> abra este site no <b>Microsoft Edge</b> (mesmo link, outro navegador). Ele tem vozes neurais excelentes. <a href="https://www.microsoft.com/edge" target="_blank" class="link">Baixar Edge</a></div>';
 }
 h+='<div class="pt" style="margin-top:8px;font-size:13px">Plataforma: <b>'+(isEdge?'Edge (otimas vozes)':(isChrome?'Chrome':(isSamsung?'Samsung Internet':'Outro')))+'</b></div>';
 if(vs.length){
@@ -672,24 +793,59 @@ if(vs.length){
     const n=notaVoz(v);
     const stars='★'.repeat(Math.min(5,Math.max(1,Math.ceil(n/2))))+'☆'.repeat(Math.max(0,5-Math.min(5,Math.max(1,Math.ceil(n/2)))));
     const badge=n>=6?' [TOP]':(n>=3?' [boa]':(n>=0?' [ok]':' [ruim]'));
-    const plat=(v.voiceURI.includes('Google')||v.name.includes('Google'))?' [Google]':(isEdge&&n>=4?' [MS]':'');
-    h+='<option value="'+esc(v.voiceURI)+'" '+(atual&&v.voiceURI===atual.voiceURI?'selected':'')+'>'+stars+' '+esc(v.name)+' - '+esc(v.lang)+badge+plat+'</option>';
+    h+='<option value="'+esc(v.voiceURI)+'" '+(atual&&v.voiceURI===atual.voiceURI?'selected':'')+'>'+stars+' '+esc(v.name)+' - '+esc(v.lang)+badge+'</option>';
   });
   h+='</select>';
   h+='<div style="display:flex;gap:6px;margin-top:10px"><button class="btn azul pequeno" style="flex:1" onclick="falar(\'Good morning. My name is Victor. Nice to meet you.\')">Testar</button><button class="btn secundario pequeno" style="flex:1" onclick="testarTodasVozes()">Todas</button></div>';
   h+='<div class="rotulo" style="margin-top:14px">Velocidade: '+(E.vel||0.95).toFixed(2)+'x</div>';
   h+='<input type="range" min="0.6" max="1.15" step="0.05" value="'+(E.vel||0.95)+'" style="width:100%;margin-top:6px" oninput="trocarVel(this.value)">';
-  h+='<div class="pt" style="margin-top:10px;font-size:12.5px"><b>5 estrelas</b> = voz natural (Edge/Azure ou Google neural). <b>1 estrela</b> = robotica. Pra trocar de navegador: copie o link e abra no Edge.</div>';
 }else{
   h+='<div class="pt" style="margin-top:8px">Nenhuma voz em ingles encontrada.</div>';
 }
 h+='</div>';
+
 h+='<div class="carta"><div class="rotulo">Tutor IA</div><div class="pt" style="margin-top:6px">Precisa de chave Anthropic. Fica so no seu celular.</div><input class="campo" id="campoChave" type="password" style="margin-top:10px" placeholder="sk-ant-..." value="'+esc(IA.chave)+'" autocomplete="off"><input class="campo" id="campoModelo" style="margin-top:6px" placeholder="claude-sonnet-5" value="'+esc(IA.modelo)+'" autocomplete="off"><div style="display:flex;gap:8px;margin-top:10px"><button class="btn secundario pequeno" onclick="salvarCred()">Salvar</button><button class="btn secundario pequeno" onclick="testarIA()">Testar</button></div><div id="statusIA"></div></div>';
-h+='<div class="carta"><button class="btn secundario" onclick="zerar()">Apagar tudo</button></div>';return h;}
+h+='<div class="carta"><button class="btn secundario" onclick="zerar()">Apagar tudo</button></div>';
+return h;}
+
+// ====== FUNÇÕES OPENAI TTS ======
+async function carregarCredTTS(){
+  const c = $('#campoChaveTTS'); if(c) c.value = cfgTTS.openai || '';
+  const v = $('#campoVozIA'); if(v) v.value = cfgTTS.vozIA || 'nova';
+  const m = $('#campoModeloIA'); if(m) m.value = cfgTTS.modeloIA || 'tts-1';
+}
+async function salvarCredTTS(){
+  const elC = $('#campoChaveTTS');
+  const elV = $('#campoVozIA');
+  const elM = $('#campoModeloIA');
+  if(elC) cfgTTS.openai = elC.value.trim();
+  if(elV) cfgTTS.vozIA = elV.value;
+  if(elM) cfgTTS.modeloIA = elM.value;
+  await Guarda.gravar(CHAVE_TTS, JSON.stringify(cfgTTS));
+  const st = $('#statusTTS');
+  if(st) st.innerHTML = '<div class="retorno ok">Salvo! Próxima frase usa voz humana.</div>';
+  setTimeout(()=>render(), 600);
+}
+async function testarVozIA(){
+  const st = $('#statusTTS');
+  if(st) st.innerHTML = '<span class="escrevendo">Gerando áudio...</span>';
+  await salvarCredTTS();
+  try{
+    const ok = await falarOpenAI('Good morning, my name is Victor. Nice to meet you. How are you today?', 0.95);
+    if(ok){
+      if(st) st.innerHTML = '<div class="retorno ok">Tocando voz '+esc(cfgTTS.vozIA)+'!</div>';
+    } else {
+      if(st) st.innerHTML = '<div class="retorno nao">Falhou. Verifique a chave ou o saldo.</div>';
+    }
+  }catch(e){
+    if(st) st.innerHTML = '<div class="retorno nao">Erro: '+esc(String(e.message).slice(0,140))+'</div>';
+  }
+}
+
 function toggleSom(){configSom.ligado=!configSom.ligado;salvarSom();render();if(configSom.ligado)somAcerto(true);}
 function toggleVibrar(){configSom.vibrar=!configSom.vibrar;salvarSom();render();if(configSom.vibrar&&navigator.vibrate)navigator.vibrate(50);}
 function toggleToque(){configSom.toque=!configSom.toque;salvarSom();render();if(configSom.toque)tocarToque();}
-  let testVozIdx=0;
+let testVozIdx=0;
 async function testarTodasVozes(){
   const vs=vozesEN();
   if(!vs.length)return;
@@ -729,9 +885,22 @@ async function instalarPWA(){if(!eventoInstall)return;eventoInstall.prompt();con
 function fecharInstall(){$('#installBanner').classList.add('oculto');localStorage.setItem('ingles30:installDismissed','1');}
 if('serviceWorker' in navigator&&location.protocol!=='file:'){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
 
-function render(){try{renderTopo();renderNav();const fn={painel:telaPainel,sessao:telaSessao,passaporte:telaPassaporte,tutor:telaTutor}[tela]||telaPainel;$('#tela').innerHTML=fn()||'<div class="carta">Algo deu errado.</div>';$('#rodape').innerHTML=tela==='painel'?'<span>5 sessoes de 30 min por semana</span>':'';const c=$('#campoResp');if(c&&!c.disabled)c.focus();}catch(e){console.error(e);}}
+function render(){
+  try{
+    renderTopo();
+    renderNav();
+    const fn={painel:telaPainel,sessao:telaSessao,passaporte:telaPassaporte,tutor:telaTutor}[tela]||telaPainel;
+    $('#tela').innerHTML=fn()||'<div class="carta">Algo deu errado.</div>';
+    $('#rodape').innerHTML=tela==='painel'?'<span>5 sessoes de 30 min por semana</span>':'';
+    carregarCredTTS(); // carrega chave OpenAI nos campos quando abrir o Mapa
+    const c=$('#campoResp');
+    if(c&&!c.disabled)c.focus();
+  }catch(e){console.error(e);}
+}
 setInterval(()=>{if(tela!=='sessao'||!S||S.fim)return;const d=Math.floor((Date.now()-S.inicio)/1000),el=$('#crono');if(el)el.textContent=String(Math.floor(d/60)).padStart(2,'0')+':'+String(d%60).padStart(2,'0');},1000);
 document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const ex=S&&!S.fim?exAtual():null;if(!ex||S.resposta!==null)return;if(ex.t==='digitar'&&document.activeElement&&document.activeElement.id==='campoResp'){e.preventDefault();responderDigitar();}});
 
 (async()=>{await carregar();render();})();
 </script>
+</body>
+</html>
