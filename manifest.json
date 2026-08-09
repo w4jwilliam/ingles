@@ -1,15 +1,15 @@
 {
-  "name": "Passaporte — Inglês em 30 minutos",
+  "name": "Inglês em 30 minutos",
   "short_name": "Inglês 30",
-  "description": "Aprenda inglês em 30 minutos por dia, do zero ao trabalho. 9 níveis, repetição inteligente, tutor de IA.",
+  "description": "Aprenda inglês em 30 minutos por dia, do zero ao trabalho.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#12525E",
-  "theme_color": "#12525E",
+  "background_color": "#000000",
+  "theme_color": "#000000",
   "lang": "pt-BR",
-  "categories": ["education", "productivity", "books"],
+  "categories": ["education", "productivity"],
   "icons": [
     {
       "src": "icon-192.png",
