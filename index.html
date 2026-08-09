@@ -135,7 +135,6 @@ button:focus-visible{outline:2.5px solid var(--roxo2);outline-offset:2px}
 .campo:focus{border-color:var(--roxo2);background:rgba(255,255,255,.06)}
 textarea.campo{min-height:90px;resize:vertical;line-height:1.45}
 
-/* SELECTS ESTILIZADOS */
 select.campo{
   width:100%;
   background:rgba(255,255,255,.04);
@@ -517,13 +516,10 @@ const CURSO = [
 const CHAVE='ingles30:progresso';
 const CHAVE_IA='ingles30:credencial';
 const CHAVE_SOM='ingles30:som';
-const CHAVE_TTS='ingles30:cfgTTS';
 const PADRAO={v:2,nivel:1,unidade:0,xp:0,streak:0,streakFreeze:0,ultimoDia:null,itens:{},sessoes:[],carimbos:{},prova:false,recado:"",tutorHist:[],voz:'',vel:0.95,conquistas:[]};
 let E=JSON.parse(JSON.stringify(PADRAO));
 let tela='painel',salvando=null;
 let IA={chave:'',modelo:'claude-sonnet-5'};
-// cfgTTS usa a mesma chave do Tutor (IA.chave). Vozes: kore (feminina), onyx (masculina), alloy (neutra)
-let cfgTTS={vozIA:'kore',velocidade:1.0};
 
 const MEM={};
 const Guarda={
@@ -548,8 +544,13 @@ async function carregar(){
   if(cred){try{IA=Object.assign(IA,JSON.parse(cred));}catch(e){}}
   const som=await Guarda.ler(CHAVE_SOM);
   if(som){try{configSom=Object.assign(configSom,JSON.parse(som));}catch(e){}}
-  const tts=await Guarda.ler(CHAVE_TTS);
-  if(tts){try{cfgTTS=Object.assign(cfgTTS,JSON.parse(tts));}catch(e){}}
+  // Garante carregamento das vozes
+  if('speechSynthesis' in window){
+    speechSynthesis.getVoices();
+    if(speechSynthesis.onvoiceschanged !== undefined){
+      speechSynthesis.onvoiceschanged = ()=>speechSynthesis.getVoices();
+    }
+  }
 }
 function migrar(p){if(!p||typeof p!=='object')return p;if(p.v===2)return p;return Object.assign({},p,{v:2,conquistas:p.conquistas||[],streakFreeze:p.streakFreeze||0});}
 function salvar(){clearTimeout(salvando);salvando=setTimeout(()=>Guarda.gravar(CHAVE,JSON.stringify(E)),400);}
@@ -567,66 +568,63 @@ function unidadeAtual(){return nivelObj(E.nivel).u[Math.min(E.unidade,2)];}
 function segundaDaSemana(d){const x=new Date(d);const dia=(x.getDay()+6)%7;x.setDate(x.getDate()-dia);return x.toISOString().slice(0,10);}
 
 function vozesEN(){if(!('speechSynthesis' in window))return [];return speechSynthesis.getVoices().filter(v=>v.lang&&/^en/i.test(v.lang));}
-function notaVoz(v){const n=(v.name||'')+' '+(v.voiceURI||'');let p=0;if(/natural|neural|premium|enhanced|online|azure|wavenet|studio/i.test(n))p+=10;if(/microsoft.*(online|natural|neural)/i.test(n))p+=9;if(/google.*(neural|wavenet|studio)/i.test(n))p+=9;if(/polly|neural/i.test(n))p+=7;if(/samantha|ava|siri|aria|jenny|allison|nicky|tessa|veena|serena|karen|moira/i.test(n))p+=6;if(/google/i.test(n))p+=4;if(/^en-US/i.test(v.lang))p+=2;else if(/^en-GB/i.test(v.lang))p+=2;else if(/^en-/i.test(v.lang))p+=1;if(/microsoft|zira|mark|david/i.test(n))p+=1;if(/compact|espeak/i.test(n))p-=5;return p;}
-function melhorVoz(){const vs=vozesEN();if(!vs.length)return null;if(E.voz){const m=vs.find(v=>v.voiceURI===E.voz);if(m)return m;}return vs.slice().sort((a,b)=>notaVoz(b)-notaVoz(a))[0];}
-
-/* ============ VOZ: ANTHROPIC TTS (principal) + WEB SPEECH (fallback) ============ */
-let _ttsAudio=null;
-let filaVoz=null;
-
-async function falarAnthropic(texto){
-  if(!IA.chave) return {ok:false, motivo:'sem-chave'};
-  try{
-    const r = await fetch('https://api.anthropic.com/v1/messages', {
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'x-api-key': IA.chave,
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: IA.modelo || 'claude-sonnet-5',
-        max_tokens: 1024,
-        system: 'You are a text-to-speech engine. Read the text exactly as written in clear, natural American English. Add no commentary.',
-        messages: [{
-          role: 'user',
-          content: [
-            {type:'text', text: texto},
-            {type:'text', text:'[speak aloud in a warm female voice with pace '+ (cfgTTS.velocidade||1.0) +']'}
-          ]
-        }]
-      })
-    });
-    if(!r.ok){
-      const t = await r.text();
-      return {ok:false, motivo:'http-'+r.status, detalhe: t.slice(0,200)};
-    }
-    // A Anthropic nao devolve audio direto no messages endpoint — isso e um placeholder.
-    // Estrategia REAL: SSE streaming + MediaRecorder para capturar a fala do navegador
-    // OU usar a voz do navegador (que ja temos). Para voz humana real, mantemos Web Speech.
-    return {ok:false, motivo:'anthropic-sem-tts'};
-  }catch(e){
-    return {ok:false, motivo:'erro', detalhe: String(e.message)};
-  }
+// Dá pontos pra cada voz. Quanto mais alta, melhor qualidade.
+function notaVoz(v){
+  const n=(v.name||'')+' '+(v.voiceURI||'');
+  let p=0;
+  // Vozes neurais / naturais (as melhores)
+  if(/natural|neural|premium|enhanced|online|azure|wavenet|studio/i.test(n)) p+=10;
+  if(/microsoft.*(online|natural|neural)/i.test(n)) p+=9;
+  if(/google.*(neural|wavenet|studio)/i.test(n)) p+=9;
+  if(/polly|neural/i.test(n)) p+=7;
+  // Vozes conhecidas de boa qualidade (Apple, Google padrão)
+  if(/samantha|ava|siri|aria|jenny|allison|nicky|tessa|veena|serena|karen|moira|olivia|emma|libby|mia/i.test(n)) p+=6;
+  if(/google/i.test(n)) p+=4;
+  // Idioma preferido
+  if(/^en-US/i.test(v.lang)) p+=2;
+  else if(/^en-GB/i.test(v.lang)) p+=2;
+  else if(/^en-AU/i.test(v.lang)) p+=1;
+  else if(/^en-/i.test(v.lang)) p+=1;
+  // Vozes Microsoft comuns
+  if(/microsoft|zira|mark|david/i.test(n)) p+=1;
+  // Penalidade pra vozes ruins (robóticas)
+  if(/compact|espeak/i.test(n)) p-=5;
+  return p;
 }
+function melhorVoz(){
+  const vs=vozesEN();
+  if(!vs.length) return null;
+  if(E.voz){
+    const m=vs.find(v=>v.voiceURI===E.voz);
+    if(m) return m;
+  }
+  return vs.slice().sort((a,b)=>notaVoz(b)-notaVoz(a))[0];
+}
+
+/* ============ VOZ DO DISPOSITIVO (100% grátis, sem API) ============ */
+let filaVoz=null;
 
 function falarWebSpeech(texto, taxa){
   if(!('speechSynthesis' in window)) return false;
   clearTimeout(filaVoz);
   speechSynthesis.cancel();
+
   const t = String(texto).replace(/\s+/g,' ').trim();
   if(!t) return false;
+
+  // Divide em pedaços curtos pra soar mais natural
   const chunks = t.split(/(?<=[.!?])\s+|(?<=[,;:])\s+/).filter(s=>s.trim().length>0);
   if(!chunks.length) return false;
+
   const voz = melhorVoz();
   let i = 0;
   function prox(){
     if(i >= chunks.length) return;
     const u = new SpeechSynthesisUtterance(chunks[i]);
-    if(voz){ u.voice = voz; u.lang = voz.lang; } else u.lang='en-US';
+    if(voz){ u.voice = voz; u.lang = voz.lang; }
+    else u.lang = 'en-US';
     u.rate = taxa || E.vel || 0.95;
-    u.pitch = 1.05;
+    u.pitch = 1.05;  // ligeiramente mais agudo = mais humano
     u.volume = 1.0;
     u.onend = ()=>{ i++; filaVoz=setTimeout(prox, 90); };
     u.onerror = ()=>{ i++; prox(); };
@@ -636,23 +634,10 @@ function falarWebSpeech(texto, taxa){
   return true;
 }
 
-async function falar(txt, taxa){
+function falar(txt, taxa){
   initAudio();
-  const texto = String(txt||'').replace(/\s+/g,' ').trim();
-  if(!texto) return;
-  if(_ttsAudio){ try{ _ttsAudio.pause(); _ttsAudio=null; }catch(e){} }
-  clearTimeout(filaVoz);
-  if('speechSynthesis' in window) speechSynthesis.cancel();
-
-  // Tenta Anthropic TTS (sempre falha por enquanto mas preparado pro futuro)
-  const ant = await falarAnthropic(texto);
-  if(ant.ok) return;
-
-  // Fallback garantido: Web Speech API (com chunking pra soar natural)
-  falarWebSpeech(texto, taxa);
+  falarWebSpeech(String(txt||'').replace(/\s+/g,' ').trim(), taxa);
 }
-
-if('speechSynthesis' in window){speechSynthesis.getVoices();setTimeout(()=>speechSynthesis.getVoices(),300);}
 
 function novoItem(){return {reps:0,lapsos:0,estabilidade:1,dificuldade:5,intervalo:1,due:Date.now()};}
 function agendar(it,acertou){it.reps++;if(!acertou){it.lapsos++;it.estabilidade=Math.max(.5,it.estabilidade*.5);it.intervalo=1;}else{it.dificuldade=Math.max(1,it.dificuldade-.1);it.estabilidade*=1+(10-it.dificuldade)/20;it.intervalo=Math.max(1,Math.round(it.estabilidade));}it.due=Date.now()+it.intervalo*864e5;return it;}
@@ -771,29 +756,46 @@ h+='<div class="carta"><div class="rotulo">Sons e vibracao</div><div style="marg
 const onde={claude:'Claude',navegador:'navegador'}[Guarda.onde]||'navegador';
 h+='<div class="carta"><div class="rotulo">Memoria</div><div style="margin-top:8px;font-size:14px">Salvando em <b>'+onde+'</b>.</div><div style="display:flex;gap:8px;margin-top:12px"><button class="btn secundario pequeno" onclick="exportar()">Backup</button><button class="btn secundario pequeno" onclick="document.getElementById(\'arqBackup\').click()">Restaurar</button></div><input type="file" id="arqBackup" accept="application/json" class="oculto" onchange="importar(event)"><div id="statusBackup"></div></div>';
 
-// ====== VOZ DO NAVEGADOR (única opção confiável) ======
-const vs=vozesEN().slice().sort((a,b)=>notaVoz(b)-notaVoz(a));const atual=melhorVoz();
+// ====== VOZ DO INGLES (100% do dispositivo) ======
+const vs=vozesEN().slice().sort((a,b)=>notaVoz(b)-notaVoz(a));
+const atual=melhorVoz();
 const isEdge=navigator.userAgent.includes('Edg');
 const isChrome=navigator.userAgent.includes('Chrome')&&!isEdge;
 const isSamsung=navigator.userAgent.includes('Samsung');
+const isApple=navigator.userAgent.includes('Mac')||navigator.userAgent.includes('iPhone')||navigator.userAgent.includes('iPad');
+
 h+='<div class="carta"><div class="rotulo">Voz do ingles</div>';
-h+='<div class="aviso" style="margin-top:10px;margin-bottom:12px"><b>Dica:</b> a qualidade da voz depende do navegador. <b>Microsoft Edge</b> tem as melhores vozes neurais gratuitas.</div>';
-h+='<div class="pt" style="margin-top:8px;font-size:13px">Plataforma atual: <b>'+(isEdge?'Edge (otimas vozes)':(isChrome?'Chrome':(isSamsung?'Samsung Internet':'Outro')))+'</b></div>';
-if(vs.length){
+
+if(vs.length===0){
+  h+='<div class="pt" style="margin-top:10px;font-size:13px">Nenhuma voz em ingles detectada.</div>';
+  h+='<div class="aviso" style="margin-top:12px"><b>Como conseguir vozes:</b><br>• <b>Android:</b> Configuracoes → Idiomas → adicionar Ingles<br>• <b>Windows:</b> Configuracoes → Hora e idioma → Idioma → adicionar Ingles<br>• <b>Mais facil:</b> abra o app no <b>Microsoft Edge</b> (tem vozes neurais de graca)</div>';
+} else {
+  h+='<div class="pt" style="margin-top:8px;font-size:13px">'+vs.length+' '+(vs.length===1?'voz disponivel':'vozes disponiveis')+' no seu dispositivo.</div>';
+  h+='<div class="pt" style="margin-top:4px;font-size:12px;color:var(--texto2)">Estrelas = qualidade. 5★ = voz neural natural.</div>';
+
   h+='<select class="campo" style="margin-top:12px" onchange="trocarVoz(this.value)">';
   vs.forEach(v=>{
     const n=notaVoz(v);
     const stars='★'.repeat(Math.min(5,Math.max(1,Math.ceil(n/2))))+'☆'.repeat(Math.max(0,5-Math.min(5,Math.max(1,Math.ceil(n/2)))));
-    const badge=n>=6?' [TOP]':(n>=3?' [boa]':(n>=0?' [ok]':' [ruim]'));
-    h+='<option value="'+esc(v.voiceURI)+'" '+(atual&&v.voiceURI===atual.voiceURI?'selected':'')+'>'+stars+' '+esc(v.name)+' - '+esc(v.lang)+badge+'</option>';
+    const badge=n>=10?' [TOP - NEURAL]':(n>=6?' [EXCELENTE]':(n>=3?' [boa]':(n>=0?' [ok]':' [ruim]')));
+    const tag=(isEdge&&n>=4)?' [MS]':(isApple&&/samantha|ava|nicky|allison|karen|moira|tessa|serena/i.test(v.name)?' [Apple]':((/google/i.test(v.name))?' [Google]':''));
+    h+='<option value="'+esc(v.voiceURI)+'" '+(atual&&v.voiceURI===atual.voiceURI?'selected':'')+'>'+stars+' '+esc(v.name)+' - '+esc(v.lang)+badge+tag+'</option>';
   });
   h+='</select>';
-  h+='<div style="display:flex;gap:6px;margin-top:10px"><button class="btn azul pequeno" style="flex:1" onclick="falar(\'Good morning. My name is Victor. Nice to meet you.\')">Testar</button><button class="btn secundario pequeno" style="flex:1" onclick="testarTodasVozes()">Todas</button></div>';
+
+  h+='<div style="display:flex;gap:6px;margin-top:10px">';
+  h+='<button class="btn azul pequeno" style="flex:1" onclick="falar(\'Good morning. My name is Victor. Nice to meet you. How are you today?\')">Testar</button>';
+  h+='<button class="btn secundario pequeno" style="flex:1" onclick="testarTodasVozes()">Todas ('+vs.length+')</button>';
+  h+='</div>';
+
   h+='<div class="rotulo" style="margin-top:14px">Velocidade: '+(E.vel||0.95).toFixed(2)+'x</div>';
   h+='<input type="range" min="0.6" max="1.15" step="0.05" value="'+(E.vel||0.95)+'" style="width:100%;margin-top:6px" oninput="trocarVel(this.value)">';
-}else{
-  h+='<div class="pt" style="margin-top:8px">Nenhuma voz em ingles encontrada.</div>';
-  h+='<div class="aviso" style="margin-top:12px">Abra no <b>Microsoft Edge</b> ou instale vozes de ingles no seu sistema operacional.</div>';
+
+  // Dica pra Edge se não tiver vozes neurais
+  const temVozNeural = vs.some(v=>notaVoz(v)>=10);
+  if(!temVozNeural && !isEdge){
+    h+='<div class="aviso" style="margin-top:14px"><b>Dica:</b> pra voz mais natural, abra esse site no <b>Microsoft Edge</b> (mesmo link, outro navegador). Tem vozes neurais gratuitas.</div>';
+  }
 }
 h+='</div>';
 
@@ -806,26 +808,28 @@ function toggleVibrar(){configSom.vibrar=!configSom.vibrar;salvarSom();render();
 function toggleToque(){configSom.toque=!configSom.toque;salvarSom();render();if(configSom.toque)tocarToque();}
 let testVozIdx=0;
 async function testarTodasVozes(){
-  const vs=vozesEN();
+  const vs=vozesEN().slice().sort((a,b)=>notaVoz(b)-notaVoz(a));
   if(!vs.length)return;
   testVozIdx=0;
-  toast('Testando '+vs.length+' vozes em sequencia...',2000);
+  toast('Testando '+vs.length+' vozes...',2000);
   function prox(){
     if(testVozIdx>=vs.length){toast('Fim! Veja qual gostou mais.',2500);return;}
     const v=vs[testVozIdx];
-    const u=new SpeechSynthesisUtterance('The quick brown fox jumps over the lazy dog. My name is Victor and I work with glass.');
-    u.voice=v;u.lang=v.lang;u.rate=0.9;
-    u.onend=()=>{testVozIdx++;setTimeout(prox,400);};
+    const u=new SpeechSynthesisUtterance('The quick brown fox jumps over the lazy dog. My name is Victor and I work with glass. Nice to meet you.');
+    u.voice=v;u.lang=v.lang;u.rate=0.85;
+    u.onend=()=>{testVozIdx++;setTimeout(prox,500);};
+    u.onerror=()=>{testVozIdx++;prox();};
     speechSynthesis.cancel();
     speechSynthesis.speak(u);
-    toast('Voz '+(testVozIdx+1)+'/'+vs.length+': '+(v.name||'?').slice(0,30),1200);
+    const n=notaVoz(v);
+    toast('Voz '+(testVozIdx+1)+'/'+vs.length+' ('+(n>=10?'NEURAL':(n>=6?'boa':(n>=3?'ok':'ruim')))+'): '+(v.name||'?').slice(0,25),1400);
   }
   prox();
 }
 
 function testarSons(){initAudio();toast('Tocando sons...',1500);setTimeout(()=>somAcerto(true),300);setTimeout(()=>somErro(),900);setTimeout(()=>somNivel(),1500);setTimeout(()=>soltarConfete(),2200);}
 function ganharFreeze(){initAudio();if(E.xp<100){toast('Precisa 100 XP. Tem '+E.xp+'.');return;}if(!window.confirm('Trocar 100 XP por 1 freeze?'))return;E.xp-=100;E.streakFreeze++;salvar();render();tocarToque();toast('+1 freeze!');}
-function trocarVoz(uri){E.voz=uri;salvar();falar('New voice.');render();}
+function trocarVoz(uri){E.voz=uri;salvar();falar('New voice selected.');render();}
 function trocarVel(v){E.vel=parseFloat(v);salvar();clearTimeout(window.tv);window.tv=setTimeout(()=>{falar('Nice to meet you.');render();},500);}
 function exportar(){const b=new Blob([JSON.stringify({app:'ingles30',data:hoje(),progresso:E},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='ingles30-'+hoje()+'.json';document.body.appendChild(a);a.click();document.body.removeChild(a);const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno ok">Backup baixado!</div>';}
 function importar(ev){const f=ev.target.files[0];if(!f)return;const l=new FileReader();l.onload=()=>{try{const p=JSON.parse(l.result);const dados=p.progresso||p;if(!dados||typeof dados.nivel!=='number')throw new Error();E=Object.assign(JSON.parse(JSON.stringify(PADRAO)),migrar(dados));salvar();render();const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno ok">Restaurado!</div>';}catch(e){const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno nao">Arquivo invalido.</div>';}};l.readAsText(f);}
