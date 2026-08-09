@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Aprenda inglês em 30 minutos por dia. 9 níveis, do zero ao trabalho.">
-<title>Inglês em 30 minutos</title>
+<meta name="description" content="Aprenda ingles em 30 minutos por dia. 9 niveis, do zero ao trabalho.">
+<title>Ingles em 30 minutos</title>
 
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#7C3AED">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Inglês 30">
+<meta name="apple-mobile-web-app-title" content="Ingles 30">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" href="icon-192.png">
 
@@ -21,7 +21,6 @@
 
 <style>
 :root{
-  /* Paleta B — Arco-íris suave estilo Spotify */
   --roxo:#7C3AED;
   --roxo2:#A78BFA;
   --rosa:#EC4899;
@@ -70,7 +69,6 @@ input,textarea{font-family:inherit;font-size:16px}
 .app{max-width:560px;margin:0 auto;padding:18px 16px 24px}
 .oculto{display:none !important}
 
-/* Tipografia */
 h1{font-size:28px;font-weight:800;letter-spacing:-.03em;margin:0 0 14px;line-height:1.1;color:var(--branco)}
 h2{font-size:19px;font-weight:700;letter-spacing:-.02em;margin:0;line-height:1.2;color:var(--branco)}
 h3{font-size:16px;font-weight:700;letter-spacing:-.01em;margin:0;color:var(--branco)}
@@ -78,7 +76,6 @@ h3{font-size:16px;font-weight:700;letter-spacing:-.01em;margin:0;color:var(--bra
 .dado{font-family:var(--mono);font-weight:700;font-variant-numeric:tabular-nums;color:var(--branco)}
 .pt{color:var(--texto2);font-size:13.5px;line-height:1.45}
 
-/* Topo */
 .topo{display:flex;align-items:center;gap:11px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.06)}
 .selo-nivel{background:var(--grad-principal);color:var(--branco);border-radius:10px;padding:7px 10px;display:flex;flex-direction:column;line-height:1.1;min-width:46px;box-shadow:0 4px 14px rgba(124,58,237,.4)}
 .selo-nivel .n{font-family:var(--mono);font-size:16px;font-weight:700}
@@ -89,12 +86,10 @@ h3{font-size:16px;font-weight:700;letter-spacing:-.01em;margin:0;color:var(--bra
 .metricas span{font-family:var(--mono);font-size:10.5px;color:var(--texto2)}
 .metricas b{color:var(--branco);font-weight:700}
 
-/* Cartões */
 .carta{background:rgba(26,26,46,.6);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px;margin-bottom:11px;backdrop-filter:blur(10px);position:relative;overflow:hidden}
 .carta.destaque{background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(236,72,153,.15));border-color:rgba(124,58,237,.4);box-shadow:0 8px 24px rgba(124,58,237,.2)}
 .carta-topo{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}
 
-/* Botões */
 .btn{display:block;width:100%;text-align:center;background:var(--grad-principal);color:var(--branco);border-radius:12px;padding:14px;font-weight:700;font-size:15px;box-shadow:0 6px 18px rgba(124,58,237,.35);transition:transform .15s ease,box-shadow .15s ease;letter-spacing:-.01em}
 .btn:active{transform:scale(.97);box-shadow:0 3px 10px rgba(124,58,237,.25)}
 .btn:disabled{opacity:.4;cursor:default}
@@ -107,17 +102,14 @@ h3{font-size:16px;font-weight:700;letter-spacing:-.01em;margin:0;color:var(--bra
 .btn.pequeno{padding:9px 14px;font-size:13px;width:auto;display:inline-block}
 button:focus-visible{outline:2.5px solid var(--roxo2);outline-offset:2px}
 
-/* Barras */
 .barra{height:6px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden}
 .barra i{display:block;height:100%;background:var(--grad-principal);border-radius:99px;transition:width .4s ease}
 
-/* Semana */
 .semana{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:12px}
 .dia{aspect-ratio:1;border-radius:8px;border:1.5px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:10.5px;color:var(--texto2);background:rgba(255,255,255,.02)}
 .dia.feito{background:var(--grad-verde);border-color:transparent;color:var(--branco);font-weight:700;box-shadow:0 3px 10px rgba(16,185,129,.3)}
 .dia.hoje{border-color:var(--laranja);border-width:2px;color:var(--branco)}
 
-/* Sessão */
 .sessao-topo{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
 .blocos{display:flex;gap:4px;margin-bottom:16px}
 .blocos i{flex:1;height:4px;border-radius:99px;background:rgba(255,255,255,.08)}
@@ -136,15 +128,8 @@ button:focus-visible{outline:2.5px solid var(--roxo2);outline-offset:2px}
 .opc.revelada{background:rgba(16,185,129,.1);border-color:var(--verde);border-style:dashed}
 .opc:disabled{cursor:default;opacity:1}
 
-@keyframes pulseOk{
-  0%,100%{transform:scale(1)}
-  50%{transform:scale(1.02)}
-}
-@keyframes shakeErr{
-  0%,100%{transform:translateX(0)}
-  25%{transform:translateX(-6px)}
-  75%{transform:translateX(6px)}
-}
+@keyframes pulseOk{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+@keyframes shakeErr{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 
 .campo{width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.12);border-radius:10px;padding:13px;font-size:15px;color:var(--branco);outline:none;transition:border-color .15s}
 .campo:focus{border-color:var(--roxo2);background:rgba(255,255,255,.06)}
@@ -164,7 +149,6 @@ textarea.campo{min-height:90px;resize:vertical;line-height:1.45}
 .som{width:104px;height:104px;border-radius:50%;background:var(--grad-azul);color:var(--branco);display:flex;align-items:center;justify-content:center;margin:16px auto;font-size:36px;box-shadow:0 8px 24px rgba(59,130,246,.4);transition:transform .15s}
 .som:active{transform:scale(.92)}
 
-/* Passaporte */
 .estampas{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
 .estampa{position:relative;border:1.5px solid rgba(255,255,255,.1);border-radius:12px;padding:13px 12px;background:rgba(255,255,255,.03);min-height:110px;display:flex;flex-direction:column;justify-content:space-between;transition:all .2s}
 .estampa .num{font-family:var(--mono);font-size:9px;letter-spacing:.14em;color:var(--texto2);font-weight:500}
@@ -174,13 +158,8 @@ textarea.campo{min-height:90px;resize:vertical;line-height:1.45}
 .estampa.atual{border-color:var(--roxo2);border-width:2px;background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(236,72,153,.1))}
 .estampa.travada{opacity:.4}
 
-@keyframes carimboPop{
-  0%{transform:scale(.85) rotate(-3deg);opacity:.5}
-  60%{transform:scale(1.05) rotate(1deg)}
-  100%{transform:scale(1) rotate(0);opacity:1}
-}
+@keyframes carimboPop{0%{transform:scale(.85) rotate(-3deg);opacity:.5}60%{transform:scale(1.05) rotate(1deg)}100%{transform:scale(1) rotate(0);opacity:1}}
 
-/* Tutor */
 .conversa{display:flex;flex-direction:column;gap:9px;margin-bottom:13px}
 .bolha{max-width:88%;padding:11px 14px;border-radius:14px;font-size:14.5px;line-height:1.45}
 .bolha.eu{align-self:flex-end;background:var(--grad-principal);color:var(--branco);border-bottom-right-radius:5px;box-shadow:0 4px 12px rgba(124,58,237,.3)}
@@ -192,7 +171,6 @@ textarea.campo{min-height:90px;resize:vertical;line-height:1.45}
 .envio .campo{flex:1}
 .envio .btn{width:auto;padding:13px 18px}
 
-/* Navegação */
 .nav{position:fixed;left:0;right:0;bottom:0;background:rgba(15,15,26,.85);border-top:1px solid rgba(255,255,255,.08);display:flex;padding:7px 4px calc(7px + env(safe-area-inset-bottom));z-index:20;backdrop-filter:blur(20px)}
 .nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 0;color:var(--texto2);min-height:48px;transition:color .15s}
 .nav button .ic{font-size:18px;line-height:1;transition:transform .2s}
@@ -205,20 +183,14 @@ textarea.campo{min-height:90px;resize:vertical;line-height:1.45}
 .nav button.ativo.tutor{color:var(--laranja2)}
 .nav button:focus-visible{outline:2px solid var(--roxo2);outline-offset:-2px}
 
-/* Conquistas */
 .grid-conquistas{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:9px;margin-top:11px}
 .conquista{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:11px;padding:11px 6px;text-align:center;transition:all .2s}
 .conquista.bloq{opacity:.35}
 .conquista.desb{border-color:var(--amarelo);background:linear-gradient(135deg,rgba(250,204,21,.15),rgba(249,115,22,.1));box-shadow:0 4px 14px rgba(250,204,21,.2);animation:desbloqueia .7s}
 .conquista .ico{font-size:24px;line-height:1;margin-bottom:6px}
 .conquista .nm{font-weight:700;font-size:11px;letter-spacing:-.01em;color:var(--branco)}
-@keyframes desbloqueia{
-  0%{transform:scale(.7) rotate(-10deg);opacity:0}
-  60%{transform:scale(1.15) rotate(5deg)}
-  100%{transform:scale(1) rotate(0);opacity:1}
-}
+@keyframes desbloqueia{0%{transform:scale(.7) rotate(-10deg);opacity:0}60%{transform:scale(1.15) rotate(5deg)}100%{transform:scale(1) rotate(0);opacity:1}}
 
-/* Dashboard */
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:11px}
 .stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:11px;padding:12px;position:relative;overflow:hidden}
 .stat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-principal)}
@@ -228,23 +200,18 @@ textarea.campo{min-height:90px;resize:vertical;line-height:1.45}
 .stat .v{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--branco)}
 .stat .l{font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;color:var(--texto2);margin-top:3px;text-transform:uppercase;font-weight:500}
 
-/* Toast */
 .toast{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:var(--grad-principal);color:var(--branco);padding:11px 18px;border-radius:12px;font-size:14px;z-index:100;max-width:90%;text-align:center;font-weight:700;box-shadow:0 10px 30px rgba(124,58,237,.4);animation:toastIn .35s cubic-bezier(.34,1.56,.64,1)}
 @keyframes toastIn{from{opacity:0;transform:translate(-50%,-15px) scale(.9)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
 
-/* Confete */
 .confetti{position:fixed;top:-10px;width:10px;height:14px;pointer-events:none;z-index:99;animation:fallConf 2.5s linear forwards}
-@keyframes fallConf{
-  0%{transform:translateY(0) rotate(0);opacity:1}
-  100%{transform:translateY(100vh) rotate(720deg);opacity:0}
-}
+@keyframes fallConf{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
 
 .rodape{text-align:center;margin-top:22px;color:var(--texto2);font-size:11.5px;font-family:var(--mono)}
 .aviso{background:linear-gradient(135deg,rgba(250,204,21,.15),rgba(249,115,22,.1));border:1px solid rgba(250,204,21,.3);border-radius:10px;padding:11px 13px;font-size:13px;line-height:1.4;color:var(--texto)}
 
 .install-banner{position:fixed;bottom:72px;left:10px;right:10px;max-width:540px;margin:0 auto;background:var(--grad-principal);color:var(--branco);border-radius:14px;padding:11px 14px;display:flex;align-items:center;gap:10px;z-index:15;box-shadow:0 8px 24px rgba(124,58,237,.4)}
 .install-banner button{background:var(--branco);color:var(--roxo);border-radius:8px;padding:7px 12px;font-weight:700;font-size:12px}
-.install-banner .x{padding:4px 8px;background:transparent;color:var(--branco)}
+.install-banner .x{padding:4px 8px;background:transparent;color:var(--branco);font-size:16px}
 
 @media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
@@ -258,24 +225,20 @@ textarea.campo{min-height:90px;resize:vertical;line-height:1.45}
 </div>
 
 <div id="installBanner" class="install-banner oculto">
-  <div style="flex:1;font-size:13px;line-height:1.3;font-weight:600">📱 Instale pra estudar offline!</div>
+  <div style="flex:1;font-size:13px;line-height:1.3;font-weight:600">Instale para estudar offline</div>
   <button onclick="instalarPWA()">Instalar</button>
-  <button class="x" onclick="fecharInstall()">✕</button>
+  <button class="x" onclick="fecharInstall()">X</button>
 </div>
 
 <nav class="nav" id="nav"></nav>
 
 <script>
-/* ============================================================
-   🔊 SISTEMA DE SONS (Web Audio API — sintetizado, sem downloads)
-   ============================================================ */
+/* SISTEMA DE SONS */
 let audioCtx=null;
 let configSom={ligado:true,vibrar:true,toque:true};
 
 function initAudio(){
-  if(!audioCtx){
-    try{audioCtx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}
-  }
+  if(!audioCtx){try{audioCtx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}}
   if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();
 }
 function beep(freq,dur,tipo,vol){
@@ -288,51 +251,35 @@ function beep(freq,dur,tipo,vol){
     gain.gain.setValueAtTime(vol||.15,audioCtx.currentTime);
     gain.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+dur);
     osc.connect(gain);gain.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime+dur);
+    osc.start();osc.stop(audioCtx.currentTime+dur);
   }catch(e){}
 }
-function tocarToque(){
-  if(configSom.toque)beep(800,.04,'square',.04);
-}
+function tocarToque(){if(configSom.toque)beep(800,.04,'square',.04);}
 function somAcerto(perfeito){
   if(!configSom.ligado||!audioCtx)return;
   if(configSom.vibrar&&navigator.vibrate)navigator.vibrate(15);
-  if(perfeito){
-    // Acorde maior ascendente — satisfatório
-    beep(523,.1,'sine',.18); // C5
-    setTimeout(()=>beep(659,.1,'sine',.18),80); // E5
-    setTimeout(()=>beep(784,.15,'sine',.18),160); // G5
-  } else {
-    beep(523,.12,'sine',.15);
-    setTimeout(()=>beep(659,.15,'sine',.15),100);
-  }
+  if(perfeito){beep(523,.1,'sine',.18);setTimeout(()=>beep(659,.1,'sine',.18),80);setTimeout(()=>beep(784,.15,'sine',.18),160);}
+  else{beep(523,.12,'sine',.15);setTimeout(()=>beep(659,.15,'sine',.15),100);}
 }
 function somErro(){
   if(!configSom.ligado||!audioCtx)return;
   if(configSom.vibrar&&navigator.vibrate)navigator.vibrate([0,30,30,30]);
-  beep(220,.1,'sawtooth',.1);
-  setTimeout(()=>beep(180,.15,'sawtooth',.1),100);
+  beep(220,.1,'sawtooth',.1);setTimeout(()=>beep(180,.15,'sawtooth',.1),100);
 }
 function somConquista(){
   if(!configSom.ligado||!audioCtx)return;
   if(configSom.vibrar&&navigator.vibrate)navigator.vibrate([0,50,50,50,50,100]);
-  beep(523,.1,'sine',.2);
-  setTimeout(()=>beep(659,.1,'sine',.2),100);
-  setTimeout(()=>beep(784,.1,'sine',.2),200);
-  setTimeout(()=>beep(1047,.25,'sine',.2),300);
+  beep(523,.1,'sine',.2);setTimeout(()=>beep(659,.1,'sine',.2),100);
+  setTimeout(()=>beep(784,.1,'sine',.2),200);setTimeout(()=>beep(1047,.25,'sine',.2),300);
 }
 function somNivel(){
   if(!configSom.ligado||!audioCtx)return;
   if(configSom.vibrar&&navigator.vibrate)navigator.vibrate([0,80,40,80]);
-  beep(392,.1,'sine',.18); // G4
-  setTimeout(()=>beep(523,.1,'sine',.18),120); // C5
-  setTimeout(()=>beep(659,.1,'sine',.18),240); // E5
-  setTimeout(()=>beep(784,.1,'sine',.18),360); // G5
-  setTimeout(()=>beep(1047,.4,'sine',.2),480); // C6
+  beep(392,.1,'sine',.18);setTimeout(()=>beep(523,.1,'sine',.18),120);
+  setTimeout(()=>beep(659,.1,'sine',.18),240);setTimeout(()=>beep(784,.1,'sine',.18),360);
+  setTimeout(()=>beep(1047,.4,'sine',.2),480);
 }
 
-/* 🎊 Confete */
 function soltarConfete(){
   const cores=['#7C3AED','#EC4899','#F97316','#FACC15','#10B981','#3B82F6','#06B6D4'];
   for(let i=0;i<60;i++){
@@ -342,207 +289,202 @@ function soltarConfete(){
     c.style.background=cores[Math.floor(Math.random()*cores.length)];
     c.style.animationDelay=Math.random()*.5+'s';
     c.style.animationDuration=(1.8+Math.random()*1.5)+'s';
-    c.style.transform=`rotate(${Math.random()*360}deg)`;
+    c.style.transform='rotate('+(Math.random()*360)+'deg)';
     if(Math.random()>.5)c.style.borderRadius='50%';
     document.body.appendChild(c);
     setTimeout(()=>c.remove(),3500);
   }
 }
 
-/* ============================================================
-   CURRÍCULO — mantido idêntico (recortado pra brevidade)
-   COLE AQUI O ARRAY CURSO INTEIRO DA v3, sem mudanças.
-   ============================================================ */
+/* CURRICULO - mantido identico */
 const CURSO = [
-/* ⚠️ IMPORTANTE: copie o array CURSO inteiro da v3 aqui.
-   Ele vai de {n:1,nome:"Primeiras palavras",desc:"..."} até o nível 9.
-   Não mude nada, só cole igual. */
-{n:1,nome:"Primeiras palavras",desc:"Cumprimentar, se apresentar, falar de pessoas e números.",u:[
+{n:1,nome:"Primeiras palavras",desc:"Cumprimentar, se apresentar, falar de pessoas e numeros.",u:[
  {t:"Cumprimentos",
-  v:[["hello","olá","Hello! How are you?","Olá! Como você está?"],["good morning","bom dia","Good morning, everyone.","Bom dia, pessoal."],["my name is","meu nome é","My name is Victor.","Meu nome é Victor."],["nice to meet you","prazer em conhecer você","Nice to meet you, Ana.","Prazer em conhecer você, Ana."],["thank you","obrigado","Thank you very much.","Muito obrigado."],["goodbye","tchau / adeus","Goodbye, see you tomorrow.","Tchau, até amanhã."]],
-  g:{t:"Verbo TO BE (ser/estar)",e:"Em inglês todo mundo precisa do verbo TO BE. São três formas no presente: I am (eu sou/estou), you are (você é/está), he/she/it is (ele/ela é/está). É como o cinto de segurança do carro: quase nenhuma frase sai sem ele.",
-     ex:[["I am Victor.","Eu sou o Victor."],["You are my friend.","Você é meu amigo."],["She is tired.","Ela está cansada."]]},
-  d:[["I ___ from Brazil.",["am","is","are"],0,"Eu sou do Brasil."],["She ___ my sister.",["am","is","are"],1,"Ela é minha irmã."],["You ___ very kind.",["am","is","are"],2,"Você é muito gentil."],["It ___ a good day.",["am","is","are"],1,"É um bom dia."]],
-  p:{pt:"Escreva em inglês: Olá, meu nome é Victor. Prazer em conhecer você.",en:"Hello, my name is Victor. Nice to meet you."}},
- {t:"Pessoas e família",
-  v:[["mother","mãe","My mother works here.","Minha mãe trabalha aqui."],["father","pai","His father is a driver.","O pai dele é motorista."],["brother","irmão","I have one brother.","Eu tenho um irmão."],["sister","irmã","My sister is a student.","Minha irmã é estudante."],["friend","amigo","She is my best friend.","Ela é minha melhor amiga."],["family","família","My family is big.","Minha família é grande."]],
-  g:{t:"Artigos A / AN",e:"A e AN significam 'um/uma'. Use AN antes de som de vogal (a, e, i, o, u): an apple. Use A antes de consoante: a car. É só uma questão de a boca não tropeçar.",
-     ex:[["a car","um carro"],["an apple","uma maçã"],["an hour","uma hora (o H é mudo)"]]},
-  d:[["I have ___ brother.",["a","an"],0,"Eu tenho um irmão."],["She is ___ engineer.",["a","an"],1,"Ela é engenheira."],["This is ___ house.",["a","an"],0,"Esta é uma casa."],["He wants ___ orange.",["a","an"],1,"Ele quer uma laranja."]],
-  p:{pt:"Escreva em inglês: Minha família é grande. Eu tenho um irmão e uma irmã.",en:"My family is big. I have one brother and one sister."}},
- {t:"Números e cores",
-  v:[["one","um","I need one ticket.","Eu preciso de um bilhete."],["two","dois","Two coffees, please.","Dois cafés, por favor."],["three","três","Three days a week.","Três dias por semana."],["red","vermelho","The red car is mine.","O carro vermelho é meu."],["blue","azul","I like the blue one.","Eu gosto do azul."],["black","preto","A black phone.","Um telefone preto."]],
-  g:{t:"Plural com -S",e:"Para falar de mais de um, coloca -s no fim: car → cars. Palavras terminadas em s, x, ch, sh ganham -es: box → boxes. Diferente do português, o adjetivo NÃO muda: two red cars (não 'two reds cars').",
-     ex:[["one car / two cars","um carro / dois carros"],["one box / three boxes","uma caixa / três caixas"],["two blue doors","duas portas azuis"]]},
-  d:[["I have two ___.",["car","cars"],1,"Eu tenho dois carros."],["Three ___ are here.",["boxes","boxs"],0,"Três caixas estão aqui."],["She has one ___.",["sister","sisters"],0,"Ela tem uma irmã."],["Two ___ phones.",["black","blacks"],0,"Dois telefones pretos."]],
-  p:{pt:"Escreva em inglês: Eu tenho dois carros. Um é vermelho e um é azul.",en:"I have two cars. One is red and one is blue."}}
+  v:[["hello","ola","Hello! How are you?","Ola! Como voce esta?"],["good morning","bom dia","Good morning, everyone.","Bom dia, pessoal."],["my name is","meu nome e","My name is Victor.","Meu nome e Victor."],["nice to meet you","prazer em conhecer voce","Nice to meet you, Ana.","Prazer em conhecer voce, Ana."],["thank you","obrigado","Thank you very much.","Muito obrigado."],["goodbye","tchau / adeus","Goodbye, see you tomorrow.","Tchau, ate amanha."]],
+  g:{t:"Verbo TO BE (ser/estar)",e:"Em ingles todo mundo precisa do verbo TO BE. Sao tres formas no presente: I am (eu sou/estou), you are (voce e/esta), he/she/it is (ele/ela e/esta). E como o cinto de seguranca do carro: quase nenhuma frase sai sem ele.",
+     ex:[["I am Victor.","Eu sou o Victor."],["You are my friend.","Voce e meu amigo."],["She is tired.","Ela esta cansada."]]},
+  d:[["I ___ from Brazil.",["am","is","are"],0,"Eu sou do Brasil."],["She ___ my sister.",["am","is","are"],1,"Ela e minha irma."],["You ___ very kind.",["am","is","are"],2,"Voce e muito gentil."],["It ___ a good day.",["am","is","are"],1,"E um bom dia."]],
+  p:{pt:"Escreva em ingles: Ola, meu nome e Victor. Prazer em conhecer voce.",en:"Hello, my name is Victor. Nice to meet you."}},
+ {t:"Pessoas e familia",
+  v:[["mother","mae","My mother works here.","Minha mae trabalha aqui."],["father","pai","His father is a driver.","O pai dele e motorista."],["brother","irmao","I have one brother.","Eu tenho um irmao."],["sister","irma","My sister is a student.","Minha irma e estudante."],["friend","amigo","She is my best friend.","Ela e minha melhor amiga."],["family","familia","My family is big.","Minha familia e grande."]],
+  g:{t:"Artigos A / AN",e:"A e AN significam 'um/uma'. Use AN antes de som de vogal (a, e, i, o, u): an apple. Use A antes de consoante: a car. E so uma questao de a boca nao tropecar.",
+     ex:[["a car","um carro"],["an apple","uma maca"],["an hour","uma hora (o H e mudo)"]]},
+  d:[["I have ___ brother.",["a","an"],0,"Eu tenho um irmao."],["She is ___ engineer.",["a","an"],1,"Ela e engenheira."],["This is ___ house.",["a","an"],0,"Esta e uma casa."],["He wants ___ orange.",["a","an"],1,"Ele quer uma laranja."]],
+  p:{pt:"Escreva em ingles: Minha familia e grande. Eu tenho um irmao e uma irma.",en:"My family is big. I have one brother and one sister."}},
+ {t:"Numeros e cores",
+  v:[["one","um","I need one ticket.","Eu preciso de um bilhete."],["two","dois","Two coffees, please.","Dois cafes, por favor."],["three","tres","Three days a week.","Tres dias por semana."],["red","vermelho","The red car is mine.","O carro vermelho e meu."],["blue","azul","I like the blue one.","Eu gosto do azul."],["black","preto","A black phone.","Um telefone preto."]],
+  g:{t:"Plural com -S",e:"Para falar de mais de um, coloca -s no fim: car > cars. Palavras terminadas em s, x, ch, sh ganham -es: box > boxes. Diferente do portugues, o adjetivo NAO muda: two red cars (nao 'two reds cars').",
+     ex:[["one car / two cars","um carro / dois carros"],["one box / three boxes","uma caixa / tres caixas"],["two blue doors","duas portas azuis"]]},
+  d:[["I have two ___.",["car","cars"],1,"Eu tenho dois carros."],["Three ___ are here.",["boxes","boxs"],0,"Tres caixas estao aqui."],["She has one ___.",["sister","sisters"],0,"Ela tem uma irma."],["Two ___ phones.",["black","blacks"],0,"Dois telefones pretos."]],
+  p:{pt:"Escreva em ingles: Eu tenho dois carros. Um e vermelho e um e azul.",en:"I have two cars. One is red and one is blue."}}
 ]},
-{n:2,nome:"O dia a dia",desc:"Objetos, verbos básicos, rotina e perguntas simples.",u:[
+{n:2,nome:"O dia a dia",desc:"Objetos, verbos basicos, rotina e perguntas simples.",u:[
  {t:"Objetos do dia a dia",
-  v:[["phone","telefone","My phone is on the table.","Meu telefone está na mesa."],["car","carro","The car is new.","O carro é novo."],["house","casa","Their house is near.","A casa deles é perto."],["key","chave","I lost my key.","Eu perdi minha chave."],["water","água","I want water, please.","Eu quero água, por favor."],["money","dinheiro","I need more money.","Eu preciso de mais dinheiro."]],
-  g:{t:"THIS / THAT / THESE / THOSE",e:"THIS = este (perto, um). THAT = aquele (longe, um). THESE = estes (perto, vários). THOSE = aqueles (longe, vários). Pense em braço: o que você alcança é this/these; o que precisa apontar é that/those.",
-     ex:[["This phone is mine.","Este telefone é meu."],["That car is fast.","Aquele carro é rápido."],["These keys are old.","Estas chaves são velhas."]]},
-  d:[["___ phone here is mine.",["This","That"],0,"Este telefone aqui é meu."],["___ cars over there are new.",["These","Those"],1,"Aqueles carros ali são novos."],["___ keys in my hand.",["These","Those"],0,"Estas chaves na minha mão."],["___ house is far.",["That","These"],0,"Aquela casa é longe."]],
-  p:{pt:"Escreva em inglês: Este é meu telefone. Aquele carro é novo.",en:"This is my phone. That car is new."}},
- {t:"Verbos básicos",
-  v:[["to eat","comer","I eat at noon.","Eu como ao meio-dia."],["to drink","beber","She drinks coffee.","Ela bebe café."],["to work","trabalhar","I work with glass.","Eu trabalho com vidro."],["to live","morar","They live in Rio.","Eles moram no Rio."],["to want","querer","I want a break.","Eu quero uma pausa."],["to have","ter","We have two cars.","Nós temos dois carros."]],
-  g:{t:"Presente simples e o -S do he/she/it",e:"O verbo só muda numa pessoa: he, she, it ganham -S. I work, you work, WE work, mas HE workS. Chame de 'imposto do he/she/it': só eles pagam a letra extra.",
+  v:[["phone","telefone","My phone is on the table.","Meu telefone esta na mesa."],["car","carro","The car is new.","O carro e novo."],["house","casa","Their house is near.","A casa deles e perto."],["key","chave","I lost my key.","Eu perdi minha chave."],["water","agua","I want water, please.","Eu quero agua, por favor."],["money","dinheiro","I need more money.","Eu preciso de mais dinheiro."]],
+  g:{t:"THIS / THAT / THESE / THOSE",e:"THIS = este (perto, um). THAT = aquele (longe, um). THESE = estes (perto, varios). THOSE = aqueles (longe, varios). Pense em braco: o que voce alcanca e this/these; o que precisa apontar e that/those.",
+     ex:[["This phone is mine.","Este telefone e meu."],["That car is fast.","Aquele carro e rapido."],["These keys are old.","Estas chaves sao velhas."]]},
+  d:[["___ phone here is mine.",["This","That"],0,"Este telefone aqui e meu."],["___ cars over there are new.",["These","Those"],1,"Aqueles carros ali sao novos."],["___ keys in my hand.",["These","Those"],0,"Estas chaves na minha mao."],["___ house is far.",["That","These"],0,"Aquela casa e longe."]],
+  p:{pt:"Escreva em ingles: Este e meu telefone. Aquele carro e novo.",en:"This is my phone. That car is new."}},
+ {t:"Verbos basicos",
+  v:[["to eat","comer","I eat at noon.","Eu como ao meio-dia."],["to drink","beber","She drinks coffee.","Ela bebe cafe."],["to work","trabalhar","I work with glass.","Eu trabalho com vidro."],["to live","morar","They live in Rio.","Eles moram no Rio."],["to want","querer","I want a break.","Eu quero uma pausa."],["to have","ter","We have two cars.","Nos temos dois carros."]],
+  g:{t:"Presente simples e o -S do he/she/it",e:"O verbo so muda numa pessoa: he, she, it ganham -S. I work, you work, WE work, mas HE workS. Chame de 'imposto do he/she/it': so eles pagam a letra extra.",
      ex:[["I work every day.","Eu trabalho todo dia."],["He works every day.","Ele trabalha todo dia."],["She has a car.","Ela tem um carro."]]},
-  d:[["He ___ coffee every morning.",["drink","drinks"],1,"Ele bebe café toda manhã."],["I ___ in São Paulo.",["live","lives"],0,"Eu moro em São Paulo."],["She ___ two brothers.",["have","has"],1,"Ela tem dois irmãos."],["We ___ at 8 o'clock.",["start","starts"],0,"Nós começamos às 8 horas."]],
-  p:{pt:"Escreva em inglês: Eu trabalho todo dia e minha irmã trabalha no sábado.",en:"I work every day and my sister works on Saturday."}},
+  d:[["He ___ coffee every morning.",["drink","drinks"],1,"Ele bebe cafe toda manha."],["I ___ in Sao Paulo.",["live","lives"],0,"Eu moro em Sao Paulo."],["She ___ two brothers.",["have","has"],1,"Ela tem dois irmaos."],["We ___ at 8 o'clock.",["start","starts"],0,"Nos comecamos as 8 horas."]],
+  p:{pt:"Escreva em ingles: Eu trabalho todo dia e minha irma trabalha no sabado.",en:"I work every day and my sister works on Saturday."}},
  {t:"Tempo e rotina",
-  v:[["morning","manhã","I run in the morning.","Eu corro de manhã."],["night","noite","I study at night.","Eu estudo à noite."],["today","hoje","Today is Monday.","Hoje é segunda-feira."],["tomorrow","amanhã","See you tomorrow.","Até amanhã."],["always","sempre","I always drink coffee.","Eu sempre bebo café."],["never","nunca","He never arrives late.","Ele nunca chega atrasado."]],
-  g:{t:"Perguntas com DO / DOES",e:"Para perguntar no presente, o inglês precisa de um ajudante na frente: DO (I/you/we/they) ou DOES (he/she/it). E atenção: quando DOES entra, o verbo perde o -S. O ajudante carrega o peso: Does he work? (não 'Does he works').",
-     ex:[["Do you work here?","Você trabalha aqui?"],["Does she like coffee?","Ela gosta de café?"],["I don't understand.","Eu não entendo."]]},
-  d:[["___ you live in Brazil?",["Do","Does"],0,"Você mora no Brasil?"],["___ he work on Sunday?",["Do","Does"],1,"Ele trabalha no domingo?"],["Does she ___ coffee?",["drink","drinks"],0,"Ela bebe café?"],["I ___ have time today.",["don't","doesn't"],0,"Eu não tenho tempo hoje."]],
-  p:{pt:"Escreva em inglês: Você trabalha de manhã? Eu sempre trabalho à noite.",en:"Do you work in the morning? I always work at night."}}
+  v:[["morning","manha","I run in the morning.","Eu corro de manha."],["night","noite","I study at night.","Eu estudo a noite."],["today","hoje","Today is Monday.","Hoje e segunda-feira."],["tomorrow","amanha","See you tomorrow.","Ate amanha."],["always","sempre","I always drink coffee.","Eu sempre bebo cafe."],["never","nunca","He never arrives late.","Ele nunca chega atrasado."]],
+  g:{t:"Perguntas com DO / DOES",e:"Para perguntar no presente, o ingles precisa de um ajudante na frente: DO (I/you/we/they) ou DOES (he/she/it). E atencao: quando DOES entra, o verbo perde o -S. O ajudante carrega o peso: Does he work? (nao 'Does he works').",
+     ex:[["Do you work here?","Voce trabalha aqui?"],["Does she like coffee?","Ela gosta de cafe?"],["I don't understand.","Eu nao entendo."]]},
+  d:[["___ you live in Brazil?",["Do","Does"],0,"Voce mora no Brasil?"],["___ he work on Sunday?",["Do","Does"],1,"Ele trabalha no domingo?"],["Does she ___ coffee?",["drink","drinks"],0,"Ela bebe cafe?"],["I ___ have time today.",["don't","doesn't"],0,"Eu nao tenho tempo hoje."]],
+  p:{pt:"Escreva em ingles: Voce trabalha de manha? Eu sempre trabalho a noite.",en:"Do you work in the morning? I always work at night."}}
 ]},
-{n:3,nome:"Lugares e direções",desc:"Se virar na cidade, dizer onde as coisas estão e dar instruções.",u:[
+{n:3,nome:"Lugares e direcoes",desc:"Se virar na cidade, dizer onde as coisas estao e dar instrucoes.",u:[
  {t:"Na cidade",
-  v:[["street","rua","The store is on this street.","A loja fica nesta rua."],["store","loja","The store opens at nine.","A loja abre às nove."],["restaurant","restaurante","A good restaurant nearby.","Um bom restaurante perto."],["bank","banco","I go to the bank on Friday.","Eu vou ao banco na sexta."],["hospital","hospital","The hospital is far.","O hospital é longe."],["airport","aeroporto","My flight leaves from the airport.","Meu voo sai do aeroporto."]],
-  g:{t:"THERE IS / THERE ARE",e:"É o 'há / tem' do inglês. THERE IS para um (there is a bank). THERE ARE para vários (there are two banks). Note que o inglês separa o 'ter posse' (have) do 'ter existência' (there is) — em português usamos 'tem' para os dois.",
-     ex:[["There is a store here.","Tem uma loja aqui."],["There are three restaurants.","Tem três restaurantes."],["Is there a bank near here?","Tem um banco perto daqui?"]]},
-  d:[["___ a hospital on this street.",["There is","There are"],0,"Tem um hospital nesta rua."],["___ many cars outside.",["There is","There are"],1,"Tem muitos carros lá fora."],["___ a bank near here?",["Is there","Are there"],0,"Tem um banco perto daqui?"],["There ___ two stores.",["is","are"],1,"Tem duas lojas."]],
-  p:{pt:"Escreva em inglês: Tem um bom restaurante nesta rua.",en:"There is a good restaurant on this street."}},
- {t:"Onde as coisas estão",
-  v:[["in","dentro de / em","The key is in my bag.","A chave está na minha bolsa."],["on","sobre / em cima","The phone is on the table.","O telefone está na mesa."],["at","em (ponto)","I am at work.","Eu estou no trabalho."],["near","perto","The store is near my house.","A loja é perto da minha casa."],["between","entre","Between the bank and the store.","Entre o banco e a loja."],["behind","atrás","The car is behind the house.","O carro está atrás da casa."]],
-  g:{t:"IN / ON / AT",e:"IN = dentro de um espaço (in the car, in Brazil). ON = em cima de uma superfície (on the table, on the street). AT = num ponto exato (at home, at work, at 8 o'clock). Pense em zoom: IN é a cidade, ON é a rua, AT é a porta.",
+  v:[["street","rua","The store is on this street.","A loja fica nesta rua."],["store","loja","The store opens at nine.","A loja abre as nove."],["restaurant","restaurante","A good restaurant nearby.","Um bom restaurante perto."],["bank","banco","I go to the bank on Friday.","Eu vou ao banco na sexta."],["hospital","hospital","The hospital is far.","O hospital e longe."],["airport","aeroporto","My flight leaves from the airport.","Meu voo sai do aeroporto."]],
+  g:{t:"THERE IS / THERE ARE",e:"E o 'ha / tem' do ingles. THERE IS para um (there is a bank). THERE ARE para varios (there are two banks). Note que o ingles separa o 'ter posse' (have) do 'ter existencia' (there is) - em portugues usamos 'tem' para os dois.",
+     ex:[["There is a store here.","Tem uma loja aqui."],["There are three restaurants.","Tem tres restaurantes."],["Is there a bank near here?","Tem um banco perto daqui?"]]},
+  d:[["___ a hospital on this street.",["There is","There are"],0,"Tem um hospital nesta rua."],["___ many cars outside.",["There is","There are"],1,"Tem muitos carros la fora."],["___ a bank near here?",["Is there","Are there"],0,"Tem um banco perto daqui?"],["There ___ two stores.",["is","are"],1,"Tem duas lojas."]],
+  p:{pt:"Escreva em ingles: Tem um bom restaurante nesta rua.",en:"There is a good restaurant on this street."}},
+ {t:"Onde as coisas estao",
+  v:[["in","dentro de / em","The key is in my bag.","A chave esta na minha bolsa."],["on","sobre / em cima","The phone is on the table.","O telefone esta na mesa."],["at","em (ponto)","I am at work.","Eu estou no trabalho."],["near","perto","The store is near my house.","A loja e perto da minha casa."],["between","entre","Between the bank and the store.","Entre o banco e a loja."],["behind","atras","The car is behind the house.","O carro esta atras da casa."]],
+  g:{t:"IN / ON / AT",e:"IN = dentro de um espaco (in the car, in Brazil). ON = em cima de uma superficie (on the table, on the street). AT = num ponto exato (at home, at work, at 8 o'clock). Pense em zoom: IN e a cidade, ON e a rua, AT e a porta.",
      ex:[["in the car","dentro do carro"],["on the table","em cima da mesa"],["at the airport","no aeroporto"]]},
-  d:[["The keys are ___ the table.",["in","on","at"],1,"As chaves estão em cima da mesa."],["I live ___ Brazil.",["in","on","at"],0,"Eu moro no Brasil."],["She is ___ home now.",["in","on","at"],2,"Ela está em casa agora."],["My office is ___ the bank.",["near","in"],0,"Meu escritório é perto do banco."]],
-  p:{pt:"Escreva em inglês: A chave está em cima da mesa, perto do telefone.",en:"The key is on the table, near the phone."}},
- {t:"Direções",
-  v:[["left","esquerda","Turn left at the corner.","Vire à esquerda na esquina."],["right","direita","The store is on the right.","A loja fica à direita."],["straight","reto","Go straight for two blocks.","Siga reto por dois quarteirões."],["corner","esquina","Wait at the corner.","Espere na esquina."],["block","quarteirão","It is two blocks away.","Fica a dois quarteirões."],["far","longe","Is it far from here?","É longe daqui?"]],
-  g:{t:"Imperativo (dar instruções)",e:"Para mandar ou instruir, use o verbo puro, sem sujeito: Turn left. Go straight. Para negar, coloque DON'T na frente: Don't turn here. É o modo mais curto do inglês — e o mais usado em placa, receita e manual.",
-     ex:[["Turn right.","Vire à direita."],["Don't stop here.","Não pare aqui."],["Call me later.","Me ligue mais tarde."]]},
-  d:[["___ left at the bank.",["Turn","Turns"],0,"Vire à esquerda no banco."],["___ open the door.",["Don't","Doesn't"],0,"Não abra a porta."],["___ straight for one block.",["Go","Goes"],0,"Siga reto por um quarteirão."],["Please ___ me tomorrow.",["call","calls"],0,"Por favor, me ligue amanhã."]],
-  p:{pt:"Escreva em inglês: Siga reto e vire à direita na esquina.",en:"Go straight and turn right at the corner."}}
+  d:[["The keys are ___ the table.",["in","on","at"],1,"As chaves estao em cima da mesa."],["I live ___ Brazil.",["in","on","at"],0,"Eu moro no Brasil."],["She is ___ home now.",["in","on","at"],2,"Ela esta em casa agora."],["My office is ___ the bank.",["near","in"],0,"Meu escritorio e perto do banco."]],
+  p:{pt:"Escreva em ingles: A chave esta em cima da mesa, perto do telefone.",en:"The key is on the table, near the phone."}},
+ {t:"Direcoes",
+  v:[["left","esquerda","Turn left at the corner.","Vire a esquerda na esquina."],["right","direita","The store is on the right.","A loja fica a direita."],["straight","reto","Go straight for two blocks.","Siga reto por dois quarteiroes."],["corner","esquina","Wait at the corner.","Espere na esquina."],["block","quarteirao","It is two blocks away.","Fica a dois quarteiroes."],["far","longe","Is it far from here?","E longe daqui?"]],
+  g:{t:"Imperativo (dar instrucoes)",e:"Para mandar ou instruir, use o verbo puro, sem sujeito: Turn left. Go straight. Para negar, coloque DON'T na frente: Don't turn here. E o modo mais curto do ingles - e o mais usado em placa, receita e manual.",
+     ex:[["Turn right.","Vire a direita."],["Don't stop here.","Nao pare aqui."],["Call me later.","Me ligue mais tarde."]]},
+  d:[["___ left at the bank.",["Turn","Turns"],0,"Vire a esquerda no banco."],["___ open the door.",["Don't","Doesn't"],0,"Nao abra a porta."],["___ straight for one block.",["Go","Goes"],0,"Siga reto por um quarteirao."],["Please ___ me tomorrow.",["call","calls"],0,"Por favor, me ligue amanha."]],
+  p:{pt:"Escreva em ingles: Siga reto e vire a direita na esquina.",en:"Go straight and turn right at the corner."}}
 ]},
-{n:4,nome:"Trabalho e comunicação",desc:"Falar do seu trabalho, do que está acontecendo agora e do que você sabe fazer.",u:[
+{n:4,nome:"Trabalho e comunicacao",desc:"Falar do seu trabalho, do que esta acontecendo agora e do que voce sabe fazer.",u:[
  {t:"No trabalho",
-  v:[["job","emprego / trabalho","I like my job.","Eu gosto do meu trabalho."],["meeting","reunião","The meeting starts at ten.","A reunião começa às dez."],["team","time / equipe","My team has six people.","Meu time tem seis pessoas."],["report","relatório","I am writing the report.","Eu estou escrevendo o relatório."],["manager","gerente","My manager is in a meeting.","Meu gerente está em reunião."],["customer","cliente","The customer is waiting.","O cliente está esperando."]],
-  g:{t:"Presente contínuo (agora)",e:"Para o que acontece NESTE momento: TO BE + verbo com -ING. I am working = eu estou trabalhando. É a diferença entre 'eu trabalho aqui' (rotina, present simple) e 'eu estou trabalhando agora' (contínuo).",
-     ex:[["I am working now.","Eu estou trabalhando agora."],["She is writing a report.","Ela está escrevendo um relatório."],["They are not listening.","Eles não estão ouvindo."]]},
-  d:[["I ___ working right now.",["am","is","are"],0,"Eu estou trabalhando agora."],["She is ___ the report.",["write","writing"],1,"Ela está escrevendo o relatório."],["They ___ waiting outside.",["is","are"],1,"Eles estão esperando lá fora."],["We ___ having a meeting.",["are","is"],0,"Nós estamos tendo uma reunião."]],
-  p:{pt:"Escreva em inglês: Eu estou escrevendo o relatório agora. Meu gerente está em reunião.",en:"I am writing the report now. My manager is in a meeting."}},
- {t:"Comunicação",
-  v:[["to call","ligar","I will call you later.","Eu te ligo mais tarde."],["to send","enviar","Can you send the file?","Você pode enviar o arquivo?"],["to ask","perguntar","Ask me anything.","Me pergunte qualquer coisa."],["to answer","responder","She answered my email.","Ela respondeu meu e-mail."],["to explain","explicar","Let me explain it again.","Deixa eu explicar de novo."],["to agree","concordar","I agree with you.","Eu concordo com você."]],
+  v:[["job","emprego / trabalho","I like my job.","Eu gosto do meu trabalho."],["meeting","reuniao","The meeting starts at ten.","A reuniao comeca as dez."],["team","time / equipe","My team has six people.","Meu time tem seis pessoas."],["report","relatorio","I am writing the report.","Eu estou escrevendo o relatorio."],["manager","gerente","My manager is in a meeting.","Meu gerente esta em reuniao."],["customer","cliente","The customer is waiting.","O cliente esta esperando."]],
+  g:{t:"Presente continuo (agora)",e:"Para o que acontece NESTE momento: TO BE + verbo com -ING. I am working = eu estou trabalhando. E a diferenca entre 'eu trabalho aqui' (rotina, present simple) e 'eu estou trabalhando agora' (continuo).",
+     ex:[["I am working now.","Eu estou trabalhando agora."],["She is writing a report.","Ela esta escrevendo um relatorio."],["They are not listening.","Eles nao estao ouvindo."]]},
+  d:[["I ___ working right now.",["am","is","are"],0,"Eu estou trabalhando agora."],["She is ___ the report.",["write","writing"],1,"Ela esta escrevendo o relatorio."],["They ___ waiting outside.",["is","are"],1,"Eles estao esperando la fora."],["We ___ having a meeting.",["are","is"],0,"Nos estamos tendo uma reuniao."]],
+  p:{pt:"Escreva em ingles: Eu estou escrevendo o relatorio agora. Meu gerente esta em reuniao.",en:"I am writing the report now. My manager is in a meeting."}},
+ {t:"Comunicacao",
+  v:[["to call","ligar","I will call you later.","Eu te ligo mais tarde."],["to send","enviar","Can you send the file?","Voce pode enviar o arquivo?"],["to ask","perguntar","Ask me anything.","Me pergunte qualquer coisa."],["to answer","responder","She answered my email.","Ela respondeu meu e-mail."],["to explain","explicar","Let me explain it again.","Deixa eu explicar de novo."],["to agree","concordar","I agree with you.","Eu concordo com voce."]],
   g:{t:"CAN / CAN'T",e:"CAN = poder ou saber fazer. Vantagem: nunca muda de forma e o verbo vem puro depois. He can speak (nunca 'he cans' nem 'he can speaks'). Para negar: can't. Para perguntar, inverte: Can you help me?",
-     ex:[["I can speak English.","Eu sei falar inglês."],["He can't come today.","Ele não pode vir hoje."],["Can you help me?","Você pode me ajudar?"]]},
-  d:[["___ you send the file?",["Can","Cans"],0,"Você pode enviar o arquivo?"],["He can ___ Spanish.",["speak","speaks"],0,"Ele sabe falar espanhol."],["I ___ come tomorrow.",["can't","don't can"],0,"Eu não posso vir amanhã."],["She can ___ the report today.",["finish","finishes"],0,"Ela consegue terminar o relatório hoje."]],
-  p:{pt:"Escreva em inglês: Você pode me enviar o relatório? Eu não consigo abrir o arquivo.",en:"Can you send me the report? I can't open the file."}},
+     ex:[["I can speak English.","Eu sei falar ingles."],["He can't come today.","Ele nao pode vir hoje."],["Can you help me?","Voce pode me ajudar?"]]},
+  d:[["___ you send the file?",["Can","Cans"],0,"Voce pode enviar o arquivo?"],["He can ___ Spanish.",["speak","speaks"],0,"Ele sabe falar espanhol."],["I ___ come tomorrow.",["can't","don't can"],0,"Eu nao posso vir amanha."],["She can ___ the report today.",["finish","finishes"],0,"Ela consegue terminar o relatorio hoje."]],
+  p:{pt:"Escreva em ingles: Voce pode me enviar o relatorio? Eu nao consigo abrir o arquivo.",en:"Can you send me the report? I can't open the file."}},
  {t:"Quantidade",
-  v:[["some","algum / um pouco","I need some help.","Eu preciso de alguma ajuda."],["any","algum (pergunta/negativa)","Do you have any questions?","Você tem alguma pergunta?"],["many","muitos","Many people are waiting.","Muitas pessoas estão esperando."],["much","muito (não contável)","We don't have much time.","Nós não temos muito tempo."],["a few","alguns poucos","A few customers called.","Alguns clientes ligaram."],["enough","suficiente","We have enough money.","Nós temos dinheiro suficiente."]],
-  g:{t:"Contável x não contável",e:"O inglês separa o que você consegue contar no dedo (cars, people, questions) do que só se mede (water, time, money, information). Contável usa many/a few; não contável usa much/a little. E cuidado: information e advice NÃO têm plural em inglês.",
-     ex:[["many cars","muitos carros"],["much water","muita água"],["I have a few questions.","Eu tenho algumas perguntas."]]},
-  d:[["We don't have ___ time.",["many","much"],1,"Nós não temos muito tempo."],["___ customers called today.",["Many","Much"],0,"Muitos clientes ligaram hoje."],["Do you have ___ questions?",["some","any"],1,"Você tem alguma pergunta?"],["I need ___ help.",["some","any"],0,"Eu preciso de alguma ajuda."]],
-  p:{pt:"Escreva em inglês: Nós não temos muito tempo, mas eu tenho algumas perguntas.",en:"We don't have much time, but I have a few questions."}}
+  v:[["some","algum / um pouco","I need some help.","Eu preciso de alguma ajuda."],["any","algum (pergunta/negativa)","Do you have any questions?","Voce tem alguma pergunta?"],["many","muitos","Many people are waiting.","Muitas pessoas estao esperando."],["much","muito (nao contavel)","We don't have much time.","Nos nao temos muito tempo."],["a few","alguns poucos","A few customers called.","Alguns clientes ligaram."],["enough","suficiente","We have enough money.","Nos temos dinheiro suficiente."]],
+  g:{t:"Contavel x nao contavel",e:"O ingles separa o que voce consegue contar no dedo (cars, people, questions) do que so se mede (water, time, money, information). Contavel usa many/a few; nao contavel usa much/a little. E cuidado: information e advice NAO tem plural em ingles.",
+     ex:[["many cars","muitos carros"],["much water","muita agua"],["I have a few questions.","Eu tenho algumas perguntas."]]},
+  d:[["We don't have ___ time.",["many","much"],1,"Nos nao temos muito tempo."],["___ customers called today.",["Many","Much"],0,"Muitos clientes ligaram hoje."],["Do you have ___ questions?",["some","any"],1,"Voce tem alguma pergunta?"],["I need ___ help.",["some","any"],0,"Eu preciso de alguma ajuda."]],
+  p:{pt:"Escreva em ingles: Nos nao temos muito tempo, mas eu tenho algumas perguntas.",en:"We don't have much time, but I have a few questions."}}
 ]},
-{n:5,nome:"Falar do passado",desc:"Contar o que aconteceu — verbos regulares, irregulares e perguntas.",u:[
+{n:5,nome:"Falar do passado",desc:"Contar o que aconteceu - verbos regulares, irregulares e perguntas.",u:[
  {t:"Passado regular",
-  v:[["worked","trabalhou / trabalhei","I worked late yesterday.","Eu trabalhei até tarde ontem."],["lived","morou / morei","She lived in Canada.","Ela morou no Canadá."],["started","começou / comecei","The meeting started at ten.","A reunião começou às dez."],["finished","terminou / terminei","We finished the report.","Nós terminamos o relatório."],["called","ligou / liguei","He called me twice.","Ele me ligou duas vezes."],["needed","precisou / precisei","They needed more time.","Eles precisaram de mais tempo."]],
-  g:{t:"Passado simples com -ED",e:"A boa notícia: no passado o verbo é igual para todo mundo. I worked, he worked, they worked — um único formato. Só acrescenta -ED (ou -D se já termina em E: live → lived).",
-     ex:[["I worked yesterday.","Eu trabalhei ontem."],["She called me.","Ela me ligou."],["We started early.","Nós começamos cedo."]]},
-  d:[["I ___ late yesterday.",["work","worked"],1,"Eu trabalhei até tarde ontem."],["She ___ in Canada in 2019.",["lived","lives"],0,"Ela morou no Canadá em 2019."],["They ___ the meeting at ten.",["start","started"],1,"Eles começaram a reunião às dez."],["He ___ me twice.",["called","calls"],0,"Ele me ligou duas vezes."]],
-  p:{pt:"Escreva em inglês: Eu trabalhei até tarde ontem e terminei o relatório.",en:"I worked late yesterday and finished the report."}},
+  v:[["worked","trabalhou / trabalhei","I worked late yesterday.","Eu trabalhei ate tarde ontem."],["lived","morou / morei","She lived in Canada.","Ela morou no Canada."],["started","comecou / comecei","The meeting started at ten.","A reuniao comecou as dez."],["finished","terminou / terminei","We finished the report.","Nos terminamos o relatorio."],["called","ligou / liguei","He called me twice.","Ele me ligou duas vezes."],["needed","precisou / precisei","They needed more time.","Eles precisaram de mais tempo."]],
+  g:{t:"Passado simples com -ED",e:"A boa noticia: no passado o verbo e igual para todo mundo. I worked, he worked, they worked - um unico formato. So acrescenta -ED (ou -D se ja termina em E: live > lived).",
+     ex:[["I worked yesterday.","Eu trabalhei ontem."],["She called me.","Ela me ligou."],["We started early.","Nos comecamos cedo."]]},
+  d:[["I ___ late yesterday.",["work","worked"],1,"Eu trabalhei ate tarde ontem."],["She ___ in Canada in 2019.",["lived","lives"],0,"Ela morou no Canada em 2019."],["They ___ the meeting at ten.",["start","started"],1,"Eles comecaram a reuniao as dez."],["He ___ me twice.",["called","calls"],0,"Ele me ligou duas vezes."]],
+  p:{pt:"Escreva em ingles: Eu trabalhei ate tarde ontem e terminei o relatorio.",en:"I worked late yesterday and finished the report."}},
  {t:"Passado irregular",
-  v:[["went","foi / fui","I went to the bank.","Eu fui ao banco."],["saw","viu / vi","She saw the customer.","Ela viu o cliente."],["had","teve / tive","We had a meeting.","Nós tivemos uma reunião."],["made","fez / fiz","He made a mistake.","Ele cometeu um erro."],["took","pegou / peguei","I took the car.","Eu peguei o carro."],["said","disse","She said no.","Ela disse não."]],
-  g:{t:"Irregulares e o DIDN'T",e:"Alguns verbos muito usados não seguem regra: go→went, see→saw, have→had. São os 'teimosos', e só a repetição resolve. Mas na negativa eles voltam ao normal: I didn't GO (nunca 'didn't went') — o DIDN'T já carrega o passado.",
-     ex:[["I went to the bank.","Eu fui ao banco."],["I didn't go to the bank.","Eu não fui ao banco."],["She didn't see him.","Ela não o viu."]]},
-  d:[["I ___ to the airport yesterday.",["went","goed"],0,"Eu fui ao aeroporto ontem."],["He didn't ___ the file.",["send","sent"],0,"Ele não enviou o arquivo."],["We ___ a long meeting.",["had","haved"],0,"Nós tivemos uma reunião longa."],["She didn't ___ anything.",["say","said"],0,"Ela não disse nada."]],
-  p:{pt:"Escreva em inglês: Eu fui ao banco ontem, mas não vi o gerente.",en:"I went to the bank yesterday, but I didn't see the manager."}},
- {t:"Contar uma história",
-  v:[["yesterday","ontem","Yesterday was busy.","Ontem foi corrido."],["last week","semana passada","We met last week.","Nós nos encontramos semana passada."],["ago","atrás","Two days ago.","Dois dias atrás."],["then","então / aí","Then he called me.","Aí ele me ligou."],["after","depois de","After the meeting, I left.","Depois da reunião, eu saí."],["before","antes de","Before lunch, I finished it.","Antes do almoço, eu terminei."]],
-  g:{t:"Perguntas no passado com DID",e:"Mesma lógica do DO/DOES, só que no passado e sem exceção: DID para todo mundo. E o verbo volta à forma pura: Did you go? Did she work? O DID já avisa que é passado — o verbo não precisa avisar de novo.",
-     ex:[["Did you call him?","Você ligou para ele?"],["Did she finish the report?","Ela terminou o relatório?"],["What did you do yesterday?","O que você fez ontem?"]]},
-  d:[["___ you call the customer?",["Did","Do"],0,"Você ligou para o cliente?"],["Did she ___ the report?",["finish","finished"],0,"Ela terminou o relatório?"],["What ___ you do yesterday?",["did","do"],0,"O que você fez ontem?"],["I saw him two days ___.",["ago","before"],0,"Eu o vi dois dias atrás."]],
-  p:{pt:"Escreva em inglês: Você ligou para o cliente ontem? Eu liguei depois da reunião.",en:"Did you call the customer yesterday? I called after the meeting."}}
+  v:[["went","foi / fui","I went to the bank.","Eu fui ao banco."],["saw","viu / vi","She saw the customer.","Ela viu o cliente."],["had","teve / tive","We had a meeting.","Nos tivemos uma reuniao."],["made","fez / fiz","He made a mistake.","Ele cometeu um erro."],["took","pegou / peguei","I took the car.","Eu peguei o carro."],["said","disse","She said no.","Ela disse nao."]],
+  g:{t:"Irregulares e o DIDN'T",e:"Alguns verbos muito usados nao seguem regra: go>went, see>saw, have>had. Sao os 'teimosos', e so a repeticao resolve. Mas na negativa eles voltam ao normal: I didn't GO (nunca 'didn't went') - o DIDN'T ja carrega o passado.",
+     ex:[["I went to the bank.","Eu fui ao banco."],["I didn't go to the bank.","Eu nao fui ao banco."],["She didn't see him.","Ela nao o viu."]]},
+  d:[["I ___ to the airport yesterday.",["went","goed"],0,"Eu fui ao aeroporto ontem."],["He didn't ___ the file.",["send","sent"],0,"Ele nao enviou o arquivo."],["We ___ a long meeting.",["had","haved"],0,"Nos tivemos uma reuniao longa."],["She didn't ___ anything.",["say","said"],0,"Ela nao disse nada."]],
+  p:{pt:"Escreva em ingles: Eu fui ao banco ontem, mas nao vi o gerente.",en:"I went to the bank yesterday, but I didn't see the manager."}},
+ {t:"Contar uma historia",
+  v:[["yesterday","ontem","Yesterday was busy.","Ontem foi corrido."],["last week","semana passada","We met last week.","Nos nos encontramos semana passada."],["ago","atras","Two days ago.","Dois dias atras."],["then","entao / ai","Then he called me.","Ai ele me ligou."],["after","depois de","After the meeting, I left.","Depois da reuniao, eu sai."],["before","antes de","Before lunch, I finished it.","Antes do almoco, eu terminei."]],
+  g:{t:"Perguntas no passado com DID",e:"Mesma logica do DO/DOES, so que no passado e sem excecao: DID para todo mundo. E o verbo volta a forma pura: Did you go? Did she work? O DID ja avisa que e passado - o verbo nao precisa avisar de novo.",
+     ex:[["Did you call him?","Voce ligou para ele?"],["Did she finish the report?","Ela terminou o relatorio?"],["What did you do yesterday?","O que voce fez ontem?"]]},
+  d:[["___ you call the customer?",["Did","Do"],0,"Voce ligou para o cliente?"],["Did she ___ the report?",["finish","finished"],0,"Ela terminou o relatorio?"],["What ___ you do yesterday?",["did","do"],0,"O que voce fez ontem?"],["I saw him two days ___.",["ago","before"],0,"Eu o vi dois dias atras."]],
+  p:{pt:"Escreva em ingles: Voce ligou para o cliente ontem? Eu liguei depois da reuniao.",en:"Did you call the customer yesterday? I called after the meeting."}}
 ]},
-{n:6,nome:"Futuro e planos",desc:"Falar de planos, previsões e compromissos.",u:[
+{n:6,nome:"Futuro e planos",desc:"Falar de planos, previsoes e compromissos.",u:[
  {t:"Planos",
-  v:[["to plan","planejar","We plan to grow this year.","Nós planejamos crescer este ano."],["to travel","viajar","I am going to travel in July.","Eu vou viajar em julho."],["to move","mudar (de lugar)","They are going to move offices.","Eles vão mudar de escritório."],["to learn","aprender","I am going to learn English.","Eu vou aprender inglês."],["to try","tentar","I will try again.","Eu vou tentar de novo."],["to decide","decidir","We decided to wait.","Nós decidimos esperar."]],
-  g:{t:"GOING TO (plano já decidido)",e:"Use TO BE + going to + verbo para o que já está decidido ou é visível no horizonte: I am going to study tonight. É o futuro 'com data marcada na cabeça' — bem parecido com o nosso 'eu vou estudar'.",
-     ex:[["I am going to study tonight.","Eu vou estudar hoje à noite."],["She is going to travel.","Ela vai viajar."],["It is going to rain.","Vai chover."]]},
-  d:[["I ___ going to study tonight.",["am","is"],0,"Eu vou estudar hoje à noite."],["She is going to ___ in July.",["travel","travels"],0,"Ela vai viajar em julho."],["They ___ going to move.",["are","is"],0,"Eles vão mudar."],["It is going ___ rain.",["to","for"],0,"Vai chover."]],
-  p:{pt:"Escreva em inglês: Eu vou aprender inglês este ano.",en:"I am going to learn English this year."}},
- {t:"Previsões",
-  v:[["maybe","talvez","Maybe he will come.","Talvez ele venha."],["probably","provavelmente","She will probably agree.","Ela provavelmente vai concordar."],["sure","certo / certeza","I am sure about that.","Eu tenho certeza disso."],["soon","logo","I will call you soon.","Eu te ligo logo."],["later","mais tarde","Let's talk later.","Vamos conversar mais tarde."],["next","próximo","Next week is better.","Semana que vem é melhor."]],
-  g:{t:"WILL (decisão na hora e previsão)",e:"WILL é o futuro de quem acabou de decidir ou de quem acha que vai acontecer: I'll help you. Nunca muda de forma e o verbo vem puro. Comparando: 'going to' é plano de agenda; 'will' é palpite ou promessa do momento.",
-     ex:[["I will help you.","Eu vou te ajudar."],["It will be fine.","Vai dar certo."],["He won't come today.","Ele não virá hoje."]]},
-  d:[["I ___ call you later.",["will","am"],0,"Eu te ligo mais tarde."],["She will ___ tomorrow.",["arrive","arrives"],0,"Ela vai chegar amanhã."],["He ___ come today.",["won't","doesn't will"],0,"Ele não virá hoje."],["It ___ probably rain.",["will","wills"],0,"Provavelmente vai chover."]],
-  p:{pt:"Escreva em inglês: Eu te ligo mais tarde. Provavelmente vamos terminar amanhã.",en:"I will call you later. We will probably finish tomorrow."}},
+  v:[["to plan","planejar","We plan to grow this year.","Nos planejamos crescer este ano."],["to travel","viajar","I am going to travel in July.","Eu vou viajar em julho."],["to move","mudar (de lugar)","They are going to move offices.","Eles vao mudar de escritorio."],["to learn","aprender","I am going to learn English.","Eu vou aprender ingles."],["to try","tentar","I will try again.","Eu vou tentar de novo."],["to decide","decidir","We decided to wait.","Nos decidimos esperar."]],
+  g:{t:"GOING TO (plano ja decidido)",e:"Use TO BE + going to + verbo para o que ja esta decidido ou e visivel no horizonte: I am going to study tonight. E o futuro 'com data marcada na cabeca' - bem parecido com o nosso 'eu vou estudar'.",
+     ex:[["I am going to study tonight.","Eu vou estudar hoje a noite."],["She is going to travel.","Ela vai viajar."],["It is going to rain.","Vai chover."]]},
+  d:[["I ___ going to study tonight.",["am","is"],0,"Eu vou estudar hoje a noite."],["She is going to ___ in July.",["travel","travels"],0,"Ela vai viajar em julho."],["They ___ going to move.",["are","is"],0,"Eles vao mudar."],["It is going ___ rain.",["to","for"],0,"Vai chover."]],
+  p:{pt:"Escreva em ingles: Eu vou aprender ingles este ano.",en:"I am going to learn English this year."}},
+ {t:"Previsoes",
+  v:[["maybe","talvez","Maybe he will come.","Talvez ele venha."],["probably","provavelmente","She will probably agree.","Ela provavelmente vai concordar."],["sure","certo / certeza","I am sure about that.","Eu tenho certeza disso."],["soon","logo","I will call you soon.","Eu te ligo logo."],["later","mais tarde","Let's talk later.","Vamos conversar mais tarde."],["next","proximo","Next week is better.","Semana que vem e melhor."]],
+  g:{t:"WILL (decisao na hora e previsao)",e:"WILL e o futuro de quem acabou de decidir ou de quem acha que vai acontecer: I'll help you. Nunca muda de forma e o verbo vem puro. Comparando: 'going to' e plano de agenda; 'will' e palpite ou promessa do momento.",
+     ex:[["I will help you.","Eu vou te ajudar."],["It will be fine.","Vai dar certo."],["He won't come today.","Ele nao vira hoje."]]},
+  d:[["I ___ call you later.",["will","am"],0,"Eu te ligo mais tarde."],["She will ___ tomorrow.",["arrive","arrives"],0,"Ela vai chegar amanha."],["He ___ come today.",["won't","doesn't will"],0,"Ele nao vira hoje."],["It ___ probably rain.",["will","wills"],0,"Provavelmente vai chover."]],
+  p:{pt:"Escreva em ingles: Eu te ligo mais tarde. Provavelmente vamos terminar amanha.",en:"I will call you later. We will probably finish tomorrow."}},
  {t:"Compromissos e viagem",
-  v:[["appointment","compromisso / consulta","I have an appointment at three.","Eu tenho um compromisso às três."],["ticket","passagem / bilhete","I bought the ticket online.","Eu comprei a passagem online."],["flight","voo","My flight is at seven.","Meu voo é às sete."],["hotel","hotel","The hotel is near the airport.","O hotel é perto do aeroporto."],["schedule","agenda / cronograma","Check my schedule, please.","Confira minha agenda, por favor."],["luggage","bagagem","My luggage is heavy.","Minha bagagem está pesada."]],
-  g:{t:"Contínuo com valor de futuro",e:"Para compromisso já marcado, o inglês usa o presente contínuo: I am meeting the client at 3. Soa mais natural que 'will' aqui. É o futuro que já está na agenda, com hora e tudo.",
-     ex:[["I am meeting him at three.","Eu vou encontrá-lo às três."],["We are flying on Monday.","Nós voamos na segunda."],["She is arriving tonight.","Ela chega hoje à noite."]]},
-  d:[["I ___ meeting the client at three.",["am","will"],0,"Eu vou encontrar o cliente às três."],["We are ___ on Monday.",["flying","fly"],0,"Nós voamos na segunda."],["My flight ___ at seven.",["is","are"],0,"Meu voo é às sete."],["She is ___ tonight.",["arriving","arrive"],0,"Ela chega hoje à noite."]],
-  p:{pt:"Escreva em inglês: Meu voo é às sete. Eu vou encontrar o cliente amanhã.",en:"My flight is at seven. I am meeting the client tomorrow."}}
+  v:[["appointment","compromisso / consulta","I have an appointment at three.","Eu tenho um compromisso as tres."],["ticket","passagem / bilhete","I bought the ticket online.","Eu comprei a passagem online."],["flight","voo","My flight is at seven.","Meu voo e as sete."],["hotel","hotel","The hotel is near the airport.","O hotel e perto do aeroporto."],["schedule","agenda / cronograma","Check my schedule, please.","Confira minha agenda, por favor."],["luggage","bagagem","My luggage is heavy.","Minha bagagem esta pesada."]],
+  g:{t:"Continuo com valor de futuro",e:"Para compromisso ja marcado, o ingles usa o presente continuo: I am meeting the client at 3. Soa mais natural que 'will' aqui. E o futuro que ja esta na agenda, com hora e tudo.",
+     ex:[["I am meeting him at three.","Eu vou encontra-lo as tres."],["We are flying on Monday.","Nos voamos na segunda."],["She is arriving tonight.","Ela chega hoje a noite."]]},
+  d:[["I ___ meeting the client at three.",["am","will"],0,"Eu vou encontrar o cliente as tres."],["We are ___ on Monday.",["flying","fly"],0,"Nos voamos na segunda."],["My flight ___ at seven.",["is","are"],0,"Meu voo e as sete."],["She is ___ tonight.",["arriving","arrive"],0,"Ela chega hoje a noite."]],
+  p:{pt:"Escreva em ingles: Meu voo e as sete. Eu vou encontrar o cliente amanha.",en:"My flight is at seven. I am meeting the client tomorrow."}}
 ]},
-{n:7,nome:"Comparar e opinar",desc:"Descrever, comparar, dar opinião e falar de sentimentos.",u:[
- {t:"Adjetivos úteis",
-  v:[["cheap","barato","This one is cheaper.","Este é mais barato."],["expensive","caro","That car is expensive.","Aquele carro é caro."],["easy","fácil","The test was easy.","A prova foi fácil."],["difficult","difícil","English is not difficult.","Inglês não é difícil."],["fast","rápido","He works fast.","Ele trabalha rápido."],["slow","devagar / lento","The system is slow.","O sistema está lento."]],
-  g:{t:"Comparativo (-ER / MORE)",e:"Palavra curta ganha -ER: cheap → cheaper. Palavra longa (3+ sílabas) usa MORE na frente: expensive → more expensive. E o 'do que' é THAN. Regra do bolso: se a palavra é curta, ela mesma carrega o peso; se é longa, pede ajuda.",
-     ex:[["This is cheaper than that.","Este é mais barato que aquele."],["It is more expensive.","É mais caro."],["Better than yesterday.","Melhor que ontem."]]},
-  d:[["This car is ___ than mine.",["faster","more fast"],0,"Este carro é mais rápido que o meu."],["That hotel is ___ expensive.",["more","most"],0,"Aquele hotel é mais caro."],["Today is better ___ yesterday.",["than","that"],0,"Hoje está melhor que ontem."],["The test was ___ than I thought.",["easier","more easy"],0,"A prova foi mais fácil do que eu pensava."]],
-  p:{pt:"Escreva em inglês: Este carro é mais rápido, mas aquele é mais barato.",en:"This car is faster, but that one is cheaper."}},
- {t:"Dar opinião",
-  v:[["I think","eu acho","I think it works.","Eu acho que funciona."],["in my opinion","na minha opinião","In my opinion, it is late.","Na minha opinião, está tarde."],["I agree","eu concordo","I agree with Ana.","Eu concordo com a Ana."],["I disagree","eu discordo","I disagree, sorry.","Eu discordo, desculpe."],["because","porque","Because we need time.","Porque nós precisamos de tempo."],["however","porém","However, it is expensive.","Porém, é caro."]],
-  g:{t:"Superlativo (THE -EST / THE MOST)",e:"Para dizer 'o mais de todos', use THE: the cheapest, the most expensive. O THE é obrigatório — se só existe um campeão, o inglês exige o artigo definido.",
-     ex:[["the cheapest option","a opção mais barata"],["the most expensive car","o carro mais caro"],["the best solution","a melhor solução"]]},
-  d:[["This is ___ option we have.",["the cheapest","cheapest"],0,"Esta é a opção mais barata que temos."],["It is the ___ expensive one.",["most","more"],0,"É o mais caro."],["He is ___ person on the team.",["the best","best"],0,"Ele é a melhor pessoa do time."],["I think it is ___ way.",["the fastest","the most fast"],0,"Eu acho que é o jeito mais rápido."]],
-  p:{pt:"Escreva em inglês: Na minha opinião, esta é a melhor opção porque é mais barata.",en:"In my opinion, this is the best option because it is cheaper."}},
+{n:7,nome:"Comparar e opinar",desc:"Descrever, comparar, dar opiniao e falar de sentimentos.",u:[
+ {t:"Adjetivos uteis",
+  v:[["cheap","barato","This one is cheaper.","Este e mais barato."],["expensive","caro","That car is expensive.","Aquele carro e caro."],["easy","facil","The test was easy.","A prova foi facil."],["difficult","dificil","English is not difficult.","Ingles nao e dificil."],["fast","rapido","He works fast.","Ele trabalha rapido."],["slow","devagar / lento","The system is slow.","O sistema esta lento."]],
+  g:{t:"Comparativo (-ER / MORE)",e:"Palavra curta ganha -ER: cheap > cheaper. Palavra longa (3+ silabas) usa MORE na frente: expensive > more expensive. E o 'do que' e THAN. Regra do bolso: se a palavra e curta, ela mesma carrega o peso; se e longa, pede ajuda.",
+     ex:[["This is cheaper than that.","Este e mais barato que aquele."],["It is more expensive.","E mais caro."],["Better than yesterday.","Melhor que ontem."]]},
+  d:[["This car is ___ than mine.",["faster","more fast"],0,"Este carro e mais rapido que o meu."],["That hotel is ___ expensive.",["more","most"],0,"Aquele hotel e mais caro."],["Today is better ___ yesterday.",["than","that"],0,"Hoje esta melhor que ontem."],["The test was ___ than I thought.",["easier","more easy"],0,"A prova foi mais facil do que eu pensava."]],
+  p:{pt:"Escreva em ingles: Este carro e mais rapido, mas aquele e mais barato.",en:"This car is faster, but that one is cheaper."}},
+ {t:"Dar opiniao",
+  v:[["I think","eu acho","I think it works.","Eu acho que funciona."],["in my opinion","na minha opiniao","In my opinion, it is late.","Na minha opiniao, esta tarde."],["I agree","eu concordo","I agree with Ana.","Eu concordo com a Ana."],["I disagree","eu discordo","I disagree, sorry.","Eu discordo, desculpe."],["because","porque","Because we need time.","Porque nos precisamos de tempo."],["however","porem","However, it is expensive.","Porem, e caro."]],
+  g:{t:"Superlativo (THE -EST / THE MOST)",e:"Para dizer 'o mais de todos', use THE: the cheapest, the most expensive. O THE e obrigatorio - se so existe um campeao, o ingles exige o artigo definido.",
+     ex:[["the cheapest option","a opcao mais barata"],["the most expensive car","o carro mais caro"],["the best solution","a melhor solucao"]]},
+  d:[["This is ___ option we have.",["the cheapest","cheapest"],0,"Esta e a opcao mais barata que temos."],["It is the ___ expensive one.",["most","more"],0,"E o mais caro."],["He is ___ person on the team.",["the best","best"],0,"Ele e a melhor pessoa do time."],["I think it is ___ way.",["the fastest","the most fast"],0,"Eu acho que e o jeito mais rapido."]],
+  p:{pt:"Escreva em ingles: Na minha opiniao, esta e a melhor opcao porque e mais barata.",en:"In my opinion, this is the best option because it is cheaper."}},
  {t:"Sentimentos",
-  v:[["tired","cansado","I am tired today.","Eu estou cansado hoje."],["worried","preocupado","She is worried about it.","Ela está preocupada com isso."],["excited","animado","We are excited about the trip.","Nós estamos animados com a viagem."],["bored","entediado","He was bored in the meeting.","Ele ficou entediado na reunião."],["proud","orgulhoso","I am proud of my team.","Eu tenho orgulho do meu time."],["upset","chateado","The customer was upset.","O cliente ficou chateado."]],
-  g:{t:"-ED x -ING nos adjetivos",e:"-ED descreve como VOCÊ está: I am bored (eu estou entediado). -ING descreve como a COISA é: the meeting is boring (a reunião é chata). Trocar isso gera a frase mais engraçada do inglês: 'I am boring' = eu sou chato.",
-     ex:[["I am bored.","Eu estou entediado."],["The movie is boring.","O filme é chato."],["She is interested in the project.","Ela está interessada no projeto."]]},
-  d:[["I am ___ today.",["tired","tiring"],0,"Eu estou cansado hoje."],["This meeting is ___.",["boring","bored"],0,"Esta reunião é chata."],["We are ___ about the trip.",["excited","exciting"],0,"Nós estamos animados com a viagem."],["The news was ___.",["surprising","surprised"],0,"A notícia foi surpreendente."]],
-  p:{pt:"Escreva em inglês: Eu estou cansado, mas estou animado com o projeto.",en:"I am tired, but I am excited about the project."}}
+  v:[["tired","cansado","I am tired today.","Eu estou cansado hoje."],["worried","preocupado","She is worried about it.","Ela esta preocupada com isso."],["excited","animado","We are excited about the trip.","Nos estamos animados com a viagem."],["bored","entediado","He was bored in the meeting.","Ele ficou entediado na reuniao."],["proud","orgulhoso","I am proud of my team.","Eu tenho orgulho do meu time."],["upset","chateado","The customer was upset.","O cliente ficou chateado."]],
+  g:{t:"-ED x -ING nos adjetivos",e:"-ED descreve como VOCE esta: I am bored (eu estou entediado). -ING descreve como a COISA e: the meeting is boring (a reuniao e chata). Trocar isso gera a frase mais engraçada do ingles: 'I am boring' = eu sou chato.",
+     ex:[["I am bored.","Eu estou entediado."],["The movie is boring.","O filme e chato."],["She is interested in the project.","Ela esta interessada no projeto."]]},
+  d:[["I am ___ today.",["tired","tiring"],0,"Eu estou cansado hoje."],["This meeting is ___.",["boring","bored"],0,"Esta reuniao e chata."],["We are ___ about the trip.",["excited","exciting"],0,"Nos estamos animados com a viagem."],["The news was ___.",["surprising","surprised"],0,"A noticia foi surpreendente."]],
+  p:{pt:"Escreva em ingles: Eu estou cansado, mas estou animado com o projeto.",en:"I am tired, but I am excited about the project."}}
 ]},
-{n:8,nome:"Experiências",desc:"Present perfect, phrasal verbs e o inglês que soa natural.",u:[
- {t:"Já / nunca / ainda",
-  v:[["ever","alguma vez","Have you ever been to the US?","Você já esteve nos EUA?"],["never","nunca","I have never seen that.","Eu nunca vi isso."],["already","já","I have already sent it.","Eu já enviei."],["yet","ainda","He hasn't answered yet.","Ele ainda não respondeu."],["just","acabou de","She has just arrived.","Ela acabou de chegar."],["since","desde","I have worked here since 2020.","Eu trabalho aqui desde 2020."]],
-  g:{t:"Present perfect (HAVE + particípio)",e:"HAVE/HAS + verbo no particípio (done, seen, been). Serve para experiência de vida sem data (I have been to Chile) e para o que começou antes e continua (I have worked here since 2020). Pense numa ponte: liga o passado ao agora. Se você disser a data exata, a ponte cai e vira past simple.",
-     ex:[["I have finished the report.","Eu terminei o relatório."],["She has never seen it.","Ela nunca viu isso."],["Have you ever worked abroad?","Você já trabalhou fora?"]]},
-  d:[["I ___ already sent the file.",["have","has"],0,"Eu já enviei o arquivo."],["She ___ never seen it.",["has","have"],0,"Ela nunca viu isso."],["He hasn't answered ___.",["yet","already"],0,"Ele ainda não respondeu."],["Have you ___ been to London?",["ever","never"],0,"Você já esteve em Londres?"]],
-  p:{pt:"Escreva em inglês: Eu já enviei o relatório, mas ele ainda não respondeu.",en:"I have already sent the report, but he hasn't answered yet."}},
+{n:8,nome:"Experiencias",desc:"Present perfect, phrasal verbs e o ingles que soa natural.",u:[
+ {t:"Ja / nunca / ainda",
+  v:[["ever","alguma vez","Have you ever been to the US?","Voce ja esteve nos EUA?"],["never","nunca","I have never seen that.","Eu nunca vi isso."],["already","ja","I have already sent it.","Eu ja enviei."],["yet","ainda","He hasn't answered yet.","Ele ainda nao respondeu."],["just","acabou de","She has just arrived.","Ela acabou de chegar."],["since","desde","I have worked here since 2020.","Eu trabalho aqui desde 2020."]],
+  g:{t:"Present perfect (HAVE + participio)",e:"HAVE/HAS + verbo no participio (done, seen, been). Serve para experiencia de vida sem data (I have been to Chile) e para o que comecou antes e continua (I have worked here since 2020). Pense numa ponte: liga o passado ao agora. Se voce disser a data exata, a ponte cai e vira past simple.",
+     ex:[["I have finished the report.","Eu terminei o relatorio."],["She has never seen it.","Ela nunca viu isso."],["Have you ever worked abroad?","Voce ja trabalhou fora?"]]},
+  d:[["I ___ already sent the file.",["have","has"],0,"Eu ja enviei o arquivo."],["She ___ never seen it.",["has","have"],0,"Ela nunca viu isso."],["He hasn't answered ___.",["yet","already"],0,"Ele ainda nao respondeu."],["Have you ___ been to London?",["ever","never"],0,"Voce ja esteve em Londres?"]],
+  p:{pt:"Escreva em ingles: Eu ja enviei o relatorio, mas ele ainda nao respondeu.",en:"I have already sent the report, but he hasn't answered yet."}},
  {t:"Phrasal verbs",
-  v:[["look for","procurar","I am looking for my keys.","Eu estou procurando minhas chaves."],["give up","desistir","Don't give up now.","Não desista agora."],["find out","descobrir","We found out yesterday.","Nós descobrimos ontem."],["come back","voltar","She comes back on Monday.","Ela volta na segunda."],["turn on","ligar (aparelho)","Turn on the light, please.","Acenda a luz, por favor."],["take care of","cuidar de","I take care of the reports.","Eu cuido dos relatórios."]],
-  g:{t:"Phrasal verbs separáveis",e:"Verbo + preposição forma um significado novo: look = olhar, mas look for = procurar. Alguns aceitam o objeto no meio: turn the light on = turn on the light. Mas se o objeto for pronome, ele SEMPRE fica no meio: turn it on (nunca 'turn on it').",
-     ex:[["Turn on the TV. / Turn it on.","Ligue a TV. / Ligue ela."],["I am looking for my phone.","Estou procurando meu telefone."],["Don't give up.","Não desista."]]},
-  d:[["I am looking ___ my keys.",["for","at"],0,"Estou procurando minhas chaves."],["Turn ___ the light, please.",["on","in"],0,"Acenda a luz, por favor."],["Please turn ___ on.",["it","on it"],0,"Por favor, ligue ele."],["Don't give ___ now.",["up","out"],0,"Não desista agora."]],
-  p:{pt:"Escreva em inglês: Eu estou procurando o relatório. Não desista, nós vamos descobrir.",en:"I am looking for the report. Don't give up, we will find out."}},
+  v:[["look for","procurar","I am looking for my keys.","Eu estou procurando minhas chaves."],["give up","desistir","Don't give up now.","Nao desista agora."],["find out","descobrir","We found out yesterday.","Nos descobrimos ontem."],["come back","voltar","She comes back on Monday.","Ela volta na segunda."],["turn on","ligar (aparelho)","Turn on the light, please.","Acenda a luz, por favor."],["take care of","cuidar de","I take care of the reports.","Eu cuido dos relatorios."]],
+  g:{t:"Phrasal verbs separaveis",e:"Verbo + preposicao forma um significado novo: look = olhar, mas look for = procurar. Alguns aceitam o objeto no meio: turn the light on = turn on the light. Mas se o objeto for pronome, ele SEMPRE fica no meio: turn it on (nunca 'turn on it').",
+     ex:[["Turn on the TV. / Turn it on.","Ligue a TV. / Ligue ela."],["I am looking for my phone.","Estou procurando meu telefone."],["Don't give up.","Nao desista."]]},
+  d:[["I am looking ___ my keys.",["for","at"],0,"Estou procurando minhas chaves."],["Turn ___ the light, please.",["on","in"],0,"Acenda a luz, por favor."],["Please turn ___ on.",["it","on it"],0,"Por favor, ligue ele."],["Don't give ___ now.",["up","out"],0,"Nao desista agora."]],
+  p:{pt:"Escreva em ingles: Eu estou procurando o relatorio. Nao desista, nos vamos descobrir.",en:"I am looking for the report. Don't give up, we will find out."}},
  {t:"Vida e carreira",
-  v:[["abroad","no exterior","She works abroad.","Ela trabalha no exterior."],["experience","experiência","I have five years of experience.","Eu tenho cinco anos de experiência."],["opportunity","oportunidade","This is a great opportunity.","Esta é uma grande oportunidade."],["challenge","desafio","It was a big challenge.","Foi um grande desafio."],["mistake","erro","I made a mistake.","Eu cometi um erro."],["achievement","conquista","That was my best achievement.","Essa foi minha maior conquista."]],
-  g:{t:"Present perfect x past simple",e:"Se a frase traz quando aconteceu (yesterday, in 2019, last week), use past simple: I worked there in 2019. Se não importa quando, ou ainda está rolando, use present perfect: I have worked there. Regra prática: apareceu data, ponte cai.",
-     ex:[["I have worked here for five years.","Eu trabalho aqui há cinco anos."],["I worked there in 2019.","Eu trabalhei lá em 2019."],["Have you finished? / Did you finish yesterday?","Você terminou? / Você terminou ontem?"]]},
-  d:[["I ___ there in 2019.",["worked","have worked"],0,"Eu trabalhei lá em 2019."],["I ___ here for five years.",["have worked","worked"],0,"Eu trabalho aqui há cinco anos."],["___ you finish it yesterday?",["Did","Have"],0,"Você terminou isso ontem?"],["She ___ just arrived.",["has","did"],0,"Ela acabou de chegar."]],
-  p:{pt:"Escreva em inglês: Eu trabalho aqui há cinco anos e foi um grande desafio.",en:"I have worked here for five years and it was a big challenge."}}
+  v:[["abroad","no exterior","She works abroad.","Ela trabalha no exterior."],["experience","experiencia","I have five years of experience.","Eu tenho cinco anos de experiencia."],["opportunity","oportunidade","This is a great opportunity.","Esta e uma grande oportunidade."],["challenge","desafio","It was a big challenge.","Foi um grande desafio."],["mistake","erro","I made a mistake.","Eu cometi um erro."],["achievement","conquista","That was my best achievement.","Essa foi minha maior conquista."]],
+  g:{t:"Present perfect x past simple",e:"Se a frase traz quando aconteceu (yesterday, in 2019, last week), use past simple: I worked there in 2019. Se nao importa quando, ou ainda esta rolando, use present perfect: I have worked there. Regra pratica: apareceu data, ponte cai.",
+     ex:[["I have worked here for five years.","Eu trabalho aqui ha cinco anos."],["I worked there in 2019.","Eu trabalhei la em 2019."],["Have you finished? / Did you finish yesterday?","Voce terminou? / Voce terminou ontem?"]]},
+  d:[["I ___ there in 2019.",["worked","have worked"],0,"Eu trabalhei la em 2019."],["I ___ here for five years.",["have worked","worked"],0,"Eu trabalho aqui ha cinco anos."],["___ you finish it yesterday?",["Did","Have"],0,"Voce terminou isso ontem?"],["She ___ just arrived.",["has","did"],0,"Ela acabou de chegar."]],
+  p:{pt:"Escreva em ingles: Eu trabalho aqui ha cinco anos e foi um grande desafio.",en:"I have worked here for five years and it was a big challenge."}}
 ]},
-{n:9,nome:"Inglês de trabalho",desc:"Reuniões, negociação e o vocabulário que separa o básico do fluente.",u:[
- {t:"Reuniões",
-  v:[["to bring up","levantar (um assunto)","She brought up a good point.","Ela levantou um bom ponto."],["to follow up","dar seguimento","I will follow up tomorrow.","Eu darei seguimento amanhã."],["to catch up","colocar em dia","Let's catch up on Friday.","Vamos nos atualizar na sexta."],["to run late","estar atrasado","I am running late.","Eu estou atrasado."],["to reach out","entrar em contato","I reached out to the client.","Eu entrei em contato com o cliente."],["update","atualização","Any update on the project?","Alguma novidade no projeto?"]],
-  g:{t:"Primeiro condicional (IF + presente, WILL)",e:"Para consequência real: If we finish today, we will send it tomorrow. Detalhe que derruba muita gente: depois do IF o verbo fica no PRESENTE, mesmo falando do futuro. Nunca 'if we will finish'.",
-     ex:[["If we finish today, we will send it.","Se terminarmos hoje, nós enviaremos."],["If it rains, I will stay home.","Se chover, eu ficarei em casa."],["I will call you if I have time.","Eu te ligo se eu tiver tempo."]]},
+{n:9,nome:"Ingles de trabalho",desc:"Reunioes, negociacao e o vocabulario que separa o basico do fluente.",u:[
+ {t:"Reunioes",
+  v:[["to bring up","levantar (um assunto)","She brought up a good point.","Ela levantou um bom ponto."],["to follow up","dar seguimento","I will follow up tomorrow.","Eu darei seguimento amanha."],["to catch up","colocar em dia","Let's catch up on Friday.","Vamos nos atualizar na sexta."],["to run late","estar atrasado","I am running late.","Eu estou atrasado."],["to reach out","entrar em contato","I reached out to the client.","Eu entrei em contato com o cliente."],["update","atualizacao","Any update on the project?","Alguma novidade no projeto?"]],
+  g:{t:"Primeiro condicional (IF + presente, WILL)",e:"Para consequencia real: If we finish today, we will send it tomorrow. Detalhe que derruba muita gente: depois do IF o verbo fica no PRESENTE, mesmo falando do futuro. Nunca 'if we will finish'.",
+     ex:[["If we finish today, we will send it.","Se terminarmos hoje, nos enviaremos."],["If it rains, I will stay home.","Se chover, eu ficarei em casa."],["I will call you if I have time.","Eu te ligo se eu tiver tempo."]]},
   d:[["If we ___ today, we will send it.",["finish","will finish"],0,"Se terminarmos hoje, enviaremos."],["If it rains, I ___ stay home.",["will","would"],0,"Se chover, eu ficarei em casa."],["I will call you if I ___ time.",["have","will have"],0,"Eu te ligo se tiver tempo."],["Let's ___ up on Friday.",["catch","reach"],0,"Vamos nos atualizar na sexta."]],
-  p:{pt:"Escreva em inglês: Se nós terminarmos hoje, eu entro em contato com o cliente amanhã.",en:"If we finish today, I will reach out to the client tomorrow."}},
- {t:"Negociação",
-  v:[["offer","oferta","We made a good offer.","Nós fizemos uma boa oferta."],["discount","desconto","Can you give a discount?","Você pode dar um desconto?"],["budget","orçamento","It is over our budget.","Está acima do nosso orçamento."],["quote","cotação / orçamento","Send me a quote, please.","Me envie uma cotação, por favor."],["to approve","aprovar","The manager approved it.","O gerente aprovou."],["to deliver","entregar","We deliver on Friday.","Nós entregamos na sexta."]],
-  g:{t:"Segundo condicional (IF + passado, WOULD)",e:"Para hipótese, situação imaginada: If I had more time, I would study. Perceba a troca de degrau: o passado aqui não fala de ontem, ele marca que aquilo é imaginação. É o mesmo truque do nosso 'se eu tivesse'.",
-     ex:[["If I had more time, I would study.","Se eu tivesse mais tempo, eu estudaria."],["If we had a bigger budget, we would hire.","Se tivéssemos mais orçamento, contrataríamos."],["What would you do?","O que você faria?"]]},
-  d:[["If I ___ more time, I would study.",["had","have"],0,"Se eu tivesse mais tempo, eu estudaria."],["If we had a budget, we ___ hire.",["would","will"],0,"Se tivéssemos orçamento, contrataríamos."],["Can you give us a ___?",["discount","budget"],0,"Você pode nos dar um desconto?"],["It is over our ___.",["budget","offer"],0,"Está acima do nosso orçamento."]],
-  p:{pt:"Escreva em inglês: Se vocês nos derem um desconto, nós aprovaremos a proposta hoje.",en:"If you give us a discount, we will approve the offer today."}},
+  p:{pt:"Escreva em ingles: Se nos terminarmos hoje, eu entro em contato com o cliente amanha.",en:"If we finish today, I will reach out to the client tomorrow."}},
+ {t:"Negociacao",
+  v:[["offer","oferta","We made a good offer.","Nos fizemos uma boa oferta."],["discount","desconto","Can you give a discount?","Voce pode dar um desconto?"],["budget","orcamento","It is over our budget.","Esta acima do nosso orcamento."],["quote","cotacao / orcamento","Send me a quote, please.","Me envie uma cotacao, por favor."],["to approve","aprovar","The manager approved it.","O gerente aprovou."],["to deliver","entregar","We deliver on Friday.","Nos entregamos na sexta."]],
+  g:{t:"Segundo condicional (IF + passado, WOULD)",e:"Para hipotese, situacao imaginada: If I had more time, I would study. Perceba a troca de degrau: o passado aqui nao fala de ontem, ele marca que aquilo e imaginacao. E o mesmo truque do nosso 'se eu tivesse'.",
+     ex:[["If I had more time, I would study.","Se eu tivesse mais tempo, eu estudaria."],["If we had a bigger budget, we would hire.","Se tivessemos mais orcamento, contratariamos."],["What would you do?","O que voce faria?"]]},
+  d:[["If I ___ more time, I would study.",["had","have"],0,"Se eu tivesse mais tempo, eu estudaria."],["If we had a budget, we ___ hire.",["would","will"],0,"Se tivessemos orcamento, contratariamos."],["Can you give us a ___?",["discount","budget"],0,"Voce pode nos dar um desconto?"],["It is over our ___.",["budget","offer"],0,"Esta acima do nosso orcamento."]],
+  p:{pt:"Escreva em ingles: Se voces nos derem um desconto, nos aprovaremos a proposta hoje.",en:"If you give us a discount, we will approve the offer today."}},
  {t:"Conectar ideias",
-  v:[["actually","na verdade","Actually, it is cheaper.","Na verdade, é mais barato."],["however","no entanto","However, we need time.","No entanto, precisamos de mais tempo."],["therefore","portanto","Therefore, we decided to wait.","Portanto, decidimos esperar."],["although","embora","Although it is late, let's start.","Embora seja tarde, vamos começar."],["in fact","de fato","In fact, sales went up.","De fato, as vendas subiram."],["at least","pelo menos","At least we finished on time.","Pelo menos terminamos no prazo."]],
-  g:{t:"Ordem da frase em inglês",e:"O inglês é rígido: Sujeito + Verbo + Objeto, e o sujeito nunca some. Em português dizemos 'está chovendo' sem sujeito; em inglês tem que ter: IT is raining. Advérbios de frequência ficam antes do verbo (I always work) mas depois do to be (I am always late).",
-     ex:[["It is raining.","Está chovendo."],["I always arrive early.","Eu sempre chego cedo."],["She is always busy.","Ela está sempre ocupada."]]},
-  d:[["___ is raining today.",["It","Is"],0,"Está chovendo hoje."],["I ___ arrive early.",["always","am always"],0,"Eu sempre chego cedo."],["She ___ busy on Mondays.",["is always","always is"],0,"Ela está sempre ocupada nas segundas."],["___, we need more time.",["However","Although"],0,"No entanto, precisamos de mais tempo."]],
-  p:{pt:"Escreva em inglês: Na verdade, o preço é bom. No entanto, nós precisamos de mais tempo.",en:"Actually, the price is good. However, we need more time."}}
+  v:[["actually","na verdade","Actually, it is cheaper.","Na verdade, e mais barato."],["however","no entanto","However, we need time.","No entanto, precisamos de tempo."],["therefore","portanto","Therefore, we decided to wait.","Portanto, decidimos esperar."],["although","embora","Although it is late, let's start.","Embora seja tarde, vamos comecar."],["in fact","de fato","In fact, sales went up.","De fato, as vendas subiram."],["at least","pelo menos","At least we finished on time.","Pelo menos terminamos no prazo."]],
+  g:{t:"Ordem da frase em ingles",e:"O ingles e rigido: Sujeito + Verbo + Objeto, e o sujeito nunca some. Em portugues dizemos 'esta chovendo' sem sujeito; em ingles tem que ter: IT is raining. Adverbios de frequencia ficam antes do verbo (I always work) mas depois do to be (I am always late).",
+     ex:[["It is raining.","Esta chovendo."],["I always arrive early.","Eu sempre chego cedo."],["She is always busy.","Ela esta sempre ocupada."]]},
+  d:[["___ is raining today.",["It","Is"],0,"Esta chovendo hoje."],["I ___ arrive early.",["always","am always"],0,"Eu sempre chego cedo."],["She ___ busy on Mondays.",["is always","always is"],0,"Ela esta sempre ocupada nas segundas."],["___, we need more time.",["However","Although"],0,"No entanto, precisamos de mais tempo."]],
+  p:{pt:"Escreva em ingles: Na verdade, o preco e bom. No entanto, nos precisamos de mais tempo.",en:"Actually, the price is good. However, we need more time."}}
 ]}
 ];
+</script>
+</body>
+</html>
 
-/* ============================================================
-   ESTADO, MEMÓRIA, UTILIDADES, FSRS, TUTOR (mantidos da v3)
-   Vou colar a parte funcional completa aqui embaixo.
-   ============================================================ */
+<script>
+/* ESTADO E MEMORIA */
 const CHAVE='ingles30:progresso';
 const CHAVE_IA='ingles30:credencial';
 const CHAVE_SOM='ingles30:som';
@@ -555,17 +497,13 @@ const MEM={};
 const Guarda={
   onde:'memoria',
   async ler(k){
-    if(typeof window.storage!=='undefined'){
-      try{const r=await window.storage.get(k);this.onde='claude';return r&&r.value?r.value:null;}catch(e){}
-    }
+    if(typeof window.storage!=='undefined'){try{const r=await window.storage.get(k);this.onde='claude';return r&&r.value?r.value:null;}catch(e){}}
     try{const v=localStorage.getItem(k);this.onde='navegador';return v;}catch(e){}
     return MEM[k]||null;
   },
   async gravar(k,v){
     MEM[k]=v;
-    if(typeof window.storage!=='undefined'){
-      try{await window.storage.set(k,v);return true;}catch(e){return false;}
-    }
+    if(typeof window.storage!=='undefined'){try{await window.storage.set(k,v);return true;}catch(e){return false;}}
     try{localStorage.setItem(k,v);return true;}catch(e){}
     return false;
   }
@@ -579,18 +517,9 @@ async function carregar(){
   const som=await Guarda.ler(CHAVE_SOM);
   if(som){try{configSom=Object.assign(configSom,JSON.parse(som));}catch(e){}}
 }
-function migrar(p){
-  if(!p||typeof p!=='object')return p;
-  if(p.v===2)return p;
-  return Object.assign({},p,{v:2,conquistas:p.conquistas||[],streakFreeze:p.streakFreeze||0});
-}
-function salvar(){
-  clearTimeout(salvando);
-  salvando=setTimeout(()=>Guarda.gravar(CHAVE,JSON.stringify(E)),400);
-}
-function salvarSom(){
-  Guarda.gravar(CHAVE_SOM,JSON.stringify(configSom));
-}
+function migrar(p){if(!p||typeof p!=='object')return p;if(p.v===2)return p;return Object.assign({},p,{v:2,conquistas:p.conquistas||[],streakFreeze:p.streakFreeze||0});}
+function salvar(){clearTimeout(salvando);salvando=setTimeout(()=>Guarda.gravar(CHAVE,JSON.stringify(E)),400);}
+function salvarSom(){Guarda.gravar(CHAVE_SOM,JSON.stringify(configSom));}
 function temIA(){return !!IA.chave||typeof window.storage!=='undefined';}
 
 const $=s=>document.querySelector(s);
@@ -598,739 +527,165 @@ const hoje=()=>new Date().toISOString().slice(0,10);
 const embaralhar=a=>a.map(x=>[Math.random(),x]).sort((p,q)=>p[0]-q[0]).map(x=>x[1]);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const norm=s=>String(s).toLowerCase().replace(/[.,!?;:'"()]/g,'').replace(/\s+/g,' ').trim();
-function dist(a,b){
-  const m=[];for(let i=0;i<=b.length;i++){m[i]=[i];for(let j=0;j<=a.length;j++){if(i===0)m[0][j]=j;
-  else m[i][j]=b[i-1]===a[j-1]?m[i-1][j-1]:Math.min(m[i-1][j-1]+1,m[i][j-1]+1,m[i-1][j]+1);}}
-  return m[b.length][a.length];
-}
+function dist(a,b){const m=[];for(let i=0;i<=b.length;i++){m[i]=[i];for(let j=0;j<=a.length;j++){if(i===0)m[0][j]=j;else m[i][j]=b[i-1]===a[j-1]?m[i-1][j-1]:Math.min(m[i-1][j-1]+1,m[i][j-1]+1,m[i-1][j]+1);}}return m[b.length][a.length];}
 function nivelObj(n){return CURSO[Math.min(n,CURSO.length)-1];}
 function unidadeAtual(){return nivelObj(E.nivel).u[Math.min(E.unidade,2)];}
 function segundaDaSemana(d){const x=new Date(d);const dia=(x.getDay()+6)%7;x.setDate(x.getDate()-dia);return x.toISOString().slice(0,10);}
 
-/* Voz */
-function vozesEN(){
-  if(!('speechSynthesis' in window))return [];
-  return speechSynthesis.getVoices().filter(v=>v.lang&&/^en/i.test(v.lang));
-}
-function notaVoz(v){
-  const n=(v.name||'')+' '+(v.voiceURI||'');let p=0;
-  if(/natural|neural|premium|enhanced|online/i.test(n))p+=6;
-  if(/google/i.test(n))p+=4;
-  if(/samantha|ava|siri|aria|jenny|allison|nicky/i.test(n))p+=3;
-  if(/^en-US/i.test(v.lang))p+=2;else if(/^en-GB/i.test(v.lang))p+=1;
-  if(/compact|espeak|david|zira|mark/i.test(n))p-=3;
-  return p;
-}
-function melhorVoz(){
-  const vs=vozesEN();if(!vs.length)return null;
-  if(E.voz){const m=vs.find(v=>v.voiceURI===E.voz);if(m)return m;}
-  return vs.slice().sort((a,b)=>notaVoz(b)-notaVoz(a))[0];
-}
+function vozesEN(){if(!('speechSynthesis' in window))return [];return speechSynthesis.getVoices().filter(v=>v.lang&&/^en/i.test(v.lang));}
+function notaVoz(v){const n=(v.name||'')+' '+(v.voiceURI||'');let p=0;if(/natural|neural|premium|enhanced|online/i.test(n))p+=6;if(/google/i.test(n))p+=4;if(/samantha|ava|siri|aria|jenny|allison|nicky/i.test(n))p+=3;if(/^en-US/i.test(v.lang))p+=2;else if(/^en-GB/i.test(v.lang))p+=1;if(/compact|espeak|david|zira|mark/i.test(n))p-=3;return p;}
+function melhorVoz(){const vs=vozesEN();if(!vs.length)return null;if(E.voz){const m=vs.find(v=>v.voiceURI===E.voz);if(m)return m;}return vs.slice().sort((a,b)=>notaVoz(b)-notaVoz(a))[0];}
 let filaVoz=null;
-function falar(txt,taxa){
-  initAudio();
-  if(!('speechSynthesis' in window))return;
-  clearTimeout(filaVoz);
-  speechSynthesis.cancel();
-  filaVoz=setTimeout(()=>{
-    const u=new SpeechSynthesisUtterance(String(txt).replace(/\s+/g,' ').trim());
-    const v=melhorVoz();
-    if(v){u.voice=v;u.lang=v.lang;}else{u.lang='en-US';}
-    u.rate=taxa||E.vel||0.95;
-    speechSynthesis.speak(u);
-  },60);
-}
+function falar(txt,taxa){initAudio();if(!('speechSynthesis' in window))return;clearTimeout(filaVoz);speechSynthesis.cancel();filaVoz=setTimeout(()=>{const u=new SpeechSynthesisUtterance(String(txt).replace(/\s+/g,' ').trim());const v=melhorVoz();if(v){u.voice=v;u.lang=v.lang;}else{u.lang='en-US';}u.rate=taxa||E.vel||0.95;speechSynthesis.speak(u);},60);}
 if('speechSynthesis' in window){speechSynthesis.getVoices();setTimeout(()=>speechSynthesis.getVoices(),300);}
 
-/* FSRS */
 function novoItem(){return {reps:0,lapsos:0,estabilidade:1,dificuldade:5,intervalo:1,due:Date.now()};}
-function agendar(it,acertou){
-  it.reps++;
-  if(!acertou){it.lapsos++;it.estabilidade=Math.max(.5,it.estabilidade*.5);it.intervalo=1;}
-  else{it.dificuldade=Math.max(1,it.dificuldade-.1);it.estabilidade*=1+(10-it.dificuldade)/20;it.intervalo=Math.max(1,Math.round(it.estabilidade));}
-  it.due=Date.now()+it.intervalo*864e5;
-  return it;
-}
-function registrar(chave,acertou){
-  let it=E.itens[chave];if(!it)it=novoItem();
-  E.itens[chave]=agendar(it,!!acertou);
-  salvar();
-}
-function devidos(){
-  const agora=Date.now();
-  return Object.keys(E.itens).filter(k=>E.itens[k].due<=agora).sort((a,b)=>E.itens[a].due-E.itens[b].due);
-}
+function agendar(it,acertou){it.reps++;if(!acertou){it.lapsos++;it.estabilidade=Math.max(.5,it.estabilidade*.5);it.intervalo=1;}else{it.dificuldade=Math.max(1,it.dificuldade-.1);it.estabilidade*=1+(10-it.dificuldade)/20;it.intervalo=Math.max(1,Math.round(it.estabilidade));}it.due=Date.now()+it.intervalo*864e5;return it;}
+function registrar(chave,acertou){let it=E.itens[chave];if(!it)it=novoItem();E.itens[chave]=agendar(it,!!acertou);salvar();}
+function devidos(){const agora=Date.now();return Object.keys(E.itens).filter(k=>E.itens[k].due<=agora).sort((a,b)=>E.itens[a].due-E.itens[b].due);}
 function palavrasAprendidas(){return Object.values(E.itens).filter(it=>it.reps>=3&&it.lapsos<it.reps/2).length;}
-function taxaAcerto(){
-  const t=Object.values(E.itens);if(!t.length)return 0;
-  const tot=t.reduce((a,it)=>a+it.reps,0),err=t.reduce((a,it)=>a+it.lapsos,0);
-  return tot?Math.round((1-err/tot)*100):0;
-}
-function itemPorChave(k){
-  const p=k.split('.');const niv=CURSO[+p[0]-1];if(!niv)return null;
-  const un=niv.u[+p[1]];if(!un)return null;
-  if(p[2][0]==='g'){const d=un.d[+p[2].slice(1)];return d?{tipo:'g',d,un,niv}:null;}
-  const v=un.v[+p[2]];return v?{tipo:'v',v,un,niv}:null;
-}
-function dominio(nivel){
-  let tot=0,bons=0;
-  CURSO[nivel-1].u.forEach((u,ui)=>u.v.forEach((v,vi)=>{
-    tot++;const it=E.itens[nivel+'.'+ui+'.'+vi];
-    if(it&&it.reps>=2&&it.lapsos<it.reps)bons++;
-  }));
-  return tot?bons/tot:0;
-}
+function taxaAcerto(){const t=Object.values(E.itens);if(!t.length)return 0;const tot=t.reduce((a,it)=>a+it.reps,0),err=t.reduce((a,it)=>a+it.lapsos,0);return tot?Math.round((1-err/tot)*100):0;}
+function itemPorChave(k){const p=k.split('.');const niv=CURSO[+p[0]-1];if(!niv)return null;const un=niv.u[+p[1]];if(!un)return null;if(p[2][0]==='g'){const d=un.d[+p[2].slice(1)];return d?{tipo:'g',d,un,niv}:null;}const v=un.v[+p[2]];return v?{tipo:'v',v,un,niv}:null;}
+function dominio(nivel){let tot=0,bons=0;CURSO[nivel-1].u.forEach((u,ui)=>u.v.forEach((v,vi)=>{tot++;const it=E.itens[nivel+'.'+ui+'.'+vi];if(it&&it.reps>=2&&it.lapsos<it.reps)bons++;}));return tot?bons/tot:0;}
 
-/* Conquistas */
 const CONQUISTAS=[
-  {id:'primeiro',nome:'Primeiro passo',ico:'🌱',cond:()=>E.sessoes.length>=1},
-  {id:'semana',nome:'5 dias',ico:'🔥',cond:()=>E.streak>=5},
-  {id:'quinzena',nome:'14 dias',ico:'⚡',cond:()=>E.streak>=14},
-  {id:'mes',nome:'30 dias',ico:'🏆',cond:()=>E.streak>=30},
-  {id:'xp100',nome:'100 XP',ico:'💯',cond:()=>E.xp>=100},
-  {id:'xp500',nome:'500 XP',ico:'⭐',cond:()=>E.xp>=500},
-  {id:'xp2000',nome:'2.000 XP',ico:'💎',cond:()=>E.xp>=2000},
-  {id:'nivel3',nome:'Nível 3',ico:'🎯',cond:()=>E.nivel>=3},
-  {id:'nivel6',nome:'Nível 6',ico:'🎓',cond:()=>E.nivel>=6},
-  {id:'nivel9',nome:'Nível 9',ico:'👑',cond:()=>E.nivel>=9},
-  {id:'carimbo',nome:'Carimbo',ico:'📮',cond:()=>Object.keys(E.carimbos).length>=1},
-  {id:'conversa',nome:'Tutor',ico:'💬',cond:()=>E.tutorHist.filter(m=>m.role==='user').length>=1}
+  {id:'primeiro',nome:'Primeiro passo',ico:'1',cond:()=>E.sessoes.length>=1},
+  {id:'semana',nome:'5 dias',ico:'5',cond:()=>E.streak>=5},
+  {id:'quinzena',nome:'14 dias',ico:'14',cond:()=>E.streak>=14},
+  {id:'mes',nome:'30 dias',ico:'30',cond:()=>E.streak>=30},
+  {id:'xp100',nome:'100 XP',ico:'100',cond:()=>E.xp>=100},
+  {id:'xp500',nome:'500 XP',ico:'500',cond:()=>E.xp>=500},
+  {id:'xp2000',nome:'2.000 XP',ico:'2k',cond:()=>E.xp>=2000},
+  {id:'nivel3',nome:'Nivel 3',ico:'N3',cond:()=>E.nivel>=3},
+  {id:'nivel6',nome:'Nivel 6',ico:'N6',cond:()=>E.nivel>=6},
+  {id:'nivel9',nome:'Nivel 9',ico:'N9',cond:()=>E.nivel>=9},
+  {id:'carimbo',nome:'Carimbo',ico:'OK',cond:()=>Object.keys(E.carimbos).length>=1},
+  {id:'conversa',nome:'Tutor',ico:'AI',cond:()=>E.tutorHist.filter(m=>m.role==='user').length>=1}
 ];
-function verificarConquistas(){
-  const antes=E.conquistas.length;
-  CONQUISTAS.forEach(c=>{
-    if(!E.conquistas.includes(c.id)&&c.cond()){
-      E.conquistas.push(c.id);
-      setTimeout(()=>{somConquista();soltarConfete();toast('🏅 '+c.nome+'!');},100);
-    }
-  });
-  if(antes!==E.conquistas.length)salvar();
-}
-function toast(msg){
-  const el=document.createElement('div');
-  el.className='toast';
-  el.setAttribute('role','status');
-  el.textContent=msg;
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),3000);
-}
+function verificarConquistas(){const antes=E.conquistas.length;CONQUISTAS.forEach(c=>{if(!E.conquistas.includes(c.id)&&c.cond()){E.conquistas.push(c.id);setTimeout(()=>{somConquista();soltarConfete();toast('Conquista: '+c.nome);},100);}});if(antes!==E.conquistas.length)salvar();}
+function toast(msg){const el=document.createElement('div');el.className='toast';el.setAttribute('role','status');el.textContent=msg;document.body.appendChild(el);setTimeout(()=>el.remove(),3000);}
 
-/* Exercícios */
-function distratores(certo,fonte,n){
-  const pool=embaralhar(fonte.filter(x=>x!==certo)).slice(0,n);
-  return embaralhar(pool.concat([certo]));
-}
+function distratores(certo,fonte,n){const pool=embaralhar(fonte.filter(x=>x!==certo)).slice(0,n);return embaralhar(pool.concat([certo]));}
 function todasTrad(){const r=[];CURSO.forEach(n=>n.u.forEach(u=>u.v.forEach(v=>r.push(v[1]))));return r;}
 function todasPal(){const r=[];CURSO.forEach(n=>n.u.forEach(u=>u.v.forEach(v=>r.push(v[0]))));return r;}
 
-function exVocab(c,v,modo){
-  if(modo==='pt2en'){
-    const ops=distratores(v[0],todasPal(),3);
-    return {t:'mc',chave:c,pergunta:v[1],rotulo:'Como se diz em inglês?',opcoes:ops,correta:ops.indexOf(v[0]),som:v[0],exemplo:v[2],exemploPt:v[3]};
-  }
-  if(modo==='en2pt'){
-    const ops=distratores(v[1],todasTrad(),3);
-    return {t:'mc',chave:c,pergunta:v[0],en:true,rotulo:'O que significa?',opcoes:ops,correta:ops.indexOf(v[1]),som:v[0],exemplo:v[2],exemploPt:v[3]};
-  }
-  return {t:'digitar',chave:c,pergunta:v[1],rotulo:'Escreva em inglês',resposta:v[0],som:v[0],exemplo:v[2],exemploPt:v[3]};
-}
-function exOuvir(c,v){
-  const ops=distratores(v[1],todasTrad(),3);
-  return {t:'ouvir',chave:c,frase:v[2],fraseTrad:v[3],rotulo:'Ouça e escolha',opcoes:ops,correta:ops.indexOf(v[1]),som:v[2],dica:v[0]};
-}
+function exVocab(c,v,modo){if(modo==='pt2en'){const ops=distratores(v[0],todasPal(),3);return {t:'mc',chave:c,pergunta:v[1],rotulo:'Como se diz em ingles?',opcoes:ops,correta:ops.indexOf(v[0]),som:v[0],exemplo:v[2],exemploPt:v[3]};}if(modo==='en2pt'){const ops=distratores(v[1],todasTrad(),3);return {t:'mc',chave:c,pergunta:v[0],en:true,rotulo:'O que significa?',opcoes:ops,correta:ops.indexOf(v[1]),som:v[0],exemplo:v[2],exemploPt:v[3]};}return {t:'digitar',chave:c,pergunta:v[1],rotulo:'Escreva em ingles',resposta:v[0],som:v[0],exemplo:v[2],exemploPt:v[3]};}
+function exOuvir(c,v){const ops=distratores(v[1],todasTrad(),3);return {t:'ouvir',chave:c,frase:v[2],fraseTrad:v[3],rotulo:'Ouca e escolha',opcoes:ops,correta:ops.indexOf(v[1]),som:v[2],dica:v[0]};}
 function exGram(c,d){return {t:'mc',chave:c,pergunta:d[0],en:true,rotulo:'Complete a frase',opcoes:d[1].slice(),correta:d[2],traducao:d[3],som:d[0].replace('___',d[1][d[2]])};}
 function exOrd(c,f,t){return {t:'ordenar',chave:c,frase:f,traducao:t,rotulo:'Monte a frase',som:f};}
 
-/* Sessão */
 let S=null;
-function exRevisao(max){
-  const dv=devidos().slice(0,max),out=[];
-  dv.forEach(k=>{const it=itemPorChave(k);if(!it)return;
-    if(it.tipo==='v')out.push(exVocab(k,it.v,Math.random()<.5?'pt2en':'en2pt'));
-    else out.push(exGram(k,it.d));
-  });
-  return out;
-}
-function montarSessao(){
-  const niv=E.nivel,ui=Math.min(E.unidade,2),un=nivelObj(niv).u[ui];
-  const cv=i=>niv+'.'+ui+'.'+i,cg=i=>niv+'.'+ui+'.g'+i;
-  let rev=exRevisao(8);
-  if(rev.length<4){
-    const extras=[];
-    nivelObj(niv).u.forEach((u,x)=>{if(x<ui)u.v.forEach((v,i)=>extras.push(exVocab(niv+'.'+x+'.'+i,v,'en2pt')));});
-    rev=rev.concat(embaralhar(extras).slice(0,4-rev.length));
-  }
-  const vocab=[];
-  un.v.forEach((v,i)=>vocab.push({t:'ensinar',chave:cv(i),v}));
-  un.v.forEach((v,i)=>vocab.push(exVocab(cv(i),v,'pt2en')));
-  embaralhar(un.v.map((v,i)=>[v,i])).slice(0,4).forEach(p=>vocab.push(exVocab(cv(p[1]),p[0],'en2pt')));
-  embaralhar(un.v.map((v,i)=>[v,i])).slice(0,3).forEach(p=>vocab.push(exVocab(cv(p[1]),p[0],'digitar')));
-  const gram=[{t:'regra',g:un.g}];
-  un.d.forEach((d,i)=>gram.push(exGram(cg(i),d)));
-  un.g.ex.slice(0,2).forEach((e,i)=>gram.push(exOrd(cg(i),e[0],e[1])));
-  const esc=embaralhar(un.v.map((v,i)=>[v,i])).slice(0,4).map(p=>exOuvir(cv(p[1]),p[0]));
-  const prod=[{t:'escrever',pt:un.p.pt,en:un.p.en,chave:niv+'.'+ui+'.p'}];
-  S={niv,ui,inicio:Date.now(),acertos:0,total:0,xp:0,
-     blocos:[
-      {nome:'Aquecimento',min:5,ex:rev.length?rev:[{t:'aviso',txt:'Primeira sessão — nada pra revisar.'}]},
-      {nome:'Vocabulário',min:8,ex:vocab},{nome:'Gramática',min:7,ex:gram},
-      {nome:'Escuta',min:5,ex:esc},{nome:'Produção',min:5,ex:prod}
-     ],b:0,i:0,resposta:null};
-}
+function exRevisao(max){const dv=devidos().slice(0,max),out=[];dv.forEach(k=>{const it=itemPorChave(k);if(!it)return;if(it.tipo==='v')out.push(exVocab(k,it.v,Math.random()<.5?'pt2en':'en2pt'));else out.push(exGram(k,it.d));});return out;}
+function montarSessao(){const niv=E.nivel,ui=Math.min(E.unidade,2),un=nivelObj(niv).u[ui];const cv=i=>niv+'.'+ui+'.'+i,cg=i=>niv+'.'+ui+'.g'+i;let rev=exRevisao(8);if(rev.length<4){const extras=[];nivelObj(niv).u.forEach((u,x)=>{if(x<ui)u.v.forEach((v,i)=>extras.push(exVocab(niv+'.'+x+'.'+i,v,'en2pt')));});rev=rev.concat(embaralhar(extras).slice(0,4-rev.length));}
+const vocab=[];un.v.forEach((v,i)=>vocab.push({t:'ensinar',chave:cv(i),v}));un.v.forEach((v,i)=>vocab.push(exVocab(cv(i),v,'pt2en')));embaralhar(un.v.map((v,i)=>[v,i])).slice(0,4).forEach(p=>vocab.push(exVocab(cv(p[1]),p[0],'en2pt')));embaralhar(un.v.map((v,i)=>[v,i])).slice(0,3).forEach(p=>vocab.push(exVocab(cv(p[1]),p[0],'digitar')));
+const gram=[{t:'regra',g:un.g}];un.d.forEach((d,i)=>gram.push(exGram(cg(i),d)));un.g.ex.slice(0,2).forEach((e,i)=>gram.push(exOrd(cg(i),e[0],e[1])));
+const esc=embaralhar(un.v.map((v,i)=>[v,i])).slice(0,4).map(p=>exOuvir(cv(p[1]),p[0]));
+const prod=[{t:'escrever',pt:un.p.pt,en:un.p.en,chave:niv+'.'+ui+'.p'}];
+S={niv,ui,inicio:Date.now(),acertos:0,total:0,xp:0,blocos:[{nome:'Aquecimento',min:5,ex:rev.length?rev:[{t:'aviso',txt:'Primeira sessao - nada para revisar.'}]},{nome:'Vocabulario',min:8,ex:vocab},{nome:'Gramatica',min:7,ex:gram},{nome:'Escuta',min:5,ex:esc},{nome:'Producao',min:5,ex:prod}],b:0,i:0,resposta:null};}
 function exAtual(){return S.blocos[S.b].ex[S.i];}
-function avancar(){
-  S.i++;
-  if(S.i>=S.blocos[S.b].ex.length){S.b++;S.i=0;}
-  if(S.b>=S.blocos.length){
-    if(S.prova)finalizarProva();
-    else if(S.revisao)finalizarRevisao();
-    else finalizarSessao();
-    return;
-  }
-  S.resposta=null;render();
-}
+function avancar(){S.i++;if(S.i>=S.blocos[S.b].ex.length){S.b++;S.i=0;}if(S.b>=S.blocos.length){if(S.prova)finalizarProva();else if(S.revisao)finalizarRevisao();else finalizarSessao();return;}S.resposta=null;render();}
 function pontuar(ok,chave){S.total++;if(ok){S.acertos++;S.xp+=10;E.xp+=10;}if(chave)registrar(chave,ok);salvar();}
 
-function finalizarSessao(){
-  const min=Math.round((Date.now()-S.inicio)/60000);
-  const prec=S.total?S.acertos/S.total:0;
-  E.sessoes.push({d:hoje(),min,xp:S.xp,ac:S.acertos,tot:S.total,niv:S.niv,un:S.ui});
-  const ontem=new Date(Date.now()-864e5).toISOString().slice(0,10);
-  if(E.ultimoDia!==hoje()){
-    if(E.ultimoDia===ontem)E.streak++;
-    else if(E.streakFreeze>0){E.streakFreeze--;E.streak++;toast('❄️ Freeze usado');}
-    else E.streak=1;
-    E.ultimoDia=hoje();
-  }
-  let rec='';
-  if(prec>=0.7){
-    if(E.unidade<2){E.unidade++;rec='Unidade '+Math.round(prec*100)+'% ✓ Próxima liberada!';}
-    else{E.prova=true;rec='Unidades fechadas! Teste liberado 🎉';}
-  }else rec='Você fez '+Math.round(prec*100)+'%. Repetir é normal.';
-  E.recado=rec;salvar();
-  S.fim={min,prec,recado:rec};
-  if(prec>=0.7){somNivel();setTimeout(soltarConfete,200);}
-  render();verificarConquistas();
-}
+function finalizarSessao(){const min=Math.round((Date.now()-S.inicio)/60000);const prec=S.total?S.acertos/S.total:0;E.sessoes.push({d:hoje(),min,xp:S.xp,ac:S.acertos,tot:S.total,niv:S.niv,un:S.ui});const ontem=new Date(Date.now()-864e5).toISOString().slice(0,10);if(E.ultimoDia!==hoje()){if(E.ultimoDia===ontem)E.streak++;else if(E.streakFreeze>0){E.streakFreeze--;E.streak++;toast('Freeze usado');}else E.streak=1;E.ultimoDia=hoje();}
+let rec='';if(prec>=0.7){if(E.unidade<2){E.unidade++;rec='Unidade '+Math.round(prec*100)+'%. Proxima liberada!';}else{E.prova=true;rec='Unidades fechadas! Teste liberado.';}}else rec='Voce fez '+Math.round(prec*100)+'%. Repetir e normal.';
+E.recado=rec;salvar();S.fim={min,prec,recado:rec};if(prec>=0.7){somNivel();setTimeout(soltarConfete,200);}render();verificarConquistas();}
 
-function finalizarRevisao(){
-  const min=Math.round((Date.now()-S.inicio)/60000);
-  const prec=S.total?S.acertos/S.total:0;
-  E.sessoes.push({d:hoje(),min,xp:S.xp,ac:S.acertos,tot:S.total,niv:E.nivel,un:E.unidade,rev:1});
-  const ontem=new Date(Date.now()-864e5).toISOString().slice(0,10);
-  if(E.ultimoDia!==hoje()){
-    E.streak=(E.ultimoDia===ontem)?E.streak+1:(E.streakFreeze>0?function(){E.streakFreeze--;return E.streak+1;}():1);
-    E.ultimoDia=hoje();
-  }
-  E.recado='Revisão: '+Math.round(prec*100)+'%';
-  salvar();S.fim={min,prec,recado:E.recado};render();
-}
+function finalizarRevisao(){const min=Math.round((Date.now()-S.inicio)/60000);const prec=S.total?S.acertos/S.total:0;E.sessoes.push({d:hoje(),min,xp:S.xp,ac:S.acertos,tot:S.total,niv:E.nivel,un:E.unidade,rev:1});const ontem=new Date(Date.now()-864e5).toISOString().slice(0,10);if(E.ultimoDia!==hoje()){E.streak=(E.ultimoDia===ontem)?E.streak+1:(E.streakFreeze>0?function(){E.streakFreeze--;return E.streak+1;}():1);E.ultimoDia=hoje();}E.recado='Revisao: '+Math.round(prec*100)+'%';salvar();S.fim={min,prec,recado:E.recado};render();}
 
-function montarProva(){
-  const niv=E.nivel,itens=[];
-  nivelObj(niv).u.forEach((u,ui)=>{
-    u.v.forEach((v,i)=>itens.push(exVocab(niv+'.'+ui+'.'+i,v,Math.random()<.5?'pt2en':'en2pt')));
-    u.d.forEach((d,i)=>itens.push(exGram(niv+'.'+ui+'.g'+i,d)));
-  });
-  S={prova:true,niv,inicio:Date.now(),acertos:0,total:0,xp:0,
-     blocos:[{nome:'Teste',min:12,ex:embaralhar(itens).slice(0,16)}],b:0,i:0,resposta:null};
-}
-function finalizarProva(){
-  const prec=S.total?S.acertos/S.total:0;
-  if(prec>=0.8){
-    E.carimbos[E.nivel]={d:hoje(),p:Math.round(prec*100)};E.xp+=200;
-    if(E.nivel<CURSO.length){E.nivel++;E.unidade=0;E.prova=false;E.recado='Aprovado! Nível '+E.nivel+' ✕';}
-    else{E.prova=false;E.recado='Curso completo! Parabens!';}
-    setTimeout(()=>{somNivel();soltarConfete();},100);
-  }else{
-    let pior=0,piorTaxa=2;
-    nivelObj(E.nivel).u.forEach((u,ui)=>{
-      let a=0,t=0;u.v.forEach((v,i)=>{const it=E.itens[E.nivel+'.'+ui+'.'+i];if(it){a+=it.reps;t+=it.reps+it.lapsos;}});
-      const tx=t?a/t:0;if(tx<piorTaxa){piorTaxa=tx;pior=ui;}
-    });
-    E.unidade=pior;E.prova=false;E.recado='Você fez '+Math.round(prec*100)+'%. Tente de novo.';
-  }
-  salvar();S.fim={prec,prova:true,recado:E.recado};render();verificarConquistas();
-}
+function montarProva(){const niv=E.nivel,itens=[];nivelObj(niv).u.forEach((u,ui)=>{u.v.forEach((v,i)=>itens.push(exVocab(niv+'.'+ui+'.'+i,v,Math.random()<.5?'pt2en':'en2pt')));u.d.forEach((d,i)=>itens.push(exGram(niv+'.'+ui+'.g'+i,d)));});S={prova:true,niv,inicio:Date.now(),acertos:0,total:0,xp:0,blocos:[{nome:'Teste',min:12,ex:embaralhar(itens).slice(0,16)}],b:0,i:0,resposta:null};}
+function finalizarProva(){const prec=S.total?S.acertos/S.total:0;if(prec>=0.8){E.carimbos[E.nivel]={d:hoje(),p:Math.round(prec*100)};E.xp+=200;if(E.nivel<CURSO.length){E.nivel++;E.unidade=0;E.prova=false;E.recado='Aprovado! Nivel '+E.nivel;}else{E.prova=false;E.recado='Curso completo! Parabens.';}setTimeout(()=>{somNivel();soltarConfete();},100);}else{let pior=0,piorTaxa=2;nivelObj(E.nivel).u.forEach((u,ui)=>{let a=0,t=0;u.v.forEach((v,i)=>{const it=E.itens[E.nivel+'.'+ui+'.'+i];if(it){a+=it.reps;t+=it.reps+it.lapsos;}});const tx=t?a/t:0;if(tx<piorTaxa){piorTaxa=tx;pior=ui;}});E.unidade=pior;E.prova=false;E.recado='Voce fez '+Math.round(prec*100)+'%. Tente de novo.';}salvar();S.fim={prec,prova:true,recado:E.recado};render();verificarConquistas();}
 
-/* Tutor */
-async function chamarIA(m,s){
-  const cab={"Content-Type":"application/json"};
-  let modelo="claude-sonnet-4-6";
-  if(IA.chave){
-    cab["x-api-key"]=IA.chave;cab["anthropic-version"]="2023-06-01";
-    cab["anthropic-dangerous-direct-browser-access"]="true";
-    modelo=IA.modelo||"claude-sonnet-5";
-  }else if(typeof window.storage==='undefined')throw new Error("sem-credencial");
-  const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:cab,body:JSON.stringify({model:modelo,max_tokens:1000,system:s,messages:m})});
-  if(!r.ok){const t=await r.text();throw new Error(t.slice(0,200));}
-  const d=await r.json();return d.content.filter(c=>c.type==="text").map(c=>c.text).join("\n").trim();
-}
-function sistemaTutor(){
-  const niv=nivelObj(E.nivel),un=unidadeAtual();
-  return "Tutor de inglês do Victor, brasileiro, nível "+E.nivel+" de 9 (tema: "+niv.nome+" — '"+un.t+"'). Converse EM INGLÊS bem simples. Responda no formato:\nEN: <resposta em inglês, máx 2 frases, terminando com pergunta>\nPT: <tradução>\nSe houver erro de inglês, comece PT com [correção: '...' → '...']";
-}
-async function enviarTutor(){
-  const cx=$('#tutorTexto');const txt=cx.value.trim();if(!txt)return;
-  initAudio();
-  E.tutorHist.push({role:"user",content:txt});cx.value='';salvar();
-  tutorPensando=true;render();
-  try{
-    const resp=await chamarIA(E.tutorHist.slice(-16),sistemaTutor());
-    E.tutorHist.push({role:"assistant",content:resp});
-  }catch(e){
-    E.tutorHist.push({role:"assistant",content:"EN: (offline)\nPT: "+(String(e.message||'').indexOf('sem-credencial')>-1?'Falta a chave da API.':'Tutor offline.')});
-  }
-  if(E.tutorHist.length>40)E.tutorHist=E.tutorHist.slice(-40);
-  tutorPensando=false;salvar();render();verificarConquistas();
-  setTimeout(()=>{const c=$('#fimConversa');if(c)c.scrollIntoView({block:'end'});},60);
-}
+async function chamarIA(m,s){const cab={"Content-Type":"application/json"};let modelo="claude-sonnet-4-6";if(IA.chave){cab["x-api-key"]=IA.chave;cab["anthropic-version"]="2023-06-01";cab["anthropic-dangerous-direct-browser-access"]="true";modelo=IA.modelo||"claude-sonnet-5";}else if(typeof window.storage==='undefined')throw new Error("sem-credencial");const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:cab,body:JSON.stringify({model:modelo,max_tokens:1000,system:s,messages:m})});if(!r.ok){const t=await r.text();throw new Error(t.slice(0,200));}const d=await r.json();return d.content.filter(c=>c.type==="text").map(c=>c.text).join("\n").trim();}
+function sistemaTutor(){const niv=nivelObj(E.nivel),un=unidadeAtual();return "Tutor de ingles do Victor, brasileiro, nivel "+E.nivel+" de 9 (tema: "+niv.nome+" - '"+un.t+"'). Converse EM INGLES bem simples. Responda no formato:\nEN: <resposta em ingles, max 2 frases, terminando com pergunta>\nPT: <traducao>\nSe houver erro de ingles, comece PT com [correcao: '...' -> '...']";}
+async function enviarTutor(){const cx=$('#tutorTexto');const txt=cx.value.trim();if(!txt)return;initAudio();E.tutorHist.push({role:"user",content:txt});cx.value='';salvar();tutorPensando=true;render();try{const resp=await chamarIA(E.tutorHist.slice(-16),sistemaTutor());E.tutorHist.push({role:"assistant",content:resp});}catch(e){E.tutorHist.push({role:"assistant",content:"EN: (offline)\nPT: "+(String(e.message||'').indexOf('sem-credencial')>-1?'Falta a chave da API.':'Tutor offline.')});}if(E.tutorHist.length>40)E.tutorHist=E.tutorHist.slice(-40);tutorPensando=false;salvar();render();verificarConquistas();setTimeout(()=>{const c=$('#fimConversa');if(c)c.scrollIntoView({block:'end'});},60);}
 let tutorPensando=false;
+async function corrigirComTutor(pt,en,minha){const cx=$('#retornoIA');if(cx)cx.innerHTML='<span class="escrevendo">Conferindo...</span>';try{const r=await chamarIA([{role:"user",content:"Pedido: "+pt+"\nEsperado: "+en+"\nAluno: "+minha+"\n\nCorrija em portugues, max 3 linhas."}],"Professor corrigindo aluno iniciante.");if(cx)cx.innerHTML='<div class="retorno ok"><span class="t">Tutor</span>'+esc(r).replace(/\n/g,'<br>')+'</div>';}catch(e){if(cx)cx.innerHTML='<div class="retorno nao">Tutor offline.</div>';}}
 
-async function corrigirComTutor(pt,en,minha){
-  const cx=$('#retornoIA');if(cx)cx.innerHTML='<span class="escrevendo">Conferindo…</span>';
-  try{
-    const r=await chamarIA([{role:"user",content:"Pedido: "+pt+"\nEsperado: "+en+"\nAluno: "+minha+"\n\nCorrija em português, máx 3 linhas."}],
-      "Professor corrigindo aluno iniciante.");
-    if(cx)cx.innerHTML='<div class="retorno ok"><span class="t">Tutor</span>'+esc(r).replace(/\n/g,'<br>')+'</div>';
-  }catch(e){if(cx)cx.innerHTML='<div class="retorno nao">Tutor offline.</div>';}
-}
+function renderTopo(){const niv=nivelObj(E.nivel);$('#topo').innerHTML='<div class="selo-nivel"><span class="n">'+E.nivel+'</span><span class="l">NIVEL</span></div><div class="topo-info"><div class="nome">'+esc(niv.nome)+'</div><div class="metricas"><span>XP <b>'+E.xp+'</b></span><span>Streak <b>'+E.streak+'d</b>'+(E.streakFreeze?' [freeze '+E.streakFreeze+']':'')+'</span><span>Rev <b>'+devidos().length+'</b></span></div></div>';}
+function renderNav(){const abas=[{id:'painel',ic:'[]',tx:'Painel'},{id:'sessao',ic:'>',tx:'Sessao'},{id:'passaporte',ic:'*',tx:'Mapa'},{id:'tutor',ic:'@',tx:'Tutor'}];$('#nav').innerHTML=abas.map(a=>'<button class="'+(tela===a.id?'ativo '+a.id:'')+'" onclick="ir(\''+a.id+'\')"><span class="ic">'+a.ic+'</span><span class="tx">'+a.tx+'</span></button>').join('');}
+function ir(t){initAudio();if(tela==='sessao'&&S&&!S.fim&&t!=='sessao'){if(!window.confirm('Sair? Progresso salvo.'))return;}tela=t;if(t!=='sessao'&&S&&S.fim)S=null;window.scrollTo(0,0);render();}
 
-/* Interface */
-function renderTopo(){
-  const niv=nivelObj(E.nivel);
-  $('#topo').innerHTML=
-   '<div class="selo-nivel"><span class="n">'+E.nivel+'</span><span class="l">NÍVEL</span></div>'+
-   '<div class="topo-info"><div class="nome">'+esc(niv.nome)+'</div>'+
-   '<div class="metricas"><span>XP <b>'+E.xp+'</b></span><span>🔥 <b>'+E.streak+'d</b>'+(E.streakFreeze?' ❄️'+E.streakFreeze:'')+'</span><span>📝 <b>'+devidos().length+'</b></span></div></div>';
-}
-function renderNav(){
-  const abas=[
-    {id:'painel',ic:'◆',tx:'Painel',cor:'azul'},
-    {id:'sessao',ic:'▶',tx:'Sessão',cor:'roxo'},
-    {id:'passaporte',ic:'✦',tx:'Mapa',cor:'verde'},
-    {id:'tutor',ic:'✉',tx:'Tutor',cor:'laranja'}
-  ];
-  $('#nav').innerHTML=abas.map(a=>
-    '<button class="'+(tela===a.id?'ativo '+a.id:'')+'" onclick="ir(\''+a.id+'\')">'+
-    '<span class="ic">'+a.ic+'</span><span class="tx">'+a.tx+'</span></button>'
-  ).join('');
-}
-function ir(t){
-  initAudio();
-  if(tela==='sessao'&&S&&!S.fim&&t!=='sessao'){if(!window.confirm('Sair? Progresso salvo.'))return;}
-  tela=t;if(t!=='sessao'&&S&&S.fim)S=null;window.scrollTo(0,0);render();
-}
-
-function telaPainel(){
-  const niv=nivelObj(E.nivel),un=unidadeAtual();
-  const seg=segundaDaSemana(new Date());
-  const feitos=[...new Set(E.sessoes.filter(s=>s.d>=seg).map(s=>s.d))];
-  const dv=devidos().length;
-  let h='';
-
-  if(E.recado)h+='<div class="carta destaque"><div class="rotulo">📣 Recado</div><div style="margin-top:8px;font-size:14.5px;line-height:1.5">'+esc(E.recado)+'</div><button class="btn secundario pequeno" style="margin-top:10px" onclick="limparRecado()">Beleza</button></div>';
-
-  h+='<div class="carta destaque"><div class="carta-topo"><div>'+
-     '<div class="rotulo" style="color:var(--roxo2)">'+(E.prova?'🎯 Prova liberada':'⭐ Próxima sessão · 30 min')+'</div>'+
-     '<h2 style="margin-top:8px">'+esc(E.prova?('Teste nível '+E.nivel):un.t)+'</h2>'+
-     '<div class="pt" style="margin-top:6px">'+esc(E.prova?'16 questões · 80% pra passar':'Nível '+E.nivel+' · U'+(E.unidade+1)+' de 3 · '+un.g.t)+'</div>'+
-     '</div></div>'+
-     '<button class="btn '+(E.prova?'laranja':'verde')+'" onclick="'+(E.prova?'comecarProva()':'comecarSessao()')+'">'+(E.prova?'✕ Fazer o teste':'🚀 Começar sessão')+'</button></div>';
-
-  h+='<div class="carta"><div class="carta-topo"><div class="rotulo">📅 Semana · meta 5 sessões</div><span class="dado">'+feitos.length+'/5</span></div>'+
-     '<div class="semana">'+[0,1,2,3,4].map(i=>{
-       const f=i<feitos.length;
-       return '<div class="dia '+(f?'feito':'')+(i===feitos.length?' hoje':'')+'">'+(f?'✓':(i+1))+'</div>';
-     }).join('')+'</div></div>';
-
-  h+='<div class="carta"><div class="carta-topo"><div><div class="rotulo">📝 Revisão</div>'+
-     '<h3 style="margin-top:6px">'+dv+' '+(dv===1?'item':'itens')+'</h3>'+
-     '<div class="pt" style="margin-top:4px">O que errou volta logo. O que acertou espaça.</div></div></div>'+
-     (dv?'<button class="btn secundario" onclick="comecarRevisao()">🔁 Só revisar (10 min)</button>':'')+'</div>';
-
-  const prog=(E.unidade/3)*100,dom=Math.round(dominio(E.nivel)*100);
-  h+='<div class="carta"><div class="rotulo">📈 Nível '+E.nivel+'</div>'+
-     '<div style="margin:12px 0 8px"><div class="barra"><i style="width:'+prog+'%"></i></div></div>'+
-     '<div class="pt">'+E.unidade+'/3 unidades · '+dom+'% dominado</div></div>';
-
-  const ap=palavrasAprendidas(),tx=taxaAcerto();
-  const todos=Object.values(E.itens);
-  const firme=todos.filter(it=>it.reps>=3&&it.lapsos<=it.reps/3).length;
-  const inst=todos.filter(it=>it.reps>=3&&it.lapsos>it.reps/3).length;
-  h+='<div class="carta"><div class="rotulo">🧠 Cérebro</div>'+
-    '<div class="stats">'+
-      '<div class="stat verde"><div class="v">'+ap+'</div><div class="l">firmes</div></div>'+
-      '<div class="stat azul"><div class="v">'+tx+'%</div><div class="l">acerto</div></div>'+
-      '<div class="stat rosa"><div class="v">'+firme+'</div><div class="l">fixas</div></div>'+
-      '<div class="stat"><div class="v">'+inst+'</div><div class="l">revisar</div></div>'+
-    '</div></div>';
-
-  const conquistadas=CONQUISTAS.map(c=>({...c,tem:E.conquistas.includes(c.id)}));
-  h+='<div class="carta"><div class="carta-topo"><div class="rotulo">🏅 Conquistas</div><span class="dado">'+E.conquistas.length+'/'+CONQUISTAS.length+'</span></div>'+
-    '<div class="grid-conquistas">'+conquistadas.map(c=>
-      '<div class="conquista '+(c.tem?'desb':'bloq')+'" title="'+esc(c.nome)+'">'+
-        '<div class="ico">'+(c.tem?c.ico:'🔒')+'</div>'+
-        '<div class="nm">'+esc(c.nome)+'</div>'+
-      </div>'
-    ).join('')+'</div></div>';
-
-  const tot=E.sessoes.length,min=E.sessoes.reduce((a,s)=>a+s.min,0);
-  h+='<div class="carta"><div class="rotulo">📊 Total</div><div style="display:flex;gap:24px;margin-top:10px">'+
-     '<div><div class="dado" style="font-size:22px;background:var(--grad-principal);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+tot+'</div><div class="rotulo">sessões</div></div>'+
-     '<div><div class="dado" style="font-size:22px">'+min+'</div><div class="rotulo">min</div></div>'+
-     '<div><div class="dado" style="font-size:22px">'+Object.keys(E.carimbos).length+'</div><div class="rotulo">carimbos</div></div>'+
-     '</div></div>';
-  return h;
-}
+function telaPainel(){const niv=nivelObj(E.nivel),un=unidadeAtual();const seg=segundaDaSemana(new Date());const feitos=[...new Set(E.sessoes.filter(s=>s.d>=seg).map(s=>s.d))];const dv=devidos().length;let h='';
+if(E.recado)h+='<div class="carta destaque"><div class="rotulo">Recado</div><div style="margin-top:8px;font-size:14.5px;line-height:1.5">'+esc(E.recado)+'</div><button class="btn secundario pequeno" style="margin-top:10px" onclick="limparRecado()">Beleza</button></div>';
+h+='<div class="carta destaque"><div class="carta-topo"><div><div class="rotulo" style="color:var(--roxo2)">'+(E.prova?'Prova liberada':'Proxima sessao - 30 min')+'</div><h2 style="margin-top:8px">'+esc(E.prova?('Teste nivel '+E.nivel):un.t)+'</h2><div class="pt" style="margin-top:6px">'+esc(E.prova?'16 questoes - 80% para passar':'Nivel '+E.nivel+' - U'+(E.unidade+1)+' de 3 - '+un.g.t)+'</div></div></div><button class="btn '+(E.prova?'laranja':'verde')+'" onclick="'+(E.prova?'comecarProva()':'comecarSessao()')+'">'+(E.prova?'Fazer o teste':'Comecar sessao')+'</button></div>';
+h+='<div class="carta"><div class="carta-topo"><div class="rotulo">Semana - meta 5 sessoes</div><span class="dado">'+feitos.length+'/5</span></div><div class="semana">'+[0,1,2,3,4].map(i=>{const f=i<feitos.length;return '<div class="dia '+(f?'feito':'')+(i===feitos.length?' hoje':'')+'">'+(f?'OK':(i+1))+'</div>';}).join('')+'</div></div>';
+h+='<div class="carta"><div class="carta-topo"><div><div class="rotulo">Revisao</div><h3 style="margin-top:6px">'+dv+' '+(dv===1?'item':'itens')+'</h3><div class="pt" style="margin-top:4px">O que errou volta logo. O que acertou espaca.</div></div></div>'+(dv?'<button class="btn secundario" onclick="comecarRevisao()">So revisar (10 min)</button>':'')+'</div>';
+const prog=(E.unidade/3)*100,dom=Math.round(dominio(E.nivel)*100);
+h+='<div class="carta"><div class="rotulo">Nivel '+E.nivel+'</div><div style="margin:12px 0 8px"><div class="barra"><i style="width:'+prog+'%"></i></div></div><div class="pt">'+E.unidade+'/3 unidades - '+dom+'% dominado</div></div>';
+const ap=palavrasAprendidas(),tx=taxaAcerto();const todos=Object.values(E.itens);const firme=todos.filter(it=>it.reps>=3&&it.lapsos<=it.reps/3).length;const inst=todos.filter(it=>it.reps>=3&&it.lapsos>it.reps/3).length;
+h+='<div class="carta"><div class="rotulo">Cerebro</div><div class="stats"><div class="stat verde"><div class="v">'+ap+'</div><div class="l">firmes</div></div><div class="stat azul"><div class="v">'+tx+'%</div><div class="l">acerto</div></div><div class="stat rosa"><div class="v">'+firme+'</div><div class="l">fixas</div></div><div class="stat"><div class="v">'+inst+'</div><div class="l">revisar</div></div></div></div>';
+const conquistadas=CONQUISTAS.map(c=>({...c,tem:E.conquistas.includes(c.id)}));
+h+='<div class="carta"><div class="carta-topo"><div class="rotulo">Conquistas</div><span class="dado">'+E.conquistas.length+'/'+CONQUISTAS.length+'</span></div><div class="grid-conquistas">'+conquistadas.map(c=>'<div class="conquista '+(c.tem?'desb':'bloq')+'" title="'+esc(c.nome)+'"><div class="ico">'+(c.tem?c.ico:'X')+'</div><div class="nm">'+esc(c.nome)+'</div></div>').join('')+'</div></div>';
+const tot=E.sessoes.length,min=E.sessoes.reduce((a,s)=>a+s.min,0);
+h+='<div class="carta"><div class="rotulo">Total</div><div style="display:flex;gap:24px;margin-top:10px"><div><div class="dado" style="font-size:22px">'+tot+'</div><div class="rotulo">sessoes</div></div><div><div class="dado" style="font-size:22px">'+min+'</div><div class="rotulo">min</div></div><div><div class="dado" style="font-size:22px">'+Object.keys(E.carimbos).length+'</div><div class="rotulo">carimbos</div></div></div></div>';
+return h;}
 
 function limparRecado(){E.recado='';salvar();render();}
 function comecarSessao(){initAudio();montarSessao();tela='sessao';window.scrollTo(0,0);render();}
 function comecarProva(){initAudio();montarProva();tela='sessao';window.scrollTo(0,0);render();}
-function comecarRevisao(){
-  initAudio();
-  let ex=exRevisao(14);if(!ex.length)ex=[{t:'aviso',txt:'Nada vencido hoje.'}];
-  S={niv:E.nivel,ui:E.unidade,revisao:true,inicio:Date.now(),acertos:0,total:0,xp:0,
-     blocos:[{nome:'Revisão',min:10,ex}],b:0,i:0,resposta:null};
-  tela='sessao';window.scrollTo(0,0);render();
-}
+function comecarRevisao(){initAudio();let ex=exRevisao(14);if(!ex.length)ex=[{t:'aviso',txt:'Nada vencido hoje.'}];S={niv:E.nivel,ui:E.unidade,revisao:true,inicio:Date.now(),acertos:0,total:0,xp:0,blocos:[{nome:'Revisao',min:10,ex}],b:0,i:0,resposta:null};tela='sessao';window.scrollTo(0,0);render();}
 
-function telaSessao(){
-  if(!S)return '<div class="carta">Nenhuma sessão aberta.<button class="btn secundario pequeno" style="margin-top:10px" onclick="ir(\'painel\')">Voltar</button></div>';
-  if(S.fim)return telaFimSessao();
-  const b=S.blocos[S.b],ex=exAtual();
-  const dec=Math.floor((Date.now()-S.inicio)/1000);
-  const mm=String(Math.floor(dec/60)).padStart(2,'0'),ss=String(dec%60).padStart(2,'0');
-  const alvo=S.prova?12:30;
-  let h='<div class="sessao-topo"><div><div class="rotulo">'+esc(b.nome)+(S.prova?'':' · '+b.min+' min')+'</div>'+
-       '<div class="dado" style="font-size:12px;color:var(--texto2);margin-top:3px">'+(S.i+1)+' / '+b.ex.length+'</div></div>'+
-       '<div class="cronometro'+(dec>alvo*60?' estourou':'')+'">✕ '+mm+':'+ss+'</div></div>';
-  h+='<div class="blocos">'+S.blocos.map((x,i)=>'<i class="'+(i<S.b?'pronto':(i===S.b?'ativo':''))+'"></i>').join('')+'</div>';
-  h+='<div class="carta">'+corpoEx(ex)+'</div>';
-  return h;
-}
-function corpoEx(ex){
-  if(!ex)return '';
-  const r=S.resposta;
-  if(ex.t==='aviso')return '<div class="pt">'+esc(ex.txt)+'</div><button class="btn" style="margin-top:14px" onclick="avancar()">Seguir</button>';
-  if(ex.t==='ensinar'){
-    return '<div class="rotulo">✨ Palavra nova</div>'+
-      '<div class="pergunta en">'+esc(ex.v[0])+'</div>'+
-      '<div class="pt" style="font-size:15.5px">'+esc(ex.v[1])+'</div>'+
-      '<button class="btn azul pequeno" style="margin-top:12px" onclick="falar(\''+ex.v[0].replace(/'/g,"\\'")+'\')">✕ Ouvir</button>'+
-      '<div class="carta" style="margin:14px 0 0;background:rgba(255,255,255,.04)"><div style="font-size:15.5px">'+esc(ex.v[2])+'</div><div class="pt" style="margin-top:5px">'+esc(ex.v[3])+'</div>'+
-      '<button class="btn azul pequeno" style="margin-top:10px" onclick="falar(\''+ex.v[2].replace(/'/g,"\\'")+'\')">🔊 Frase</button></div>'+
-      '<button class="btn verde" style="margin-top:14px" onclick="avancar()">✅ Aprendi</button>';
-  }
-  if(ex.t==='regra'){
-    return '<div class="rotulo">📚 Gramática</div><h2 style="margin:8px 0 12px">'+esc(ex.g.t)+'</h2>'+
-      '<div style="font-size:15px;line-height:1.55">'+esc(ex.g.e)+'</div>'+
-      '<div style="margin-top:14px">'+ex.g.ex.map(e=>'<div style="padding:10px 0;border-top:1px solid rgba(255,255,255,.08)"><div style="font-size:15.5px">'+esc(e[0])+'</div><div class="pt">'+esc(e[1])+'</div></div>').join('')+'</div>'+
-      '<button class="btn" style="margin-top:8px" onclick="avancar()">Entendi 💪</button>';
-  }
-  if(ex.t==='mc'){
-    let h='<div class="rotulo">'+esc(ex.rotulo)+'</div><div class="pergunta'+(ex.en?' en':'')+'">'+esc(ex.pergunta)+'</div>';
-    if(ex.traducao)h+='<div class="pt">'+esc(ex.traducao)+'</div>';
-    h+='<div class="opcoes">'+ex.opcoes.map((o,i)=>{
-      let cl='opc';
-      if(r!==null){if(i===ex.correta)cl+=r.i===i?' certa':' revelada';else if(r.i===i)cl+=' errada';}
-      return '<button class="'+cl+'" '+(r!==null?'disabled':'')+' onclick="responderMC('+i+')">'+esc(o)+'</button>';
-    }).join('')+'</div>';
-    if(r!==null){
-      h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">'+(r.ok?'🎉 '+(r.perfeito?'Perfeito!':'Certo!'):'😅 Quase')+'</span>'+
-         (ex.exemplo?esc(ex.exemplo)+'<div class="pt" style="margin-top:4px">'+esc(ex.exemploPt)+'</div>':(ex.traducao?esc(ex.opcoes[ex.correta]):''))+
-         (r.ok?'':'<div style="margin-top:6px">Resposta: <b>'+esc(ex.opcoes[ex.correta])+'</b></div>')+'</div>';
-      h+='<button class="btn" style="margin-top:12px" onclick="avancar()">Continuar →</button>';
-    }
-    return h;
-  }
-  if(ex.t==='digitar'){
-    let h='<div class="rotulo">'+esc(ex.rotulo)+'</div><div class="pergunta">'+esc(ex.pergunta)+'</div>'+
-      '<input class="campo" id="campoResp" style="margin-top:14px" autocomplete="off" autocapitalize="none" spellcheck="false" '+(r?'disabled value="'+esc(r.txt)+'"':'')+' placeholder="digite em inglês">';
-    if(r===null)h+='<button class="btn" style="margin-top:12px" onclick="responderDigitar()">Conferir</button>';
-    else{
-      h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">'+(r.ok?(r.quase?'👍 Quase':'🎉 Certo'):'😅 Não foi')+'</span>'+
-         '<b style="font-size:15px">'+esc(ex.resposta)+'</b>'+(ex.exemplo?'<div style="margin-top:6px">'+esc(ex.exemplo)+'</div><div class="pt">'+esc(ex.exemploPt)+'</div>':'')+'</div>'+
-         '<button class="btn" style="margin-top:12px" onclick="avancar()">Continuar →</button>';
-    }
-    return h;
-  }
-  if(ex.t==='ouvir'){
-    let h='<div class="rotulo">🎧 '+esc(ex.rotulo)+'</div>'+
-      '<button class="som" onclick="falar(\''+ex.frase.replace(/'/g,"\\'")+'\')">🔊</button>'+
-      '<div style="text-align:center"><button class="btn secundario pequeno" onclick="falar(\''+ex.frase.replace(/'/g,"\\'")+'\',0.6)">🐢 devagar</button></div>';
-    h+='<div class="opcoes">'+ex.opcoes.map((o,i)=>{
-      let cl='opc';
-      if(r!==null){if(i===ex.correta)cl+=r.i===i?' certa':' revelada';else if(r.i===i)cl+=' errada';}
-      return '<button class="'+cl+'" '+(r!==null?'disabled':'')+' onclick="responderMC('+i+')">'+esc(o)+'</button>';
-    }).join('')+'</div>';
-    if(r!==null)h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">📝 Você ouviu</span>'+esc(ex.frase)+'<div class="pt" style="margin-top:4px">'+esc(ex.fraseTrad)+'</div></div>'+
-       '<button class="btn" style="margin-top:12px" onclick="avancar()">Continuar →</button>';
-    return h;
-  }
-  if(ex.t==='ordenar'){
-    if(!ex.chips){ex.chips=embaralhar(ex.frase.split(' '));ex.montada=[];}
-    let h='<div class="rotulo">🧩 '+esc(ex.rotulo)+'</div><div class="pt" style="font-size:15.5px;margin:10px 0 6px">'+esc(ex.traducao)+'</div>'+
-      '<div class="linha-montada">'+ex.montada.map((p,i)=>'<button class="chip" onclick="tirarChip('+i+')">'+esc(p)+'</button>').join('')+'</div>'+
-      '<div class="chips">'+ex.chips.map((p,i)=>'<button class="chip '+(ex.montada.indexOf(p)>-1&&contarUso(ex,p,i)?'usado':'')+'" onclick="porChip('+i+')">'+esc(p)+'</button>').join('')+'</div>';
-    if(r===null)h+='<button class="btn" style="margin-top:16px" '+(ex.montada.length?'':'disabled')+' onclick="responderOrdenar()">Conferir</button>';
-    else h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">'+(r.ok?'🎉':'🔡 A ordem certa é')+'</span>'+esc(ex.frase)+'</div>'+
-       '<button class="btn" style="margin-top:12px" onclick="avancar()">Continuar →</button>';
-    return h;
-  }
-  if(ex.t==='escrever'){
-    let h='<div class="rotulo">✍️ Produção</div><div class="pergunta" style="font-size:19px">'+esc(ex.pt)+'</div>'+
-      '<textarea class="campo" id="campoResp" style="margin-top:12px" '+(r?'disabled':'')+' placeholder="escreva em inglês">'+(r?esc(r.txt):'')+'</textarea>';
-    if(r===null)h+='<button class="btn" style="margin-top:12px" onclick="responderEscrever()">Conferir</button>';
-    else{
-      h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">📋 Modelo</span>'+esc(ex.en)+
-         '<div class="pt" style="margin-top:5px">'+(r.ok?'✨ Equivalente.':'Compare com a sua.')+'</div></div>'+
-         '<div id="retornoIA"></div>'+
-         '<button class="btn rosa" style="margin-top:10px" onclick="corrigirComTutor(\''+ex.pt.replace(/'/g,"\\'")+'\',\''+ex.en.replace(/'/g,"\\'")+'\',\''+r.txt.replace(/'/g,"\\'")+'\')">🤖 Tutor corrige</button>'+
-         '<button class="btn verde" style="margin-top:10px" onclick="avancar()">Encerrar 🏁</button>';
-    }
-    return h;
-  }
-  return '';
-}
+function telaSessao(){if(!S)return '<div class="carta">Nenhuma sessao aberta.<button class="btn secundario pequeno" style="margin-top:10px" onclick="ir(\'painel\')">Voltar</button></div>';if(S.fim)return telaFimSessao();const b=S.blocos[S.b],ex=exAtual();const dec=Math.floor((Date.now()-S.inicio)/1000);const mm=String(Math.floor(dec/60)).padStart(2,'0'),ss=String(dec%60).padStart(2,'0');const alvo=S.prova?12:30;
+let h='<div class="sessao-topo"><div><div class="rotulo">'+esc(b.nome)+(S.prova?'':' - '+b.min+' min')+'</div><div class="dado" style="font-size:12px;color:var(--texto2);margin-top:3px">'+(S.i+1)+' / '+b.ex.length+'</div></div><div class="cronometro'+(dec>alvo*60?' estourou':'')+'">'+mm+':'+ss+'</div></div>';
+h+='<div class="blocos">'+S.blocos.map((x,i)=>'<i class="'+(i<S.b?'pronto':(i===S.b?'ativo':''))+'"></i>').join('')+'</div>';
+h+='<div class="carta">'+corpoEx(ex)+'</div>';return h;}
+function corpoEx(ex){if(!ex)return '';const r=S.resposta;
+if(ex.t==='aviso')return '<div class="pt">'+esc(ex.txt)+'</div><button class="btn" style="margin-top:14px" onclick="avancar()">Seguir</button>';
+if(ex.t==='ensinar')return '<div class="rotulo">Palavra nova</div><div class="pergunta en">'+esc(ex.v[0])+'</div><div class="pt" style="font-size:15.5px">'+esc(ex.v[1])+'</div><button class="btn azul pequeno" style="margin-top:12px" onclick="falar(\''+ex.v[0].replace(/'/g,"\\'")+'\')">Ouvir</button><div class="carta" style="margin:14px 0 0;background:rgba(255,255,255,.04)"><div style="font-size:15.5px">'+esc(ex.v[2])+'</div><div class="pt" style="margin-top:5px">'+esc(ex.v[3])+'</div><button class="btn azul pequeno" style="margin-top:10px" onclick="falar(\''+ex.v[2].replace(/'/g,"\\'")+'\')">Ouvir frase</button></div><button class="btn verde" style="margin-top:14px" onclick="avancar()">Aprendi</button>';
+if(ex.t==='regra')return '<div class="rotulo">Gramatica</div><h2 style="margin:8px 0 12px">'+esc(ex.g.t)+'</h2><div style="font-size:15px;line-height:1.55">'+esc(ex.g.e)+'</div><div style="margin-top:14px">'+ex.g.ex.map(e=>'<div style="padding:10px 0;border-top:1px solid rgba(255,255,255,.08)"><div style="font-size:15.5px">'+esc(e[0])+'</div><div class="pt">'+esc(e[1])+'</div></div>').join('')+'</div><button class="btn" style="margin-top:8px" onclick="avancar()">Entendi</button>';
+if(ex.t==='mc'){let h='<div class="rotulo">'+esc(ex.rotulo)+'</div><div class="pergunta'+(ex.en?' en':'')+'">'+esc(ex.pergunta)+'</div>';if(ex.traducao)h+='<div class="pt">'+esc(ex.traducao)+'</div>';h+='<div class="opcoes">'+ex.opcoes.map((o,i)=>{let cl='opc';if(r!==null){if(i===ex.correta)cl+=r.i===i?' certa':' revelada';else if(r.i===i)cl+=' errada';}return '<button class="'+cl+'" '+(r!==null?'disabled':'')+' onclick="responderMC('+i+')">'+esc(o)+'</button>';}).join('')+'</div>';if(r!==null){h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">'+(r.ok?'Certo!':'Quase')+'</span>'+(ex.exemplo?esc(ex.exemplo)+'<div class="pt" style="margin-top:4px">'+esc(ex.exemploPt)+'</div>':(ex.traducao?esc(ex.opcoes[ex.correta]):''))+(r.ok?'':'<div style="margin-top:6px">Resposta: <b>'+esc(ex.opcoes[ex.correta])+'</b></div>')+'</div>';h+='<button class="btn" style="margin-top:12px" onclick="avancar()">Continuar</button>';}return h;}
+if(ex.t==='digitar'){let h='<div class="rotulo">'+esc(ex.rotulo)+'</div><div class="pergunta">'+esc(ex.pergunta)+'</div><input class="campo" id="campoResp" style="margin-top:14px" autocomplete="off" autocapitalize="none" spellcheck="false" '+(r?'disabled value="'+esc(r.txt)+'"':'')+' placeholder="digite em ingles">';if(r===null)h+='<button class="btn" style="margin-top:12px" onclick="responderDigitar()">Conferir</button>';else{h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">'+(r.ok?(r.quase?'Quase':'Certo'):'Nao foi')+'</span><b style="font-size:15px">'+esc(ex.resposta)+'</b>'+(ex.exemplo?'<div style="margin-top:6px">'+esc(ex.exemplo)+'</div><div class="pt">'+esc(ex.exemploPt)+'</div>':'')+'</div><button class="btn" style="margin-top:12px" onclick="avancar()">Continuar</button>';}return h;}
+if(ex.t==='ouvir'){let h='<div class="rotulo">'+esc(ex.rotulo)+'</div><button class="som" onclick="falar(\''+ex.frase.replace(/'/g,"\\'")+'\')">FONE</button><div style="text-align:center"><button class="btn secundario pequeno" onclick="falar(\''+ex.frase.replace(/'/g,"\\'")+'\',0.6)">devagar</button></div>';h+='<div class="opcoes">'+ex.opcoes.map((o,i)=>{let cl='opc';if(r!==null){if(i===ex.correta)cl+=r.i===i?' certa':' revelada';else if(r.i===i)cl+=' errada';}return '<button class="'+cl+'" '+(r!==null?'disabled':'')+' onclick="responderMC('+i+')">'+esc(o)+'</button>';}).join('')+'</div>';if(r!==null)h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">Voce ouviu</span>'+esc(ex.frase)+'<div class="pt" style="margin-top:4px">'+esc(ex.fraseTrad)+'</div></div><button class="btn" style="margin-top:12px" onclick="avancar()">Continuar</button>';return h;}
+if(ex.t==='ordenar'){if(!ex.chips){ex.chips=embaralhar(ex.frase.split(' '));ex.montada=[];}let h='<div class="rotulo">'+esc(ex.rotulo)+'</div><div class="pt" style="font-size:15.5px;margin:10px 0 6px">'+esc(ex.traducao)+'</div><div class="linha-montada">'+ex.montada.map((p,i)=>'<button class="chip" onclick="tirarChip('+i+')">'+esc(p)+'</button>').join('')+'</div><div class="chips">'+ex.chips.map((p,i)=>'<button class="chip '+(ex.montada.indexOf(p)>-1&&contarUso(ex,p,i)?'usado':'')+'" onclick="porChip('+i+')">'+esc(p)+'</button>').join('')+'</div>';if(r===null)h+='<button class="btn" style="margin-top:16px" '+(ex.montada.length?'':'disabled')+' onclick="responderOrdenar()">Conferir</button>';else h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">'+(r.ok?'Certo!':'A ordem certa e')+'</span>'+esc(ex.frase)+'</div><button class="btn" style="margin-top:12px" onclick="avancar()">Continuar</button>';return h;}
+if(ex.t==='escrever'){let h='<div class="rotulo">Producao</div><div class="pergunta" style="font-size:19px">'+esc(ex.pt)+'</div><textarea class="campo" id="campoResp" style="margin-top:12px" '+(r?'disabled':'')+' placeholder="escreva em ingles">'+(r?esc(r.txt):'')+'</textarea>';if(r===null)h+='<button class="btn" style="margin-top:12px" onclick="responderEscrever()">Conferir</button>';else{h+='<div class="retorno '+(r.ok?'ok':'nao')+'"><span class="t">Modelo</span>'+esc(ex.en)+'<div class="pt" style="margin-top:5px">'+(r.ok?'Equivalente.':'Compare com a sua.')+'</div></div><div id="retornoIA"></div><button class="btn rosa" style="margin-top:10px" onclick="corrigirComTutor(\''+ex.pt.replace(/'/g,"\\'")+'\',\''+ex.en.replace(/'/g,"\\'")+'\',\''+r.txt.replace(/'/g,"\\'")+'\')">Tutor corrige</button><button class="btn verde" style="margin-top:10px" onclick="avancar()">Encerrar</button>';}return h;}
+return '';}
 function contarUso(ex,p,i){let u=ex.montada.filter(x=>x===p).length;let a=ex.chips.slice(0,i).filter(x=>x===p).length;return a<u;}
 function porChip(i){const ex=exAtual();if(S.resposta!==null)return;const p=ex.chips[i];if(contarUso(ex,p,i))return;ex.montada.push(p);render();}
 function tirarChip(i){const ex=exAtual();if(S.resposta!==null)return;ex.montada.splice(i,1);render();}
-function responderMC(i){
-  initAudio();
-  const ex=exAtual();if(S.resposta!==null)return;
-  const ok=i===ex.correta;S.resposta={i,ok,perfeito:ok};
-  if(ok)somAcerto(true);else somErro();
-  pontuar(ok,ex.chave);if(ex.som&&ok)falar(ex.som);render();
-}
-function responderDigitar(){
-  initAudio();
-  const ex=exAtual();const v=$('#campoResp').value.trim();if(!v)return;
-  const d=dist(norm(v),norm(ex.resposta));
-  const ok=d<=1,quase=ok&&d===1;
-  S.resposta={txt:v,ok,quase,perfeito:ok&&d===0};
-  if(ok&&d===0)somAcerto(true);else if(ok)somAcerto(false);else somErro();
-  pontuar(ok,ex.chave);if(ok)falar(ex.resposta);render();
-}
-function responderOrdenar(){
-  initAudio();
-  const ex=exAtual();const ok=norm(ex.montada.join(' '))===norm(ex.frase);
-  S.resposta={ok,perfeito:ok};
-  if(ok)somAcerto(true);else somErro();
-  pontuar(ok,ex.chave);if(ok)falar(ex.frase);render();
-}
-function responderEscrever(){
-  initAudio();
-  const ex=exAtual();const v=$('#campoResp').value.trim();if(!v)return;
-  const a=norm(v).split(' '),b=norm(ex.en).split(' ');
-  const iguais=b.filter(w=>a.indexOf(w)>-1).length;
-  const ok=iguais/b.length>=0.75;
-  S.resposta={txt:v,ok};
-  if(ok)somAcerto(false);else somErro();
-  pontuar(ok,ex.chave);render();
-}
-function telaFimSessao(){
-  const f=S.fim,prec=Math.round(f.prec*100);
-  let h='<div class="carta destaque" style="text-align:center;padding:26px 16px">'+
-    '<div class="rotulo">'+(f.prova?'🎯 Teste':'✅ Sessão')+'</div>'+
-    '<div class="dado" style="font-size:54px;line-height:1.1;margin:10px 0;background:var(--grad-principal);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">'+prec+'%</div>'+
-    '<div class="pt">'+S.acertos+'/'+S.total+(f.min?' · ⏱ '+f.min+'min':'')+' · 💎 +'+S.xp+' XP</div></div>';
-  h+='<div class="carta"><div class="rotulo">🎯 O que muda</div><div style="margin-top:8px;font-size:14.5px;line-height:1.5">'+esc(f.recado||E.recado)+'</div></div>';
-  h+='<button class="btn verde" onclick="ir(\'painel\')">🏠 Painel</button>';
-  if(!f.prova)h+='<button class="btn laranja" style="margin-top:10px" onclick="ir(\'tutor\')">🤖 Conversar com tutor</button>';
-  return h;
-}
+function responderMC(i){initAudio();const ex=exAtual();if(S.resposta!==null)return;const ok=i===ex.correta;S.resposta={i,ok,perfeito:ok};if(ok)somAcerto(true);else somErro();pontuar(ok,ex.chave);if(ex.som&&ok)falar(ex.som);render();}
+function responderDigitar(){initAudio();const ex=exAtual();const v=$('#campoResp').value.trim();if(!v)return;const d=dist(norm(v),norm(ex.resposta));const ok=d<=1,quase=ok&&d===1;S.resposta={txt:v,ok,quase,perfeito:ok&&d===0};if(ok&&d===0)somAcerto(true);else if(ok)somAcerto(false);else somErro();pontuar(ok,ex.chave);if(ok)falar(ex.resposta);render();}
+function responderOrdenar(){initAudio();const ex=exAtual();const ok=norm(ex.montada.join(' '))===norm(ex.frase);S.resposta={ok,perfeito:ok};if(ok)somAcerto(true);else somErro();pontuar(ok,ex.chave);if(ok)falar(ex.frase);render();}
+function responderEscrever(){initAudio();const ex=exAtual();const v=$('#campoResp').value.trim();if(!v)return;const a=norm(v).split(' '),b=norm(ex.en).split(' ');const iguais=b.filter(w=>a.indexOf(w)>-1).length;const ok=iguais/b.length>=0.75;S.resposta={txt:v,ok};if(ok)somAcerto(false);else somErro();pontuar(ok,ex.chave);render();}
+function telaFimSessao(){const f=S.fim,prec=Math.round(f.prec*100);let h='<div class="carta destaque" style="text-align:center;padding:26px 16px"><div class="rotulo">'+(f.prova?'Teste':'Sessao')+'</div><div class="dado" style="font-size:54px;line-height:1.1;margin:10px 0;color:var(--verde2)">'+prec+'%</div><div class="pt">'+S.acertos+'/'+S.total+(f.min?' - '+f.min+'min':'')+' - +'+S.xp+' XP</div></div>';h+='<div class="carta"><div class="rotulo">O que muda</div><div style="margin-top:8px;font-size:14.5px;line-height:1.5">'+esc(f.recado||E.recado)+'</div></div>';h+='<button class="btn verde" onclick="ir(\'painel\')">Painel</button>';if(!f.prova)h+='<button class="btn laranja" style="margin-top:10px" onclick="ir(\'tutor\')">Conversar com tutor</button>';return h;}
 
-function telaPassaporte(){
-  let h='<h1>🗺️ Mapa</h1><div class="pt" style="margin-bottom:14px">9 níveis. Um carimbo cada. Você consegue.</div>';
-  h+='<div class="estampas">'+CURSO.map(n=>{
-    const c=E.carimbos[n.n],atual=n.n===E.nivel,travado=n.n>E.nivel;
-    return '<div class="estampa '+(c?'carimbada ':'')+(atual?'atual ':'')+(travado?'travada':'')+'">'+
-      '<div><div class="num">NÍVEL '+n.n+'</div><div class="tit">'+esc(n.nome)+'</div></div>'+
-      '<div class="pt" style="font-size:12px;line-height:1.3">'+esc(n.desc)+'</div>'+
-      (c?'<div class="carimbo">⭐ '+c.d.split('-').reverse().slice(0,2).join('/')+' · '+c.p+'%</div>':'')+
-    '</div>';
-  }).join('')+'</div>';
-
-  const ult=E.sessoes.slice(-10).reverse();
-  h+='<div class="carta" style="margin-top:14px"><div class="rotulo">📜 Últimas sessões</div>'+
-     (ult.length?ult.map(s=>'<div style="display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid rgba(255,255,255,.06);align-items:center">'+
-       '<span class="dado" style="font-size:11.5px">'+s.d.split('-').reverse().join('/')+'</span>'+
-       '<span style="font-size:13px;font-weight:600">N'+s.niv+'·U'+(s.un+1)+'</span>'+
-       '<span class="dado" style="font-size:11.5px;color:var(--verde2)">'+Math.round(s.ac/Math.max(s.tot,1)*100)+'% · '+s.min+'min</span></div>').join('')
-      :'<div class="pt" style="margin-top:8px">Nenhuma sessão ainda. Bora?</div>')+'</div>';
-
-  h+='<div class="carta"><div class="rotulo">❄️ Streak freeze</div>'+
-     '<div style="margin-top:8px;font-size:14.5px">Você tem <b style="color:var(--azul2)">'+E.streakFreeze+'</b> '+(E.streakFreeze===1?'freeze':'freezes')+'.</div>'+
-     '<div class="pt" style="margin-top:5px">Cada 7 dias seguidos = 1 freeze novo. Use quando perder um dia.</div>'+
-     '<button class="btn secundario pequeno" style="margin-top:12px" onclick="ganharFreeze()">❄️ +1 freeze (100 XP)</button></div>';
-
-  // ✕ CONFIG DE SOM
-  h+='<div class="carta"><div class="rotulo">✕ Sons e vibração</div>'+
-    '<div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;padding:6px 0">'+
-      '<div><div style="font-weight:600">Sons do app</div><div class="pt" style="font-size:12.5px">Acertou, errou, conquistas…</div></div>'+
-      '<button class="btn '+(configSom.ligado?'verde':'secundario')+' pequeno" onclick="toggleSom()">'+(configSom.ligado?'🔊 Ligado':'🔇 Desligado')+'</button></div>'+
-    '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid rgba(255,255,255,.06)">'+
-      '<div><div style="font-weight:600">Vibrar</div><div class="pt" style="font-size:12.5px">Celular vibra ao acertar</div></div>'+
-      '<button class="btn '+(configSom.vibrar?'verde':'secundario')+' pequeno" onclick="toggleVibrar()">'+(configSom.vibrar?'📳 Sim':'❌ Não')+'</button></div>'+
-    '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid rgba(255,255,255,.06)">'+
-      '<div><div style="font-weight:600">Toque nos botões</div><div class="pt" style="font-size:12.5px">Clique suave ao tocar</div></div>'+
-      '<button class="btn '+(configSom.toque?'verde':'secundario')+' pequeno" onclick="toggleToque()">'+(configSom.toque?'🔘 Sim':'✕ Não')+'</button></div>'+
-    '<button class="btn secundario pequeno" style="margin-top:12px" onclick="testarSons()">🎵 Testar todos os sons</button></div>';
-
-  const onde={claude:'Claude',navegador:'navegador'}[Guarda.onde]||'navegador';
-  h+='<div class="carta"><div class="rotulo">💾 Memória</div>'+
-     '<div style="margin-top:8px;font-size:14px">Salvando em <b>'+onde+'</b>.</div>'+
-     '<div style="display:flex;gap:8px;margin-top:12px">'+
-     '<button class="btn secundario pequeno" onclick="exportar()">📥 Backup</button>'+
-     '<button class="btn secundario pequeno" onclick="document.getElementById(\'arqBackup\').click()">📤 Restaurar</button></div>'+
-     '<input type="file" id="arqBackup" accept="application/json" class="oculto" onchange="importar(event)">'+
-     '<div id="statusBackup"></div></div>';
-
-  const vs=vozesEN().slice().sort((a,b)=>notaVoz(b)-notaVoz(a));
-  const atual=melhorVoz();
-  h+='<div class="carta"><div class="rotulo">🗣️ Voz</div>'+
-     (vs.length?'<select class="campo" style="margin-top:10px" onchange="trocarVoz(this.value)">'+
-       vs.map(v=>'<option value="'+esc(v.voiceURI)+'" '+(atual&&v.voiceURI===atual.voiceURI?'selected':'')+'>'+esc(v.name)+' — '+esc(v.lang)+(notaVoz(v)>=6?' ⭐':'')+'</option>').join('')+'</select>'+
-       '<div class="rotulo" style="margin-top:14px">Velocidade: '+(E.vel||0.95).toFixed(2)+'x</div>'+
-       '<input type="range" min="0.6" max="1.15" step="0.05" value="'+(E.vel||0.95)+'" style="width:100%;margin-top:6px" oninput="trocarVel(this.value)">'+
-       '<button class="btn azul pequeno" style="margin-top:10px" onclick="falar(\'Good morning. My name is Victor.\')">🔊 Testar</button>'
-       :'<div class="pt" style="margin-top:8px">Nenhuma voz em inglês.</div>')+'</div>';
-
-  h+='<div class="carta"><div class="rotulo">🤖 Tutor IA</div>'+
-     '<div class="pt" style="margin-top:6px">Precisa de chave Anthropic. Fica só no seu celular.</div>'+
-     '<input class="campo" id="campoChave" type="password" style="margin-top:10px" placeholder="sk-ant-..." value="'+esc(IA.chave)+'" autocomplete="off">'+
-     '<input class="campo" id="campoModelo" style="margin-top:6px" placeholder="claude-sonnet-5" value="'+esc(IA.modelo)+'" autocomplete="off">'+
-     '<div style="display:flex;gap:8px;margin-top:10px">'+
-     '<button class="btn secundario pequeno" onclick="salvarCred()">Salvar</button>'+
-     '<button class="btn secundario pequeno" onclick="testarIA()">Testar</button></div>'+
-     '<div id="statusIA"></div></div>';
-
-  h+='<div class="carta"><button class="btn secundario" onclick="zerar()">🗑️ Apagar tudo</button></div>';
-  return h;
-}
-
+function telaPassaporte(){let h='<h1>Mapa</h1><div class="pt" style="margin-bottom:14px">9 niveis. Um carimbo cada. Voce consegue.</div>';
+h+='<div class="estampas">'+CURSO.map(n=>{const c=E.carimbos[n.n],atual=n.n===E.nivel,travado=n.n>E.nivel;return '<div class="estampa '+(c?'carimbada ':'')+(atual?'atual ':'')+(travado?'travada':'')+'"><div><div class="num">NIVEL '+n.n+'</div><div class="tit">'+esc(n.nome)+'</div></div><div class="pt" style="font-size:12px;line-height:1.3">'+esc(n.desc)+'</div>'+(c?'<div class="carimbo">OK '+c.d.split('-').reverse().slice(0,2).join('/')+' - '+c.p+'%</div>':'')+'</div>';}).join('')+'</div>';
+const ult=E.sessoes.slice(-10).reverse();h+='<div class="carta" style="margin-top:14px"><div class="rotulo">Ultimas sessoes</div>'+(ult.length?ult.map(s=>'<div style="display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid rgba(255,255,255,.06);align-items:center"><span class="dado" style="font-size:11.5px">'+s.d.split('-').reverse().join('/')+'</span><span style="font-size:13px;font-weight:600">N'+s.niv+'-U'+(s.un+1)+'</span><span class="dado" style="font-size:11.5px;color:var(--verde2)">'+Math.round(s.ac/Math.max(s.tot,1)*100)+'% - '+s.min+'min</span></div>').join(''):'<div class="pt" style="margin-top:8px">Nenhuma sessao ainda. Bora?</div>')+'</div>';
+h+='<div class="carta"><div class="rotulo">Streak freeze</div><div style="margin-top:8px;font-size:14.5px">Voce tem <b style="color:var(--azul2)">'+E.streakFreeze+'</b> '+(E.streakFreeze===1?'freeze':'freezes')+'.</div><div class="pt" style="margin-top:5px">Cada 7 dias seguidos = 1 freeze novo.</div><button class="btn secundario pequeno" style="margin-top:12px" onclick="ganharFreeze()">+1 freeze (100 XP)</button></div>';
+h+='<div class="carta"><div class="rotulo">Sons e vibracao</div><div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;padding:6px 0"><div><div style="font-weight:600">Sons do app</div><div class="pt" style="font-size:12.5px">Acertou, errou, conquistas...</div></div><button class="btn '+(configSom.ligado?'verde':'secundario')+' pequeno" onclick="toggleSom()">'+(configSom.ligado?'ON':'OFF')+'</button></div><div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid rgba(255,255,255,.06)"><div><div style="font-weight:600">Vibrar</div><div class="pt" style="font-size:12.5px">Celular vibra ao acertar</div></div><button class="btn '+(configSom.vibrar?'verde':'secundario')+' pequeno" onclick="toggleVibrar()">'+(configSom.vibrar?'SIM':'NAO')+'</button></div><div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid rgba(255,255,255,.06)"><div><div style="font-weight:600">Toque nos botoes</div><div class="pt" style="font-size:12.5px">Clique suave ao tocar</div></div><button class="btn '+(configSom.toque?'verde':'secundario')+' pequeno" onclick="toggleToque()">'+(configSom.toque?'SIM':'NAO')+'</button></div><button class="btn secundario pequeno" style="margin-top:12px" onclick="testarSons()">Testar todos os sons</button></div>';
+const onde={claude:'Claude',navegador:'navegador'}[Guarda.onde]||'navegador';
+h+='<div class="carta"><div class="rotulo">Memoria</div><div style="margin-top:8px;font-size:14px">Salvando em <b>'+onde+'</b>.</div><div style="display:flex;gap:8px;margin-top:12px"><button class="btn secundario pequeno" onclick="exportar()">Backup</button><button class="btn secundario pequeno" onclick="document.getElementById(\'arqBackup\').click()">Restaurar</button></div><input type="file" id="arqBackup" accept="application/json" class="oculto" onchange="importar(event)"><div id="statusBackup"></div></div>';
+const vs=vozesEN().slice().sort((a,b)=>notaVoz(b)-notaVoz(a));const atual=melhorVoz();
+h+='<div class="carta"><div class="rotulo">Voz</div>'+(vs.length?'<select class="campo" style="margin-top:10px" onchange="trocarVoz(this.value)">'+vs.map(v=>'<option value="'+esc(v.voiceURI)+'" '+(atual&&v.voiceURI===atual.voiceURI?'selected':'')+'>'+esc(v.name)+' - '+esc(v.lang)+(notaVoz(v)>=6?' [bom]':'')+'</option>').join('')+'</select><div class="rotulo" style="margin-top:14px">Velocidade: '+(E.vel||0.95).toFixed(2)+'x</div><input type="range" min="0.6" max="1.15" step="0.05" value="'+(E.vel||0.95)+'" style="width:100%;margin-top:6px" oninput="trocarVel(this.value)"><button class="btn azul pequeno" style="margin-top:10px" onclick="falar(\'Good morning. My name is Victor.\')">Testar</button>':'<div class="pt" style="margin-top:8px">Nenhuma voz em ingles.</div>')+'</div>';
+h+='<div class="carta"><div class="rotulo">Tutor IA</div><div class="pt" style="margin-top:6px">Precisa de chave Anthropic. Fica so no seu celular.</div><input class="campo" id="campoChave" type="password" style="margin-top:10px" placeholder="sk-ant-..." value="'+esc(IA.chave)+'" autocomplete="off"><input class="campo" id="campoModelo" style="margin-top:6px" placeholder="claude-sonnet-5" value="'+esc(IA.modelo)+'" autocomplete="off"><div style="display:flex;gap:8px;margin-top:10px"><button class="btn secundario pequeno" onclick="salvarCred()">Salvar</button><button class="btn secundario pequeno" onclick="testarIA()">Testar</button></div><div id="statusIA"></div></div>';
+h+='<div class="carta"><button class="btn secundario" onclick="zerar()">Apagar tudo</button></div>';return h;}
 function toggleSom(){configSom.ligado=!configSom.ligado;salvarSom();render();if(configSom.ligado)somAcerto(true);}
 function toggleVibrar(){configSom.vibrar=!configSom.vibrar;salvarSom();render();if(configSom.vibrar&&navigator.vibrate)navigator.vibrate(50);}
 function toggleToque(){configSom.toque=!configSom.toque;salvarSom();render();if(configSom.toque)tocarToque();}
-function testarSons(){
-  initAudio();
-  toast('🎵 Tocando sons...',1500);
-  setTimeout(()=>somAcerto(true),300);
-  setTimeout(()=>somErro(),900);
-  setTimeout(()=>somNivel(),1500);
-  setTimeout(()=>soltarConfete(),2200);
-}
-
-function ganharFreeze(){
-  initAudio();
-  if(E.xp<100){toast('❌ Precisa 100 XP. Tem '+E.xp+'.');return;}
-  if(!window.confirm('Trocar 100 XP por 1 freeze?'))return;
-  E.xp-=100;E.streakFreeze++;salvar();render();
-  tocarToque();toast('❄️ +1 freeze!');
-}
+function testarSons(){initAudio();toast('Tocando sons...',1500);setTimeout(()=>somAcerto(true),300);setTimeout(()=>somErro(),900);setTimeout(()=>somNivel(),1500);setTimeout(()=>soltarConfete(),2200);}
+function ganharFreeze(){initAudio();if(E.xp<100){toast('Precisa 100 XP. Tem '+E.xp+'.');return;}if(!window.confirm('Trocar 100 XP por 1 freeze?'))return;E.xp-=100;E.streakFreeze++;salvar();render();tocarToque();toast('+1 freeze!');}
 function trocarVoz(uri){E.voz=uri;salvar();falar('New voice.');render();}
 function trocarVel(v){E.vel=parseFloat(v);salvar();clearTimeout(window.tv);window.tv=setTimeout(()=>{falar('Nice to meet you.');render();},500);}
-function exportar(){
-  const b=new Blob([JSON.stringify({app:'ingles30',data:hoje(),progresso:E},null,2)],{type:'application/json'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='ingles30-'+hoje()+'.json';
-  document.body.appendChild(a);a.click();document.body.removeChild(a);
-  const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno ok">✅ Backup baixado!</div>';
-}
-function importar(ev){
-  const f=ev.target.files[0];if(!f)return;
-  const l=new FileReader();
-  l.onload=()=>{
-    try{
-      const p=JSON.parse(l.result);const dados=p.progresso||p;
-      if(!dados||typeof dados.nivel!=='number')throw new Error();
-      E=Object.assign(JSON.parse(JSON.stringify(PADRAO)),migrar(dados));
-      salvar();render();
-      const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno ok">✅ Restaurado!</div>';
-    }catch(e){const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno nao">❌ Arquivo inválido.</div>';}
-  };l.readAsText(f);
-}
-async function salvarCred(){
-  IA.chave=$('#campoChave').value.trim();
-  IA.modelo=($('#campoModelo').value.trim())||'claude-sonnet-5';
-  await Guarda.gravar(CHAVE_IA,JSON.stringify(IA));
-  $('#statusIA').innerHTML='<div class="retorno ok">✅ Chave salva!</div>';
-}
-async function testarIA(){
-  const st=$('#statusIA');if(st)st.innerHTML='<span class="escrevendo">Testando…</span>';
-  await salvarCred();
-  try{
-    const r=await chamarIA([{role:'user',content:'Say OK.'}],'One word.');
-    if(st)st.innerHTML='<div class="retorno ok">✅ Conectado!</div>';
-  }catch(e){
-    const msg=String(e.message||'').indexOf('sem-credencial')>-1?'Falta a chave.':'Erro: '+esc(String(e.message).slice(0,140));
-    if(st)st.innerHTML='<div class="retorno nao">❌ '+msg+'</div>';
-  }
-}
-async function zerar(){
-  if(!window.confirm('Apagar tudo?'))return;
-  E=JSON.parse(JSON.stringify(PADRAO));
-  await Guarda.gravar(CHAVE,JSON.stringify(E));
-  tela='painel';render();
-}
+function exportar(){const b=new Blob([JSON.stringify({app:'ingles30',data:hoje(),progresso:E},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='ingles30-'+hoje()+'.json';document.body.appendChild(a);a.click();document.body.removeChild(a);const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno ok">Backup baixado!</div>';}
+function importar(ev){const f=ev.target.files[0];if(!f)return;const l=new FileReader();l.onload=()=>{try{const p=JSON.parse(l.result);const dados=p.progresso||p;if(!dados||typeof dados.nivel!=='number')throw new Error();E=Object.assign(JSON.parse(JSON.stringify(PADRAO)),migrar(dados));salvar();render();const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno ok">Restaurado!</div>';}catch(e){const st=$('#statusBackup');if(st)st.innerHTML='<div class="retorno nao">Arquivo invalido.</div>';}};l.readAsText(f);}
+async function salvarCred(){IA.chave=$('#campoChave').value.trim();IA.modelo=($('#campoModelo').value.trim())||'claude-sonnet-5';await Guarda.gravar(CHAVE_IA,JSON.stringify(IA));$('#statusIA').innerHTML='<div class="retorno ok">Chave salva!</div>';}
+async function testarIA(){const st=$('#statusIA');if(st)st.innerHTML='<span class="escrevendo">Testando...</span>';await salvarCred();try{const r=await chamarIA([{role:'user',content:'Say OK.'}],'One word.');if(st)st.innerHTML='<div class="retorno ok">Conectado!</div>';}catch(e){const msg=String(e.message||'').indexOf('sem-credencial')>-1?'Falta a chave.':'Erro: '+esc(String(e.message).slice(0,140));if(st)st.innerHTML='<div class="retorno nao">'+msg+'</div>';}}
+async function zerar(){if(!window.confirm('Apagar tudo?'))return;E=JSON.parse(JSON.stringify(PADRAO));await Guarda.gravar(CHAVE,JSON.stringify(E));tela='painel';render();}
 
-function telaTutor(){
-  const un=unidadeAtual();
-  let h='<h1>🤖 Tutor</h1><div class="pt" style="margin-bottom:12px">Conversa em inglês no seu nível. Ele corrige embaixo.</div>';
-  if(!temIA())h+='<div class="carta"><div class="rotulo">⚠️ Falta chave</div><div style="margin-top:6px;font-size:13.5px">Configure no Mapa.</div><button class="btn secundario pequeno" style="margin-top:10px" onclick="ir(\'passaporte\')">Configurar</button></div>';
-  if(!E.tutorHist.length){
-    h+='<div class="carta"><div class="rotulo">💡 Sugestões</div>'+
-      ['Hi! My name is Victor.','How are you today?','I work with car glass.','Can you help me practice '+un.g.t+'?']
-      .map(s=>'<button class="btn secundario pequeno" style="margin:6px 6px 0 0" onclick="sugerir(\''+s.replace(/'/g,"\\'")+'\')">'+esc(s)+'</button>').join('')+'</div>';
-  }
-  h+='<div class="conversa">'+E.tutorHist.map(m=>{
-    if(m.role==='user')return '<div class="bolha eu">'+esc(m.content)+'</div>';
-    const en=(m.content.match(/EN:\s*([\s\S]*?)(?=\nPT:|$)/)||[,m.content])[1].trim();
-    const pt=(m.content.match(/PT:\s*([\s\S]*)/)||[,''])[1].trim();
-    return '<div class="bolha ia">'+esc(en)+
-      '<button class="btn azul pequeno" style="display:block;margin-top:7px;padding:5px 10px;font-size:11.5px" onclick="falar(\''+en.replace(/'/g,"\\'").replace(/\n/g,' ')+'\')">🔊 Ouvir</button>'+
-      (pt?'<span class="traducao">'+esc(pt)+'</span>':'')+'</div>';
-  }).join('')+(tutorPensando?'<div class="escrevendo">💭 Escrevendo…</div>':'')+'<div id="fimConversa"></div></div>';
-  h+='<div class="envio"><textarea class="campo" id="tutorTexto" style="min-height:50px" placeholder="escreva em inglês, mesmo errado"></textarea>'+
-     '<button class="btn laranja" onclick="enviarTutor()" '+(tutorPensando?'disabled':'')+'>Enviar</button></div>';
-  return h;
-}
+function telaTutor(){const un=unidadeAtual();let h='<h1>Tutor IA</h1><div class="pt" style="margin-bottom:12px">Conversa em ingles no seu nivel. Ele corrige embaixo.</div>';if(!temIA())h+='<div class="carta"><div class="rotulo">Falta chave</div><div style="margin-top:6px;font-size:13.5px">Configure no Mapa.</div><button class="btn secundario pequeno" style="margin-top:10px" onclick="ir(\'passaporte\')">Configurar</button></div>';
+if(!E.tutorHist.length){h+='<div class="carta"><div class="rotulo">Sugestoes</div>'+['Hi! My name is Victor.','How are you today?','I work with car glass.','Can you help me practice '+un.g.t+'?'].map(s=>'<button class="btn secundario pequeno" style="margin:6px 6px 0 0" onclick="sugerir(\''+s.replace(/'/g,"\\'")+'\')">'+esc(s)+'</button>').join('')+'</div>';}
+h+='<div class="conversa">'+E.tutorHist.map(m=>{if(m.role==='user')return '<div class="bolha eu">'+esc(m.content)+'</div>';const en=(m.content.match(/EN:\s*([\s\S]*?)(?=\nPT:|$)/)||[,m.content])[1].trim();const pt=(m.content.match(/PT:\s*([\s\S]*)/)||[,''])[1].trim();return '<div class="bolha ia">'+esc(en)+'<button class="btn azul pequeno" style="display:block;margin-top:7px;padding:5px 10px;font-size:11.5px" onclick="falar(\''+en.replace(/'/g,"\\'").replace(/\n/g,' ')+'\')">Ouvir</button>'+(pt?'<span class="traducao">'+esc(pt)+'</span>':'')+'</div>';}).join('')+(tutorPensando?'<div class="escrevendo">Escrevendo...</div>':'')+'<div id="fimConversa"></div></div>';
+h+='<div class="envio"><textarea class="campo" id="tutorTexto" style="min-height:50px" placeholder="escreva em ingles, mesmo errado"></textarea><button class="btn laranja" onclick="enviarTutor()" '+(tutorPensando?'disabled':'')+'>Enviar</button></div>';return h;}
 function sugerir(s){$('#tutorTexto').value=s;$('#tutorTexto').focus();}
 
-/* PWA */
-let eventoInstall=null;
-window.addEventListener('beforeinstallprompt',(e)=>{
-  e.preventDefault();eventoInstall=e;
-  if(!localStorage.getItem('ingles30:installDismissed'))$('#installBanner').classList.remove('oculto');
-});
+let eventoInstall=null;window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();eventoInstall=e;if(!localStorage.getItem('ingles30:installDismissed'))$('#installBanner').classList.remove('oculto');});
 async function instalarPWA(){if(!eventoInstall)return;eventoInstall.prompt();const{outcome}=await eventoInstall.userChoice;if(outcome==='accepted')fecharInstall();}
 function fecharInstall(){$('#installBanner').classList.add('oculto');localStorage.setItem('ingles30:installDismissed','1');}
-if('serviceWorker' in navigator&&location.protocol!=='file:'){
-  window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});
-}
+if('serviceWorker' in navigator&&location.protocol!=='file:'){window.addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
 
-/* Roteador */
-function render(){
-  try{
-    renderTopo();renderNav();
-    const fn={painel:telaPainel,sessao:telaSessao,passaporte:telaPassaporte,tutor:telaTutor}[tela]||telaPainel;
-    $('#tela').innerHTML=fn()||'<div class="carta">Algo deu errado.</div>';
-    $('#rodape').innerHTML=tela==='painel'?'<span>5 sessões de 30 min por semana · ~9 meses até o nível 9</span>':'';
-    const c=$('#campoResp');if(c&&!c.disabled)c.focus();
-  }catch(e){console.error(e);}
-}
-setInterval(()=>{
-  if(tela!=='sessao'||!S||S.fim)return;
-  const d=Math.floor((Date.now()-S.inicio)/1000),el=$('#crono');
-  if(el)el.textContent='⏱ '+String(Math.floor(d/60)).padStart(2,'0')+':'+String(d%60).padStart(2,'0');
-},1000);
-document.addEventListener('keydown',e=>{
-  if(e.key!=='Enter')return;
-  const ex=S&&!S.fim?exAtual():null;if(!ex||S.resposta!==null)return;
-  if(ex.t==='digitar'&&document.activeElement&&document.activeElement.id==='campoResp'){e.preventDefault();responderDigitar();}
-});
+function render(){try{renderTopo();renderNav();const fn={painel:telaPainel,sessao:telaSessao,passaporte:telaPassaporte,tutor:telaTutor}[tela]||telaPainel;$('#tela').innerHTML=fn()||'<div class="carta">Algo deu errado.</div>';$('#rodape').innerHTML=tela==='painel'?'<span>5 sessoes de 30 min por semana</span>':'';const c=$('#campoResp');if(c&&!c.disabled)c.focus();}catch(e){console.error(e);}}
+setInterval(()=>{if(tela!=='sessao'||!S||S.fim)return;const d=Math.floor((Date.now()-S.inicio)/1000),el=$('#crono');if(el)el.textContent=String(Math.floor(d/60)).padStart(2,'0')+':'+String(d%60).padStart(2,'0');},1000);
+document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const ex=S&&!S.fim?exAtual():null;if(!ex||S.resposta!==null)return;if(ex.t==='digitar'&&document.activeElement&&document.activeElement.id==='campoResp'){e.preventDefault();responderDigitar();}});
 
 (async()=>{await carregar();render();})();
 </script>
-</body>
-</html>
