@@ -135,6 +135,35 @@ button:focus-visible{outline:2.5px solid var(--roxo2);outline-offset:2px}
 .campo:focus{border-color:var(--roxo2);background:rgba(255,255,255,.06)}
 textarea.campo{min-height:90px;resize:vertical;line-height:1.45}
 
+/* SELECTS ESTILIZADOS (correção do branco) */
+select.campo{
+  width:100%;
+  background:rgba(255,255,255,.04);
+  border:1.5px solid rgba(255,255,255,.12);
+  border-radius:10px;
+  padding:13px 38px 13px 13px;
+  font-size:15px;
+  color:var(--branco);
+  outline:none;
+  transition:border-color .15s;
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23A1A1AA' d='M1 1l5 5 5-5'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right 14px center;
+  background-size:12px;
+  cursor:pointer;
+  font-family:inherit;
+}
+select.campo:focus{border-color:var(--roxo2);background-color:rgba(255,255,255,.06)}
+select.campo option{
+  background:var(--cinza1);
+  color:var(--branco);
+  padding:10px;
+}
+select.campo::-ms-expand{display:none}
+
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .chip{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:8px;padding:9px 13px;font-size:14.5px;color:var(--texto);transition:all .12s}
 .chip:active{background:rgba(255,255,255,.12);transform:scale(.97)}
@@ -298,7 +327,7 @@ function soltarConfete(){
   }
 }
 
-/* CURRICULO - mantido identico */
+/* CURRICULO */
 const CURSO = [
 {n:1,nome:"Primeiras palavras",desc:"Cumprimentar, se apresentar, falar de pessoas e numeros.",u:[
  {t:"Cumprimentos",
@@ -493,7 +522,7 @@ const PADRAO={v:2,nivel:1,unidade:0,xp:0,streak:0,streakFreeze:0,ultimoDia:null,
 let E=JSON.parse(JSON.stringify(PADRAO));
 let tela='painel',salvando=null;
 let IA={chave:'',modelo:'claude-sonnet-5'};
-let cfgTTS={openai:'',vozIA:'nova',modeloIA:'tts-1'};
+let cfgTTS={openai:'',vozIA:'nova',modeloIA:'tts-1',proxyUrl:'https://ingles-tts.w4jwilliam.workers.dev/?key=app-2024-victor'};
 
 const MEM={};
 const Guarda={
@@ -540,20 +569,17 @@ function vozesEN(){if(!('speechSynthesis' in window))return [];return speechSynt
 function notaVoz(v){const n=(v.name||'')+' '+(v.voiceURI||'');let p=0;if(/natural|neural|premium|enhanced|online|azure|wavenet|studio/i.test(n))p+=10;if(/microsoft.*(online|natural|neural)/i.test(n))p+=9;if(/google.*(neural|wavenet|studio)/i.test(n))p+=9;if(/polly|neural/i.test(n))p+=7;if(/samantha|ava|siri|aria|jenny|allison|nicky|tessa|veena|serena|karen|moira/i.test(n))p+=6;if(/google/i.test(n))p+=4;if(/^en-US/i.test(v.lang))p+=2;else if(/^en-GB/i.test(v.lang))p+=2;else if(/^en-/i.test(v.lang))p+=1;if(/microsoft|zira|mark|david/i.test(n))p+=1;if(/compact|espeak/i.test(n))p-=5;return p;}
 function melhorVoz(){const vs=vozesEN();if(!vs.length)return null;if(E.voz){const m=vs.find(v=>v.voiceURI===E.voz);if(m)return m;}return vs.slice().sort((a,b)=>notaVoz(b)-notaVoz(a))[0];}
 
-/* ============ SISTEMA DE VOZ COM OPENAI TTS (PRINCIPAL) + WEB SPEECH (FALLBACK) ============ */
+/* ============ VOZ: OPENAI TTS (via proxy) + WEB SPEECH (fallback) ============ */
 let _ttsAudio=null;
 let filaVoz=null;
 
 async function falarOpenAI(texto, taxa){
-  if(!cfgTTS.openai) return false;
+  if(!cfgTTS.proxyUrl) return false;
   const vel = taxa || E.vel || 0.95;
   try{
-    const r = await fetch('https://api.openai.com/v1/audio/speech',{
-      method:'POST',
-      headers:{
-        'Authorization':'Bearer '+cfgTTS.openai,
-        'Content-Type':'application/json'
-      },
+    const r = await fetch(cfgTTS.proxyUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         model: cfgTTS.modeloIA || 'tts-1',
         input: texto,
@@ -562,17 +588,19 @@ async function falarOpenAI(texto, taxa){
         speed: vel
       })
     });
+
     if(!r.ok){
       const t = await r.text();
-      throw new Error(t.slice(0,200));
+      throw new Error('Proxy '+r.status+': '+t.slice(0,150));
     }
+
     const blob = await r.blob();
     const url = URL.createObjectURL(blob);
-    if(_ttsAudio){ try{ _ttsAudio.pause(); }catch(e){} URL.revokeObjectURL(_ttsAudio.src); }
+    if(_ttsAudio){ try{ _ttsAudio.pause(); }catch(e){} if(_ttsAudio.src && _ttsAudio.src.startsWith('blob:')) URL.revokeObjectURL(_ttsAudio.src); }
     const audio = new Audio(url);
     _ttsAudio = audio;
-    audio.onended = ()=>{ if(_ttsAudio===audio) _ttsAudio=null; URL.revokeObjectURL(url); };
-    audio.onerror = ()=>{ if(_ttsAudio===audio) _ttsAudio=null; URL.revokeObjectURL(url); };
+    audio.onended = ()=>{ if(_ttsAudio===audio) _ttsAudio=null; if(audio.src.startsWith('blob:')) URL.revokeObjectURL(audio.src); };
+    audio.onerror = ()=>{ if(_ttsAudio===audio) _ttsAudio=null; if(audio.src.startsWith('blob:')) URL.revokeObjectURL(audio.src); };
     await audio.play();
     return true;
   }catch(e){
@@ -585,14 +613,10 @@ function falarWebSpeech(texto, taxa){
   if(!('speechSynthesis' in window)) return;
   clearTimeout(filaVoz);
   speechSynthesis.cancel();
-
   const t = String(texto).replace(/\s+/g,' ').trim();
   if(!t) return;
-
-  // Chunking: divide em sentenças curtas pra soar mais natural
   const chunks = t.split(/(?<=[.!?])\s+|(?<=[,;:])\s+/).filter(s=>s.trim().length>0);
   if(!chunks.length) return;
-
   const voz = melhorVoz();
   let i = 0;
   function prox(){
@@ -613,19 +637,14 @@ async function falar(txt, taxa){
   initAudio();
   const texto = String(txt||'').replace(/\s+/g,' ').trim();
   if(!texto) return;
-
-  // Cancela áudio anterior
   if(_ttsAudio){ try{ _ttsAudio.pause(); _ttsAudio=null; }catch(e){} }
   clearTimeout(filaVoz);
   if('speechSynthesis' in window) speechSynthesis.cancel();
 
-  // 1ª opção: OpenAI TTS (voz humana)
-  if(cfgTTS.openai){
+  if(cfgTTS.proxyUrl){
     const ok = await falarOpenAI(texto, taxa);
     if(ok) return;
-    // Se falhou (sem internet, sem crédito, chave errada), tenta fallback
   }
-  // 2ª opção: Web Speech API melhorada
   falarWebSpeech(texto, taxa);
 }
 
@@ -748,14 +767,14 @@ h+='<div class="carta"><div class="rotulo">Sons e vibracao</div><div style="marg
 const onde={claude:'Claude',navegador:'navegador'}[Guarda.onde]||'navegador';
 h+='<div class="carta"><div class="rotulo">Memoria</div><div style="margin-top:8px;font-size:14px">Salvando em <b>'+onde+'</b>.</div><div style="display:flex;gap:8px;margin-top:12px"><button class="btn secundario pequeno" onclick="exportar()">Backup</button><button class="btn secundario pequeno" onclick="document.getElementById(\'arqBackup\').click()">Restaurar</button></div><input type="file" id="arqBackup" accept="application/json" class="oculto" onchange="importar(event)"><div id="statusBackup"></div></div>';
 
-// ====== NOVO: SEÇÃO OPENAI TTS ======
+// ====== OPENAI TTS ======
 h+='<div class="carta"><div class="rotulo">Voz humana (OpenAI)</div>';
-if(cfgTTS.openai){
-  h+='<div class="aviso" style="margin-top:10px;margin-bottom:12px;border-color:var(--verde);background:linear-gradient(135deg,rgba(16,185,129,.18),rgba(52,211,153,.12))"><b>Ativo.</b> Voz neural configurada: <b>'+esc(cfgTTS.vozIA)+'</b></div>';
+if(cfgTTS.openai||cfgTTS.proxyUrl){
+  h+='<div class="aviso" style="margin-top:10px;margin-bottom:12px;border-color:var(--verde);background:linear-gradient(135deg,rgba(16,185,129,.18),rgba(52,211,153,.12))"><b>Ativo.</b> Voz neural configurada: <b>'+esc(cfgTTS.vozIA)+'</b> ('+esc(cfgTTS.modeloIA)+')</div>';
 } else {
   h+='<div class="aviso" style="margin-top:10px;margin-bottom:12px"><b>Recomendado.</b> Voz natural de verdade. Custa centavos.</div>';
 }
-h+='<div class="pt" style="margin-top:6px;font-size:13px">Crie em <b>platform.openai.com → API Keys</b>. A mesma chave serve aqui e no Tutor.</div>';
+h+='<div class="pt" style="margin-top:6px;font-size:13px">Sua chave OpenAI (fica so no seu celular):</div>';
 h+='<input class="campo" id="campoChaveTTS" type="password" style="margin-top:10px" placeholder="sk-..." autocomplete="off">';
 h+='<select class="campo" id="campoVozIA" style="margin-top:8px">';
 ['nova','shimmer','alloy','echo','onyx','fable'].forEach(v=>{
@@ -772,13 +791,13 @@ h+='<div id="statusTTS"></div>';
 h+='<div class="pt" style="margin-top:10px;font-size:12px">Sem internet ou sem crédito? O app volta sozinho pra voz do navegador.</div>';
 h+='</div>';
 
-// ====== SEÇÃO WEB SPEECH (fallback) ======
+// ====== WEB SPEECH (fallback) ======
 const vs=vozesEN().slice().sort((a,b)=>notaVoz(b)-notaVoz(a));const atual=melhorVoz();
 const isEdge=navigator.userAgent.includes('Edg');
 const isChrome=navigator.userAgent.includes('Chrome')&&!isEdge;
 const isSamsung=navigator.userAgent.includes('Samsung');
 h+='<div class="carta"><div class="rotulo">Voz do navegador (fallback)</div>';
-if(cfgTTS.openai){
+if(cfgTTS.openai||cfgTTS.proxyUrl){
   h+='<div class="pt" style="margin-top:8px;font-size:13px">Esta voz so e usada se a OpenAI falhar.</div>';
 } else {
   h+='<div class="pt" style="margin-top:8px;font-size:13px">Sem chave OpenAI. <b>Recomendacao:</b> abra no Microsoft Edge para vozes neurais gratuitas.</div>';
@@ -808,7 +827,6 @@ h+='<div class="carta"><div class="rotulo">Tutor IA</div><div class="pt" style="
 h+='<div class="carta"><button class="btn secundario" onclick="zerar()">Apagar tudo</button></div>';
 return h;}
 
-// ====== FUNÇÕES OPENAI TTS ======
 async function carregarCredTTS(){
   const c = $('#campoChaveTTS'); if(c) c.value = cfgTTS.openai || '';
   const v = $('#campoVozIA'); if(v) v.value = cfgTTS.vozIA || 'nova';
@@ -828,14 +846,14 @@ async function salvarCredTTS(){
 }
 async function testarVozIA(){
   const st = $('#statusTTS');
-  if(st) st.innerHTML = '<span class="escrevendo">Gerando áudio...</span>';
+  if(st) st.innerHTML = '<span class="escrevendo">Gerando áudio via proxy...</span>';
   await salvarCredTTS();
   try{
     const ok = await falarOpenAI('Good morning, my name is Victor. Nice to meet you. How are you today?', 0.95);
     if(ok){
       if(st) st.innerHTML = '<div class="retorno ok">Tocando voz '+esc(cfgTTS.vozIA)+'!</div>';
     } else {
-      if(st) st.innerHTML = '<div class="retorno nao">Falhou. Verifique a chave ou o saldo.</div>';
+      if(st) st.innerHTML = '<div class="retorno nao">Proxy falhou. Veja o console (F12) pra detalhes.</div>';
     }
   }catch(e){
     if(st) st.innerHTML = '<div class="retorno nao">Erro: '+esc(String(e.message).slice(0,140))+'</div>';
@@ -892,7 +910,7 @@ function render(){
     const fn={painel:telaPainel,sessao:telaSessao,passaporte:telaPassaporte,tutor:telaTutor}[tela]||telaPainel;
     $('#tela').innerHTML=fn()||'<div class="carta">Algo deu errado.</div>';
     $('#rodape').innerHTML=tela==='painel'?'<span>5 sessoes de 30 min por semana</span>':'';
-    carregarCredTTS(); // carrega chave OpenAI nos campos quando abrir o Mapa
+    carregarCredTTS();
     const c=$('#campoResp');
     if(c&&!c.disabled)c.focus();
   }catch(e){console.error(e);}
