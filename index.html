@@ -260,7 +260,7 @@ textarea.campo{min-height:90px;resize:vertical;line-height:1.45}
 <div id="installBanner" class="install-banner oculto">
   <div style="flex:1;font-size:13px;line-height:1.3;font-weight:600">📱 Instale pra estudar offline!</div>
   <button onclick="instalarPWA()">Instalar</button>
-  <button class="x" onclick="fecharInstall()">�</button>
+  <button class="x" onclick="fecharInstall()">✕</button>
 </div>
 
 <nav class="nav" id="nav"></nav>
@@ -839,7 +839,7 @@ function finalizarProva(){
   const prec=S.total?S.acertos/S.total:0;
   if(prec>=0.8){
     E.carimbos[E.nivel]={d:hoje(),p:Math.round(prec*100)};E.xp+=200;
-    if(E.nivel<CURSO.length){E.nivel++;E.unidade=0;E.prova=false;E.recado='Aprovado! Nível '+E.nivel+' �';}
+    if(E.nivel<CURSO.length){E.nivel++;E.unidade=0;E.prova=false;E.recado='Aprovado! Nível '+E.nivel+' ✕';}
     else{E.prova=false;E.recado='Curso completo! Parabens!';}
     setTimeout(()=>{somNivel();soltarConfete();},100);
   }else{
@@ -936,7 +936,7 @@ function telaPainel(){
      '<h2 style="margin-top:8px">'+esc(E.prova?('Teste nível '+E.nivel):un.t)+'</h2>'+
      '<div class="pt" style="margin-top:6px">'+esc(E.prova?'16 questões · 80% pra passar':'Nível '+E.nivel+' · U'+(E.unidade+1)+' de 3 · '+un.g.t)+'</div>'+
      '</div></div>'+
-     '<button class="btn '+(E.prova?'laranja':'verde')+'" onclick="'+(E.prova?'comecarProva()':'comecarSessao()')+'">'+(E.prova?'� Fazer o teste':'🚀 Começar sessão')+'</button></div>';
+     '<button class="btn '+(E.prova?'laranja':'verde')+'" onclick="'+(E.prova?'comecarProva()':'comecarSessao()')+'">'+(E.prova?'✕ Fazer o teste':'🚀 Começar sessão')+'</button></div>';
 
   h+='<div class="carta"><div class="carta-topo"><div class="rotulo">📅 Semana · meta 5 sessões</div><span class="dado">'+feitos.length+'/5</span></div>'+
      '<div class="semana">'+[0,1,2,3,4].map(i=>{
@@ -1004,7 +1004,7 @@ function telaSessao(){
   const alvo=S.prova?12:30;
   let h='<div class="sessao-topo"><div><div class="rotulo">'+esc(b.nome)+(S.prova?'':' · '+b.min+' min')+'</div>'+
        '<div class="dado" style="font-size:12px;color:var(--texto2);margin-top:3px">'+(S.i+1)+' / '+b.ex.length+'</div></div>'+
-       '<div class="cronometro'+(dec>alvo*60?' estourou':'')+'">� '+mm+':'+ss+'</div></div>';
+       '<div class="cronometro'+(dec>alvo*60?' estourou':'')+'">✕ '+mm+':'+ss+'</div></div>';
   h+='<div class="blocos">'+S.blocos.map((x,i)=>'<i class="'+(i<S.b?'pronto':(i===S.b?'ativo':''))+'"></i>').join('')+'</div>';
   h+='<div class="carta">'+corpoEx(ex)+'</div>';
   return h;
@@ -1017,7 +1017,7 @@ function corpoEx(ex){
     return '<div class="rotulo">✨ Palavra nova</div>'+
       '<div class="pergunta en">'+esc(ex.v[0])+'</div>'+
       '<div class="pt" style="font-size:15.5px">'+esc(ex.v[1])+'</div>'+
-      '<button class="btn azul pequeno" style="margin-top:12px" onclick="falar(\''+ex.v[0].replace(/'/g,"\\'")+'\')">� Ouvir</button>'+
+      '<button class="btn azul pequeno" style="margin-top:12px" onclick="falar(\''+ex.v[0].replace(/'/g,"\\'")+'\')">✕ Ouvir</button>'+
       '<div class="carta" style="margin:14px 0 0;background:rgba(255,255,255,.04)"><div style="font-size:15.5px">'+esc(ex.v[2])+'</div><div class="pt" style="margin-top:5px">'+esc(ex.v[3])+'</div>'+
       '<button class="btn azul pequeno" style="margin-top:10px" onclick="falar(\''+ex.v[2].replace(/'/g,"\\'")+'\')">🔊 Frase</button></div>'+
       '<button class="btn verde" style="margin-top:14px" onclick="avancar()">✅ Aprendi</button>';
@@ -1165,8 +1165,8 @@ function telaPassaporte(){
      '<div class="pt" style="margin-top:5px">Cada 7 dias seguidos = 1 freeze novo. Use quando perder um dia.</div>'+
      '<button class="btn secundario pequeno" style="margin-top:12px" onclick="ganharFreeze()">❄️ +1 freeze (100 XP)</button></div>';
 
-  // � CONFIG DE SOM
-  h+='<div class="carta"><div class="rotulo">� Sons e vibração</div>'+
+  // ✕ CONFIG DE SOM
+  h+='<div class="carta"><div class="rotulo">✕ Sons e vibração</div>'+
     '<div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;padding:6px 0">'+
       '<div><div style="font-weight:600">Sons do app</div><div class="pt" style="font-size:12.5px">Acertou, errou, conquistas…</div></div>'+
       '<button class="btn '+(configSom.ligado?'verde':'secundario')+' pequeno" onclick="toggleSom()">'+(configSom.ligado?'🔊 Ligado':'🔇 Desligado')+'</button></div>'+
@@ -1175,7 +1175,7 @@ function telaPassaporte(){
       '<button class="btn '+(configSom.vibrar?'verde':'secundario')+' pequeno" onclick="toggleVibrar()">'+(configSom.vibrar?'📳 Sim':'❌ Não')+'</button></div>'+
     '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-top:1px solid rgba(255,255,255,.06)">'+
       '<div><div style="font-weight:600">Toque nos botões</div><div class="pt" style="font-size:12.5px">Clique suave ao tocar</div></div>'+
-      '<button class="btn '+(configSom.toque?'verde':'secundario')+' pequeno" onclick="toggleToque()">'+(configSom.toque?'🔘 Sim':'� Não')+'</button></div>'+
+      '<button class="btn '+(configSom.toque?'verde':'secundario')+' pequeno" onclick="toggleToque()">'+(configSom.toque?'🔘 Sim':'✕ Não')+'</button></div>'+
     '<button class="btn secundario pequeno" style="margin-top:12px" onclick="testarSons()">🎵 Testar todos os sons</button></div>';
 
   const onde={claude:'Claude',navegador:'navegador'}[Guarda.onde]||'navegador';
