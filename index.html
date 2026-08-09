@@ -690,9 +690,9 @@ const CONQUISTAS=[
   {id:'xp100',nome:'100 XP',ico:'💯',cond:()=>E.xp>=100},
   {id:'xp500',nome:'500 XP',ico:'⭐',cond:()=>E.xp>=500},
   {id:'xp2000',nome:'2.000 XP',ico:'💎',cond:()=>E.xp>=2000},
-  {id:'nivel3',nome:'Nível 3',ico:'🚶',cond:()=>E.nivel>=3},
-  {id:'nivel6',nome:'Nível 6',ico:'🗣️',cond:()=>E.nivel>=6},
-  {id:'nivel9',nome:'Nível 9',ico:'👔',cond:()=>E.nivel>=9},
+  {id:'nivel3',nome:'Nível 3',ico:'🎯',cond:()=>E.nivel>=3},
+  {id:'nivel6',nome:'Nível 6',ico:'🎓',cond:()=>E.nivel>=6},
+  {id:'nivel9',nome:'Nível 9',ico:'👑',cond:()=>E.nivel>=9},
   {id:'carimbo',nome:'Carimbo',ico:'📮',cond:()=>Object.keys(E.carimbos).length>=1},
   {id:'conversa',nome:'Tutor',ico:'💬',cond:()=>E.tutorHist.filter(m=>m.role==='user').length>=1}
 ];
@@ -840,7 +840,7 @@ function finalizarProva(){
   if(prec>=0.8){
     E.carimbos[E.nivel]={d:hoje(),p:Math.round(prec*100)};E.xp+=200;
     if(E.nivel<CURSO.length){E.nivel++;E.unidade=0;E.prova=false;E.recado='Aprovado! Nível '+E.nivel+' �';}
-    else{E.prova=false;E.recado='Curso completo! 👔';}
+    else{E.prova=false;E.recado='Curso completo! Parabens!';}
     setTimeout(()=>{somNivel();soltarConfete();},100);
   }else{
     let pior=0,piorTaxa=2;
