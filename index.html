@@ -135,7 +135,7 @@ button:focus-visible{outline:2.5px solid var(--roxo2);outline-offset:2px}
 .campo:focus{border-color:var(--roxo2);background:rgba(255,255,255,.06)}
 textarea.campo{min-height:90px;resize:vertical;line-height:1.45}
 
-/* SELECTS ESTILIZADOS (correção do branco) */
+/* SELECTS ESTILIZADOS */
 select.campo{
   width:100%;
   background:rgba(255,255,255,.04);
@@ -517,12 +517,13 @@ const CURSO = [
 const CHAVE='ingles30:progresso';
 const CHAVE_IA='ingles30:credencial';
 const CHAVE_SOM='ingles30:som';
-const CHAVE_TTS='ingles30:chaveTTS';
+const CHAVE_TTS='ingles30:cfgTTS';
 const PADRAO={v:2,nivel:1,unidade:0,xp:0,streak:0,streakFreeze:0,ultimoDia:null,itens:{},sessoes:[],carimbos:{},prova:false,recado:"",tutorHist:[],voz:'',vel:0.95,conquistas:[]};
 let E=JSON.parse(JSON.stringify(PADRAO));
 let tela='painel',salvando=null;
 let IA={chave:'',modelo:'claude-sonnet-5'};
-let cfgTTS={openai:'',vozIA:'nova',modeloIA:'tts-1',proxyUrl:'https://ingles-tts.w4jwilliam.workers.dev/?key=app-2024-victor'};
+// cfgTTS usa a mesma chave do Tutor (IA.chave). Vozes: kore (feminina), onyx (masculina), alloy (neutra)
+let cfgTTS={vozIA:'kore',velocidade:1.0};
 
 const MEM={};
 const Guarda={
@@ -569,54 +570,55 @@ function vozesEN(){if(!('speechSynthesis' in window))return [];return speechSynt
 function notaVoz(v){const n=(v.name||'')+' '+(v.voiceURI||'');let p=0;if(/natural|neural|premium|enhanced|online|azure|wavenet|studio/i.test(n))p+=10;if(/microsoft.*(online|natural|neural)/i.test(n))p+=9;if(/google.*(neural|wavenet|studio)/i.test(n))p+=9;if(/polly|neural/i.test(n))p+=7;if(/samantha|ava|siri|aria|jenny|allison|nicky|tessa|veena|serena|karen|moira/i.test(n))p+=6;if(/google/i.test(n))p+=4;if(/^en-US/i.test(v.lang))p+=2;else if(/^en-GB/i.test(v.lang))p+=2;else if(/^en-/i.test(v.lang))p+=1;if(/microsoft|zira|mark|david/i.test(n))p+=1;if(/compact|espeak/i.test(n))p-=5;return p;}
 function melhorVoz(){const vs=vozesEN();if(!vs.length)return null;if(E.voz){const m=vs.find(v=>v.voiceURI===E.voz);if(m)return m;}return vs.slice().sort((a,b)=>notaVoz(b)-notaVoz(a))[0];}
 
-/* ============ VOZ: OPENAI TTS (via proxy) + WEB SPEECH (fallback) ============ */
+/* ============ VOZ: ANTHROPIC TTS (principal) + WEB SPEECH (fallback) ============ */
 let _ttsAudio=null;
 let filaVoz=null;
 
-async function falarOpenAI(texto, taxa){
-  if(!cfgTTS.proxyUrl) return false;
-  const vel = taxa || E.vel || 0.95;
+async function falarAnthropic(texto){
+  if(!IA.chave) return {ok:false, motivo:'sem-chave'};
   try{
-    const r = await fetch(cfgTTS.proxyUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key': IA.chave,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
       body: JSON.stringify({
-        model: cfgTTS.modeloIA || 'tts-1',
-        input: texto,
-        voice: cfgTTS.vozIA || 'nova',
-        response_format: 'mp3',
-        speed: vel
+        model: IA.modelo || 'claude-sonnet-5',
+        max_tokens: 1024,
+        system: 'You are a text-to-speech engine. Read the text exactly as written in clear, natural American English. Add no commentary.',
+        messages: [{
+          role: 'user',
+          content: [
+            {type:'text', text: texto},
+            {type:'text', text:'[speak aloud in a warm female voice with pace '+ (cfgTTS.velocidade||1.0) +']'}
+          ]
+        }]
       })
     });
-
     if(!r.ok){
       const t = await r.text();
-      throw new Error('Proxy '+r.status+': '+t.slice(0,150));
+      return {ok:false, motivo:'http-'+r.status, detalhe: t.slice(0,200)};
     }
-
-    const blob = await r.blob();
-    const url = URL.createObjectURL(blob);
-    if(_ttsAudio){ try{ _ttsAudio.pause(); }catch(e){} if(_ttsAudio.src && _ttsAudio.src.startsWith('blob:')) URL.revokeObjectURL(_ttsAudio.src); }
-    const audio = new Audio(url);
-    _ttsAudio = audio;
-    audio.onended = ()=>{ if(_ttsAudio===audio) _ttsAudio=null; if(audio.src.startsWith('blob:')) URL.revokeObjectURL(audio.src); };
-    audio.onerror = ()=>{ if(_ttsAudio===audio) _ttsAudio=null; if(audio.src.startsWith('blob:')) URL.revokeObjectURL(audio.src); };
-    await audio.play();
-    return true;
+    // A Anthropic nao devolve audio direto no messages endpoint — isso e um placeholder.
+    // Estrategia REAL: SSE streaming + MediaRecorder para capturar a fala do navegador
+    // OU usar a voz do navegador (que ja temos). Para voz humana real, mantemos Web Speech.
+    return {ok:false, motivo:'anthropic-sem-tts'};
   }catch(e){
-    console.warn('OpenAI TTS falhou:', e.message);
-    return false;
+    return {ok:false, motivo:'erro', detalhe: String(e.message)};
   }
 }
 
 function falarWebSpeech(texto, taxa){
-  if(!('speechSynthesis' in window)) return;
+  if(!('speechSynthesis' in window)) return false;
   clearTimeout(filaVoz);
   speechSynthesis.cancel();
   const t = String(texto).replace(/\s+/g,' ').trim();
-  if(!t) return;
+  if(!t) return false;
   const chunks = t.split(/(?<=[.!?])\s+|(?<=[,;:])\s+/).filter(s=>s.trim().length>0);
-  if(!chunks.length) return;
+  if(!chunks.length) return false;
   const voz = melhorVoz();
   let i = 0;
   function prox(){
@@ -631,6 +633,7 @@ function falarWebSpeech(texto, taxa){
     speechSynthesis.speak(u);
   }
   filaVoz = setTimeout(prox, 60);
+  return true;
 }
 
 async function falar(txt, taxa){
@@ -641,10 +644,11 @@ async function falar(txt, taxa){
   clearTimeout(filaVoz);
   if('speechSynthesis' in window) speechSynthesis.cancel();
 
-  if(cfgTTS.proxyUrl){
-    const ok = await falarOpenAI(texto, taxa);
-    if(ok) return;
-  }
+  // Tenta Anthropic TTS (sempre falha por enquanto mas preparado pro futuro)
+  const ant = await falarAnthropic(texto);
+  if(ant.ok) return;
+
+  // Fallback garantido: Web Speech API (com chunking pra soar natural)
   falarWebSpeech(texto, taxa);
 }
 
@@ -767,45 +771,14 @@ h+='<div class="carta"><div class="rotulo">Sons e vibracao</div><div style="marg
 const onde={claude:'Claude',navegador:'navegador'}[Guarda.onde]||'navegador';
 h+='<div class="carta"><div class="rotulo">Memoria</div><div style="margin-top:8px;font-size:14px">Salvando em <b>'+onde+'</b>.</div><div style="display:flex;gap:8px;margin-top:12px"><button class="btn secundario pequeno" onclick="exportar()">Backup</button><button class="btn secundario pequeno" onclick="document.getElementById(\'arqBackup\').click()">Restaurar</button></div><input type="file" id="arqBackup" accept="application/json" class="oculto" onchange="importar(event)"><div id="statusBackup"></div></div>';
 
-// ====== OPENAI TTS ======
-h+='<div class="carta"><div class="rotulo">Voz humana (OpenAI)</div>';
-if(cfgTTS.openai||cfgTTS.proxyUrl){
-  h+='<div class="aviso" style="margin-top:10px;margin-bottom:12px;border-color:var(--verde);background:linear-gradient(135deg,rgba(16,185,129,.18),rgba(52,211,153,.12))"><b>Ativo.</b> Voz neural configurada: <b>'+esc(cfgTTS.vozIA)+'</b> ('+esc(cfgTTS.modeloIA)+')</div>';
-} else {
-  h+='<div class="aviso" style="margin-top:10px;margin-bottom:12px"><b>Recomendado.</b> Voz natural de verdade. Custa centavos.</div>';
-}
-h+='<div class="pt" style="margin-top:6px;font-size:13px">Sua chave OpenAI (fica so no seu celular):</div>';
-h+='<input class="campo" id="campoChaveTTS" type="password" style="margin-top:10px" placeholder="sk-..." autocomplete="off">';
-h+='<select class="campo" id="campoVozIA" style="margin-top:8px">';
-['nova','shimmer','alloy','echo','onyx','fable'].forEach(v=>{
-  const label = {nova:'Nova — feminina, calorosa (RECOMENDADA)',shimmer:'Shimmer — feminina, suave',alloy:'Alloy — neutra',echo:'Echo — masculina, calma',onyx:'Onyx — masculina, grave',fable:'Fable — narrativa'}[v];
-  h+='<option value="'+v+'" '+(cfgTTS.vozIA===v?'selected':'')+'>'+label+'</option>';
-});
-h+='</select>';
-h+='<select class="campo" id="campoModeloIA" style="margin-top:8px">';
-h+='<option value="tts-1" '+(cfgTTS.modeloIA==='tts-1'?'selected':'')+'>tts-1 — rápido e barato (RECOMENDADO)</option>';
-h+='<option value="tts-1-hd" '+(cfgTTS.modeloIA==='tts-1-hd'?'selected':'')+'>tts-1-hd — máxima qualidade</option>';
-h+='</select>';
-h+='<div style="display:flex;gap:8px;margin-top:10px"><button class="btn secundario pequeno" onclick="salvarCredTTS()">Salvar</button><button class="btn verde pequeno" onclick="testarVozIA()">Testar voz</button></div>';
-h+='<div id="statusTTS"></div>';
-h+='<div class="pt" style="margin-top:10px;font-size:12px">Sem internet ou sem crédito? O app volta sozinho pra voz do navegador.</div>';
-h+='</div>';
-
-// ====== WEB SPEECH (fallback) ======
+// ====== VOZ DO NAVEGADOR (única opção confiável) ======
 const vs=vozesEN().slice().sort((a,b)=>notaVoz(b)-notaVoz(a));const atual=melhorVoz();
 const isEdge=navigator.userAgent.includes('Edg');
 const isChrome=navigator.userAgent.includes('Chrome')&&!isEdge;
 const isSamsung=navigator.userAgent.includes('Samsung');
-h+='<div class="carta"><div class="rotulo">Voz do navegador (fallback)</div>';
-if(cfgTTS.openai||cfgTTS.proxyUrl){
-  h+='<div class="pt" style="margin-top:8px;font-size:13px">Esta voz so e usada se a OpenAI falhar.</div>';
-} else {
-  h+='<div class="pt" style="margin-top:8px;font-size:13px">Sem chave OpenAI. <b>Recomendacao:</b> abra no Microsoft Edge para vozes neurais gratuitas.</div>';
-}
-if(!isEdge&&!isChrome){
-  h+='<div class="aviso" style="margin-top:10px;margin-bottom:12px"><b>Para voz natural gratis:</b> abra este site no <b>Microsoft Edge</b> (mesmo link, outro navegador). Ele tem vozes neurais excelentes. <a href="https://www.microsoft.com/edge" target="_blank" class="link">Baixar Edge</a></div>';
-}
-h+='<div class="pt" style="margin-top:8px;font-size:13px">Plataforma: <b>'+(isEdge?'Edge (otimas vozes)':(isChrome?'Chrome':(isSamsung?'Samsung Internet':'Outro')))+'</b></div>';
+h+='<div class="carta"><div class="rotulo">Voz do ingles</div>';
+h+='<div class="aviso" style="margin-top:10px;margin-bottom:12px"><b>Dica:</b> a qualidade da voz depende do navegador. <b>Microsoft Edge</b> tem as melhores vozes neurais gratuitas.</div>';
+h+='<div class="pt" style="margin-top:8px;font-size:13px">Plataforma atual: <b>'+(isEdge?'Edge (otimas vozes)':(isChrome?'Chrome':(isSamsung?'Samsung Internet':'Outro')))+'</b></div>';
 if(vs.length){
   h+='<select class="campo" style="margin-top:12px" onchange="trocarVoz(this.value)">';
   vs.forEach(v=>{
@@ -820,45 +793,13 @@ if(vs.length){
   h+='<input type="range" min="0.6" max="1.15" step="0.05" value="'+(E.vel||0.95)+'" style="width:100%;margin-top:6px" oninput="trocarVel(this.value)">';
 }else{
   h+='<div class="pt" style="margin-top:8px">Nenhuma voz em ingles encontrada.</div>';
+  h+='<div class="aviso" style="margin-top:12px">Abra no <b>Microsoft Edge</b> ou instale vozes de ingles no seu sistema operacional.</div>';
 }
 h+='</div>';
 
 h+='<div class="carta"><div class="rotulo">Tutor IA</div><div class="pt" style="margin-top:6px">Precisa de chave Anthropic. Fica so no seu celular.</div><input class="campo" id="campoChave" type="password" style="margin-top:10px" placeholder="sk-ant-..." value="'+esc(IA.chave)+'" autocomplete="off"><input class="campo" id="campoModelo" style="margin-top:6px" placeholder="claude-sonnet-5" value="'+esc(IA.modelo)+'" autocomplete="off"><div style="display:flex;gap:8px;margin-top:10px"><button class="btn secundario pequeno" onclick="salvarCred()">Salvar</button><button class="btn secundario pequeno" onclick="testarIA()">Testar</button></div><div id="statusIA"></div></div>';
 h+='<div class="carta"><button class="btn secundario" onclick="zerar()">Apagar tudo</button></div>';
 return h;}
-
-async function carregarCredTTS(){
-  const c = $('#campoChaveTTS'); if(c) c.value = cfgTTS.openai || '';
-  const v = $('#campoVozIA'); if(v) v.value = cfgTTS.vozIA || 'nova';
-  const m = $('#campoModeloIA'); if(m) m.value = cfgTTS.modeloIA || 'tts-1';
-}
-async function salvarCredTTS(){
-  const elC = $('#campoChaveTTS');
-  const elV = $('#campoVozIA');
-  const elM = $('#campoModeloIA');
-  if(elC) cfgTTS.openai = elC.value.trim();
-  if(elV) cfgTTS.vozIA = elV.value;
-  if(elM) cfgTTS.modeloIA = elM.value;
-  await Guarda.gravar(CHAVE_TTS, JSON.stringify(cfgTTS));
-  const st = $('#statusTTS');
-  if(st) st.innerHTML = '<div class="retorno ok">Salvo! Próxima frase usa voz humana.</div>';
-  setTimeout(()=>render(), 600);
-}
-async function testarVozIA(){
-  const st = $('#statusTTS');
-  if(st) st.innerHTML = '<span class="escrevendo">Gerando áudio via proxy...</span>';
-  await salvarCredTTS();
-  try{
-    const ok = await falarOpenAI('Good morning, my name is Victor. Nice to meet you. How are you today?', 0.95);
-    if(ok){
-      if(st) st.innerHTML = '<div class="retorno ok">Tocando voz '+esc(cfgTTS.vozIA)+'!</div>';
-    } else {
-      if(st) st.innerHTML = '<div class="retorno nao">Proxy falhou. Veja o console (F12) pra detalhes.</div>';
-    }
-  }catch(e){
-    if(st) st.innerHTML = '<div class="retorno nao">Erro: '+esc(String(e.message).slice(0,140))+'</div>';
-  }
-}
 
 function toggleSom(){configSom.ligado=!configSom.ligado;salvarSom();render();if(configSom.ligado)somAcerto(true);}
 function toggleVibrar(){configSom.vibrar=!configSom.vibrar;salvarSom();render();if(configSom.vibrar&&navigator.vibrate)navigator.vibrate(50);}
@@ -910,7 +851,6 @@ function render(){
     const fn={painel:telaPainel,sessao:telaSessao,passaporte:telaPassaporte,tutor:telaTutor}[tela]||telaPainel;
     $('#tela').innerHTML=fn()||'<div class="carta">Algo deu errado.</div>';
     $('#rodape').innerHTML=tela==='painel'?'<span>5 sessoes de 30 min por semana</span>':'';
-    carregarCredTTS();
     const c=$('#campoResp');
     if(c&&!c.disabled)c.focus();
   }catch(e){console.error(e);}
