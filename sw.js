@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ingles30-v3';
+const CACHE_NAME = 'ingles30-v4';
 const ARQUIVOS = [
   './',
   './index.html',
